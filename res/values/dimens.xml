@@ -1,0 +1,36 @@
+<!--
+  Copyright 2011 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<resources>
+
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="top_slidingmenu_offset">60dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+
+    <dimen name="test_size_25">25sp</dimen>
+    <dimen name="test_size_15">15sp</dimen>
+    <dimen name="test_size_20">20sp</dimen>
+    <integer name="num_cols">1</integer>
+    <dimen name="action_bar_height">48dp</dimen>
+    <dimen name="action_bar_icon_vertical_padding">4dp</dimen>
+    <dimen name="action_bar_title_text_size">18dp</dimen>
+    <dimen name="action_bar_subtitle_size">16dp</dimen>
+    <dimen name="amaya_uc_circle">16dp</dimen>
+    <dimen name="amaya_scroolbar_size">3dp</dimen>
+
+
+</resources>

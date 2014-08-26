@@ -1,0 +1,127 @@
+/*
+ * Copyright (C) 2010-2013 The SINA WEIBO Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.fone.player.share.view;
+
+import java.text.SimpleDateFormat;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
+import com.fone.player.share.AmayaAuthorize;
+import com.fone.player.share.util.AccessTokenKeeper;
+import com.fone.player.share.util.AmayaShareConstants;
+import com.fone.player.share.util.AmayaShareEnums;
+import com.fone.player.share.util.AmayaShareListener;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WeiboAuth;
+import com.sina.weibo.sdk.auth.WeiboAuth.AuthInfo;
+import com.sina.weibo.sdk.auth.WeiboAuthListener;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.sina.weibo.sdk.utils.LogUtil;
+
+/**
+ * 该类提供了一个简单的登录控件。
+ * 该登陆控件只提供登录功能（SSO 登陆授权），它有三种内置的样式。
+ * 
+ * @author SINA
+ * @since 2013-11-04
+ */
+public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,WeiboAuthListener {	
+    private static final String TAG = "LoginButton";
+
+    private OnClickListener mExternalOnClickListener;
+
+	private AmayaShareListener amayaListener;
+    
+	public AmayaTXWeiboButton(Context context) {
+		this(context, null);
+	}
+	
+	public AmayaTXWeiboButton(Context context, AttributeSet attrs) {
+		this(context, attrs, 0);
+	}
+
+	public AmayaTXWeiboButton(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		initialize(context);
+	}
+    
+    public void setExternalOnClickListener(OnClickListener listener) {
+        mExternalOnClickListener = listener;
+    }
+
+    /**
+	 * 按钮被点击时，调用该函数。
+	 */
+	@Override
+	public void onClick(View v) {
+	    // Give a chance to external listener
+        if (mExternalOnClickListener != null) {
+            mExternalOnClickListener.onClick(v);
+        }
+        Context c = getContext();
+        if(c instanceof Activity){
+        	Intent i = new Intent(c, AmayaAuthorize.class);
+        	((Activity)c).startActivityForResult(i, AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO);
+        }
+	    
+	}
+	@Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(amayaListener != null){
+			amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, data.getExtras());
+		}
+    }
+
+    /**
+     * 按钮初始化函数。
+     * 
+     * @param context 上下文环境，一般为放置该 Button 的 Activity
+     */
+    private void initialize(Context context) {
+    	setOnClickListener(this);
+    	setBackgroundResource(android.R.drawable.editbox_dropdown_light_frame);
+    }
+    
+    @Override
+    public void addShareListener(AmayaShareListener amayaListener){
+    	this.amayaListener = amayaListener;
+    }
+
+	@Override
+	public void onCancel() {
+		if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.SINA_WEIBO);
+	}
+
+	@Override
+	public void onComplete(Bundle values) {
+         if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO, values);
+	}
+
+	@Override
+	public void onWeiboException(WeiboException arg0) {
+		if(amayaListener != null) amayaListener.onException(AmayaShareEnums.SINA_WEIBO,arg0.getMessage());
+		
+	}
+}
