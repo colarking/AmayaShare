@@ -2,23 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:gravity="center"
+	android:layout_height="fill_parent"
+	android:background="@color/little_matrix"
+	>
 
-	<TextView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Hello World, MainActivity" />
 	<com.fone.player.share.view.AmayaSinaWeiboButton
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="新浪微博登陆"
 		android:id="@+id/amaya_sinw_weido"
+		style="?android:attr/buttonBarButtonStyle"
+		android:layout_margin="5dp"
 		/>
 	<com.fone.player.share.view.AmayaTXWeiboButton
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="新浪微博登陆"
+		android:text="腾讯微博登陆"
 		android:id="@+id/amaya_tx_weido"
+		style="?android:attr/buttonBarButtonStyle"
+		android:layout_margin="5dp"
+		/>
+	<com.fone.player.share.view.AmayaQQButton
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="QQ账号登陆"
+		android:id="@+id/amaya_tx_qq"
+		android:layout_margin="5dp"
+		style="?android:attr/buttonBarButtonStyle"
 		/>
 </LinearLayout>
 

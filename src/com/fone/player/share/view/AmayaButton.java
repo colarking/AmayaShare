@@ -16,28 +16,15 @@
 
 package com.fone.player.share.view;
 
-import java.text.SimpleDateFormat;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.res.ColorStateList;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-
-import com.fone.player.share.util.AccessTokenKeeper;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaShareEnums;
+import com.fone.player.R;
 import com.fone.player.share.util.AmayaShareListener;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuth;
-import com.sina.weibo.sdk.auth.WeiboAuth.AuthInfo;
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
-import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.utils.LogUtil;
 
 /**
  * �����ṩ��һ���򵥵ĵ�¼�ؼ���
@@ -51,6 +38,7 @@ public abstract class AmayaButton extends Button {
 
 	public AmayaButton(Context context) {
 		this(context, null);
+        initUI();
 	}
 	
 	/**
@@ -60,12 +48,35 @@ public abstract class AmayaButton extends Button {
 	 */
 	public AmayaButton(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
+        initUI();
 	}
 
-	public AmayaButton(Context context, AttributeSet attrs, int defStyle) {
+    private void initUI() {
+        setBackgroundResource(R.drawable.text_view_bg_selector);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+        setPadding(15,15,15,15);
+        int white = getResources().getColor(R.color.white);
+        int l = getResources().getColor(R.color.text_pressed_green);
+        setTextColor(createColorStateList(white,l,l,l));
+    }
+
+    public AmayaButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+        initUI();
 	}
-	
+
+    public ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
+        int[][] states = new int[6][];
+        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[2] = new int[]{android.R.attr.state_enabled};
+        states[3] = new int[]{android.R.attr.state_focused};
+        states[4] = new int[]{android.R.attr.state_window_focused};
+        states[5] = new int[]{};
+        ColorStateList colorList = new ColorStateList(states, colors);
+        return colorList;
+    }
 	public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
 	public abstract void addShareListener(AmayaShareListener amayaListener);
     

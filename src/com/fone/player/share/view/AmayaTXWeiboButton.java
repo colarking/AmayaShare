@@ -16,8 +16,6 @@
 
 package com.fone.player.share.view;
 
-import java.text.SimpleDateFormat;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,20 +23,12 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-
 import com.fone.player.share.AmayaAuthorize;
-import com.fone.player.share.util.AccessTokenKeeper;
 import com.fone.player.share.util.AmayaShareConstants;
 import com.fone.player.share.util.AmayaShareEnums;
 import com.fone.player.share.util.AmayaShareListener;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuth;
-import com.sina.weibo.sdk.auth.WeiboAuth.AuthInfo;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.utils.LogUtil;
 
 /**
  * 该类提供了一个简单的登录控件。
@@ -47,7 +37,7 @@ import com.sina.weibo.sdk.utils.LogUtil;
  * @author SINA
  * @since 2013-11-04
  */
-public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,WeiboAuthListener {	
+public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,WeiboAuthListener {
     private static final String TAG = "LoginButton";
 
     private OnClickListener mExternalOnClickListener;
@@ -56,10 +46,12 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
     
 	public AmayaTXWeiboButton(Context context) {
 		this(context, null);
+        initialize(context);
 	}
 	
 	public AmayaTXWeiboButton(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
+        initialize(context);
 	}
 
 	public AmayaTXWeiboButton(Context context, AttributeSet attrs, int defStyle) {
@@ -89,7 +81,7 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
 	}
 	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(amayaListener != null){
+		if(amayaListener != null && data != null){
 			amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, data.getExtras());
 		}
     }
@@ -101,7 +93,6 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
      */
     private void initialize(Context context) {
     	setOnClickListener(this);
-    	setBackgroundResource(android.R.drawable.editbox_dropdown_light_frame);
     }
     
     @Override
@@ -109,7 +100,7 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
     	this.amayaListener = amayaListener;
     }
 
-	@Override
+    @Override
 	public void onCancel() {
 		if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.SINA_WEIBO);
 	}

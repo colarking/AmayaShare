@@ -16,9 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
@@ -26,11 +24,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.fone.player.R;
 import com.fone.player.share.util.AmayaShareConstants;
 import com.tencent.weibo.sdk.android.api.util.Util;
@@ -321,7 +316,7 @@ public class AmayaAuthorize extends Activity {
 		return _dialog;
 	}
 	
-	 public ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+	public ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
 	        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
 	        int[][] states = new int[6][];
 	        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
@@ -332,6 +327,6 @@ public class AmayaAuthorize extends Activity {
 	        states[5] = new int[]{};
 	        ColorStateList colorList = new ColorStateList(states, colors);
 	        return colorList;
-	    }
+    }
 
 }

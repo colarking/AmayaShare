@@ -23,7 +23,7 @@ import android.content.SharedPreferences.Editor;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**
- * 该类定义了微博授权时�?��要的参数�? * 
+ * 该类定义了微博授权时
  * @author SINA
  * @since 2013-10-07
  */
@@ -35,8 +35,8 @@ public class AccessTokenKeeper {
     private static final String KEY_EXPIRES_IN    = "expires_in";
     
     /**
-     * 保存 Token 对象�?SharedPreferences�?     * 
-     * @param context 应用程序上下文环�?     * @param token   Token 对象
+     * 保存 Token 对象�?SharedPreferences�?     * 
+     * @param context 应用程序上下文环�?     * @param token   Token 对象
      */
     public static void writeAccessToken(Context context, Oauth2AccessToken token) {
         if (null == context || null == token) {
@@ -52,8 +52,8 @@ public class AccessTokenKeeper {
     }
 
     /**
-     * �?SharedPreferences 读取 Token 信息�?     * 
-     * @param context 应用程序上下文环�?     * 
+     * �?SharedPreferences 读取 Token 信息�?     * 
+     * @param context 应用程序上下文环�?     * 
      * @return 返回 Token 对象
      */
     public static Oauth2AccessToken readAccessToken(Context context) {
@@ -70,8 +70,8 @@ public class AccessTokenKeeper {
     }
 
     /**
-     * 清空 SharedPreferences �?Token信息�?     * 
-     * @param context 应用程序上下文环�?     */
+     * 清空 SharedPreferences �?Token信息�?     * 
+     * @param context 应用程序上下文环�?     */
     public static void clear(Context context) {
         if (null == context) {
             return;

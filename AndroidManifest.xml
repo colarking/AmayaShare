@@ -9,7 +9,7 @@
 		android:label="@string/app_name"
 		android:icon="@drawable/ic_launcher">
 		<activity
-			android:name="com.fone.player.share.MainActivity"
+			android:name=".share.AmayaMainActivity"
 			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,21 @@
 		<activity
 			android:name="com.fone.player.share.AmayaAuthorize"
 			>
+		</activity>
+		<activity
+			android:name="com.tencent.connect.common.AssistActivity"
+			android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+		<activity
+			android:name="com.tencent.tauth.AuthActivity"
+			android:noHistory="true"
+			android:launchMode="singleTask" >
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="tencent222222" />
+			</intent-filter>
 		</activity>
 		
 	</application>

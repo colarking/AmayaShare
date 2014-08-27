@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="text_pressed_green">#9de942</color>
+	<color name="white">#ffffff</color>
+	<color name="little_blue">#3fa2dd</color>
+	<color name="little_matrix">#5f9955</color>
+</resources>

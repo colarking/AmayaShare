@@ -16,8 +16,6 @@
 
 package com.fone.player.share.view;
 
-import java.text.SimpleDateFormat;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +23,6 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-
 import com.fone.player.share.util.AccessTokenKeeper;
 import com.fone.player.share.util.AmayaShareConstants;
 import com.fone.player.share.util.AmayaShareEnums;
@@ -49,13 +45,6 @@ import com.sina.weibo.sdk.utils.LogUtil;
 public class AmayaSinaWeiboButton extends AmayaButton implements OnClickListener,WeiboAuthListener {	
     private static final String TAG = "LoginButton";
 
-    /** 默认样式，同时带有新浪微博图标和文字的图标 */
-    public static final int LOGIN_INCON_STYLE_1 = 1;
-    /** 样式二，带边框的新浪微博图标 */
-    public static final int LOGIN_INCON_STYLE_2 = 2;
-    /** 样式三，不带边框的新浪微博图标 */
-    public static final int LOGIN_INCON_STYLE_3 = 3;
-    
     /** 微博授权时，启动 SSO 界面的 Activity */
 	private Context mContext;
     /** 授权认证所需要的信息 */
@@ -94,37 +83,7 @@ public class AmayaSinaWeiboButton extends AmayaButton implements OnClickListener
 		super(context, attrs, defStyle);
 		initialize(context);
 	}
-    
-    /**
-     * 设置微博登陆按钮显示的样式，默认为同时带有新浪微博图标和文字的样式。
-     * 
-     * @param style 登录按钮的样式。可以是以下几种样式中的一种：
-     *              {@link #LOGIN_INCON_STYLE_1}，
-     *              {@link #LOGIN_INCON_STYLE_2}，
-     *              {@link #LOGIN_INCON_STYLE_3}
-     */
-    public void setStyle(int style) {
-//    	int iconResId = R.drawable.com_sina_weibo_sdk_login_button_with_account_text;
-//    	switch (style) {
-//		case LOGIN_INCON_STYLE_1:
-//			iconResId = R.drawable.com_sina_weibo_sdk_login_button_with_account_text;
-//			break;
-//			
-//		case LOGIN_INCON_STYLE_2:
-//			iconResId = R.drawable.com_sina_weibo_sdk_login_button_with_frame_logo;
-//			break;
-//			
-//		case LOGIN_INCON_STYLE_3:
-//			iconResId = R.drawable.com_sina_weibo_sdk_login_button_with_original_logo;
-//			break;
-//			
-//		default:
-//			break;
-//		}
-//    	
-    	setBackgroundResource(android.R.drawable.alert_dark_frame);
-	}
-    
+
     /**
      * 设置一个额外的 Button 点击时的 Listener。
      * 当触发 Button 点击事件时，会先调用该 Listener，给使用者一个可访问的机会，
@@ -192,7 +151,6 @@ public class AmayaSinaWeiboButton extends AmayaButton implements OnClickListener
     private void initialize(Context context) {
     	mContext = context;
     	setOnClickListener(this);
-    	setStyle(LOGIN_INCON_STYLE_1);
     	mAuthInfo = new AuthInfo(context, AmayaShareConstants.AMAYA_SINA_KEY, AmayaShareConstants.AMAYA_SINA_REDIRECTURL,AmayaShareConstants.AMAYA_SINA_SCOPE);
     }
     
