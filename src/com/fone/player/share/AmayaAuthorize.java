@@ -244,10 +244,10 @@ public class AmayaAuthorize extends Activity {
                     String.valueOf(System.currentTimeMillis() / 1000l));
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
-            bundle.putString(AmayaShareConstants.AMAYA_USER_NAME, name);
-            bundle.putString(AmayaShareConstants.AMAYA_USER_ID, openid);
-            bundle.putString(AmayaShareConstants.AMAYA_EXPIRES_IN, expiresIn);
-            bundle.putString(AmayaShareConstants.AMAYA_ACCESS_TOKEN, accessToken);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openid);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expiresIn);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, accessToken);
             //{uid=2857043267, com.sina.weibo.intent.extra.USER_ICON=[B@415b94c8, _weibo_appPackage=com.sina.weibo, com.sina.weibo.intent.extra.NICK_NAME=sae_otaku, remind_in=7816692, userName=sae_otaku, expires_in=7816692, _weibo_transaction=1409038891040, access_token=2.00BTr2HDyY87OCc5df65dfe8VVYhfD}
 			intent.putExtras(bundle);
             setResult(RESULT_OK,intent);

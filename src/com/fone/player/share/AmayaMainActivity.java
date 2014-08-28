@@ -6,15 +6,19 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.fone.player.R;
 import com.fone.player.share.util.AmayaShareConstants;
 import com.fone.player.share.util.AmayaShareEnums;
 import com.fone.player.share.util.AmayaShareListener;
+import com.fone.player.share.util.AmayaShareUtils;
 import com.fone.player.share.view.AmayaButton;
+import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.Tencent;
 
-public class AmayaMainActivity extends Activity implements AmayaShareListener {
+public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
     private AmayaButton loginBtn;
     private AmayaButton loginQQBtn;
 
@@ -40,6 +44,15 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener {
         loginBtn.addShareListener(this);
         loginTXBtn.addShareListener(this);
         loginQQBtn.addShareListener(this);
+
+
+
+        TextView amayaQzone = (TextView) findViewById(R.id.amaya_share_qzone);
+        ColorStateList colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
+        int bgSelector = R.drawable.text_view_bg_selector;
+        amayaQzone.setBackgroundResource(bgSelector);
+        amayaQzone.setTextColor(colorStateList);
+        amayaQzone.setOnClickListener(this);
 
 //        int white = getResources().getColor(R.color.white);
 //        int l = getResources().getColor(R.color.little_matrix);
@@ -77,43 +90,52 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener {
         }
     }
 
-
 	@Override
-	public void onComplete(AmayaShareEnums enumKey, Bundle values) {
-		if(values != null){
-            Log.e("amaya","onComplete()...enumKey="+enumKey);
-            String name= values.getString(AmayaShareConstants.AMAYA_USER_NAME);
-            String id= values.getString(AmayaShareConstants.AMAYA_USER_ID);
-            String expires_in= values.getString(AmayaShareConstants.AMAYA_EXPIRES_IN);
-            String token= values.getString(AmayaShareConstants.AMAYA_ACCESS_TOKEN);
-            Log.e("amaya","onComplete()...name="+name);
-            Log.e("amaya","onComplete()...id="+id);
-            Log.e("amaya","onComplete()...expires_in="+expires_in);
-            Log.e("amaya","onComplete()...token="+token);
+	public void onComplete(AmayaShareEnums enumKey,boolean authOrShare, Bundle values) {
+        if(authOrShare){
+            if(values != null){
+                Log.e("amaya","onComplete()...enumKey="+enumKey);
+                String name= values.getString(AmayaShareConstants.AMAYA_RESULT_USER_NAME);
+                String id= values.getString(AmayaShareConstants.AMAYA_RESULT_USER_ID);
+                String expires_in= values.getString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN);
+                String token= values.getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
+                Log.e("amaya","onComplete()...name="+name);
+                Log.e("amaya","onComplete()...id="+id);
+                Log.e("amaya","onComplete()...expires_in="+expires_in);
+                Log.e("amaya","onComplete()...token="+token);
+            }else{
+                onException(enumKey,authOrShare,"bundle is null error");
+            }
         }else{
-            onException(enumKey,"bundle is null error");
+            Toast.makeText(this,enumKey+"分享成功",0).show();
         }
 	}
 
 
 	@Override
-	public void onCancel(AmayaShareEnums enumKey) {
-		String s=enumKey+"---onCancel()...";
+	public void onCancel(AmayaShareEnums enumKey,boolean authOrShare) {
+		String s=enumKey+"---onCancel()...authOrShare="+authOrShare;
 		Toast.makeText(AmayaMainActivity.this,s,Toast.LENGTH_LONG).show();
 		
-//		Message msg = mHandler.obtainMessage();
-//		msg.what =1;
-//		msg.obj =s;
-//		mHandler.sendMessage(msg);
 	}
 
 
 	@Override
-	public void onException(AmayaShareEnums enumKey, String msg) {
-		Toast.makeText(AmayaMainActivity.this,enumKey+"---onException()..."+msg,Toast.LENGTH_LONG).show();
-//		Message m = mHandler.obtainMessage();
-//		m.what =1;
-//		m.obj =enumKey+"---onException()..."+msg;
-//		mHandler.sendMessage(m);
+	public void onException(AmayaShareEnums enumKey,boolean authOrShare, String msg) {
+		Toast.makeText(AmayaMainActivity.this,enumKey+"---onException()...authOrShare="+authOrShare+"---"+msg,Toast.LENGTH_LONG).show();
 	}
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.amaya_share_qzone:
+                int shareType = QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT;
+                String targetUrl = "http://www.qq.com";
+                String title = "Title";
+                String summary = "summary";
+                AmayaShareUtils.instance().shareToQZone(this,this,shareType,targetUrl ,title,summary,null);
+                break;
+        }
+
+    }
 }

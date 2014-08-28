@@ -24,9 +24,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
 import com.fone.player.share.AmayaAuthorize;
+import com.fone.player.share.util.AmayaShareListener;
 import com.fone.player.share.util.AmayaShareConstants;
 import com.fone.player.share.util.AmayaShareEnums;
-import com.fone.player.share.util.AmayaShareListener;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.exception.WeiboException;
 
@@ -82,7 +82,7 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
 	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(amayaListener != null && data != null){
-			amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, data.getExtras());
+			amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, data.getExtras());
 		}
     }
 
@@ -102,17 +102,17 @@ public class AmayaTXWeiboButton extends AmayaButton implements OnClickListener,W
 
     @Override
 	public void onCancel() {
-		if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.SINA_WEIBO);
+		if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH);
 	}
 
 	@Override
 	public void onComplete(Bundle values) {
-         if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO, values);
+         if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, values);
 	}
 
 	@Override
 	public void onWeiboException(WeiboException arg0) {
-		if(amayaListener != null) amayaListener.onException(AmayaShareEnums.SINA_WEIBO,arg0.getMessage());
+		if(amayaListener != null) amayaListener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH,arg0.getMessage());
 		
 	}
 }

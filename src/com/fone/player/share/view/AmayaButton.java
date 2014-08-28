@@ -34,7 +34,7 @@ import com.fone.player.share.util.AmayaShareListener;
  * @since 2013-11-04
  */
 public abstract class AmayaButton extends Button {	
-    private static final String TAG = "LoginButton";
+    private static final String TAG = "AmayaButton";
 
 	public AmayaButton(Context context) {
 		this(context, null);
@@ -55,9 +55,11 @@ public abstract class AmayaButton extends Button {
         setBackgroundResource(R.drawable.text_view_bg_selector);
         setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         setPadding(15,15,15,15);
-        int white = getResources().getColor(R.color.white);
-        int l = getResources().getColor(R.color.text_pressed_green);
-        setTextColor(createColorStateList(white,l,l,l));
+//        int white = getResources().getColor(R.color.white);
+//        int l = getResources().getColor(R.color.text_pressed_green);
+//        setTextColor(createColorStateList(white, l, l, l));
+        ColorStateList list = getResources().getColorStateList(R.drawable.text_view_selector);
+        setTextColor(list);
     }
 
     public AmayaButton(Context context, AttributeSet attrs, int defStyle) {

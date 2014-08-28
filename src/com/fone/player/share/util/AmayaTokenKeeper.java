@@ -19,15 +19,16 @@ package com.fone.player.share.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-
+import android.text.TextUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.tencent.tauth.Tencent;
 
 /**
  * 该类定义了微博授权时
  * @author SINA
  * @since 2013-10-07
  */
-public class AccessTokenKeeper {
+public class AmayaTokenKeeper {
     private static final String PREFERENCES_NAME = "com_weibo_sdk_android";
 
     private static final String KEY_UID           = "uid";
@@ -81,5 +82,27 @@ public class AccessTokenKeeper {
         Editor editor = pref.edit();
         editor.clear();
         editor.commit();
+    }
+
+
+
+    public static void readQQToken(Context context,Tencent mTencent) {
+        if (null == context) {
+            return;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        String expires = pref.getString("AMAYA_QQ_Expires", "");
+        if(!TextUtils.isEmpty(expires)){
+            mTencent.setAccessToken(pref.getString("AMAYA_QQ_TOKEN", ""), expires);
+            mTencent.setOpenId(pref.getString("AMAYA_QQ_OPENID", ""));
+        }
+    }
+
+    public static void saveQQToken(Context context,Tencent mTencent){
+        if (null == context) {
+            return;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        pref.edit().putString("AMAYA_QQ_TOKEN",mTencent.getAccessToken()).putString("AMAYA_QQ_Expires",String.valueOf(mTencent.getExpiresIn())).putString("AMAYA_QQ_OPENID",mTencent.getOpenId()).commit();
     }
 }

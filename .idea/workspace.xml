@@ -19,36 +19,50 @@
         <option name="nightMode" value="notnight" />
         <option name="targetHashString" value="android-14" />
         <option name="theme" value="Theme" />
+        <option name="visible" value="false" />
       </GlobalState>
     </option>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="amaya" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" name="Default" comment="" />
     <ignored path="AmayaShare.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129145065" ignored="false" />
+    <file path="/fragment.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409205502802" ignored="false" />
     <file path="/LoginButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409019315716" ignored="false" />
-    <file path="/main.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409134375235" ignored="false" />
-    <file path="/MainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409125073551" ignored="false" />
+    <file path="/main.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409210741441" ignored="false" />
+    <file path="/MainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409205306787" ignored="false" />
     <file path="$PROJECT_DIR$/../weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/sina/weibo/sdk/demo/WBLoginLogoutActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409019460630" ignored="false" />
-    <file path="/a.dummy" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409019573453" ignored="false" />
+    <file path="/a.dummy" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409194552294" ignored="false" />
     <file path="$PROJECT_DIR$/../weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/sina/weibo/sdk/demo/Constants.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409019713306" ignored="false" />
     <file path="$PROJECT_DIR$/../weibo_android_sdk-master/demo-src/WeiboSDKDemo/AndroidManifest.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409019764271" ignored="false" />
-    <file path="/AmayaQQButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409134216887" ignored="false" />
-    <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/src/com/tencent/sample/activitys/MainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409121709165" ignored="false" />
-    <file path="/AmayaShareConstants.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409127019526" ignored="false" />
+    <file path="/AmayaQQButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409206564510" ignored="false" />
+    <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/src/com/tencent/sample/activitys/MainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409205324344" ignored="false" />
+    <file path="/AmayaShareConstants.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409194983363" ignored="false" />
     <file path="/QQMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409128156804" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129329314" ignored="false" />
     <file path="$PROJECT_DIR$/gen/com/fone/player/R.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129498922" ignored="false" />
     <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/project.properties" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409128507015" ignored="false" />
-    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409132415856" ignored="false" />
+    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409210485065" ignored="false" />
     <file path="/colors.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409132723330" ignored="false" />
-    <file path="/AmayaButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409134982698" ignored="false" />
+    <file path="/AmayaButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409192525516" ignored="false" />
     <file path="/AmayaTXWeiboButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409135067000" ignored="false" />
+    <file path="/AmayaQZoneButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409206844763" ignored="false" />
+    <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/src/com/tencent/sample/activitys/QZoneShareActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409192893679" ignored="false" />
+    <file path="/AmayaShareEnums.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409193069896" ignored="false" />
+    <file path="/AmayaShareListener.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409195131826" ignored="false" />
+    <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/view/AmayaGPSView.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409194556781" ignored="false" />
+    <file path="/AccessTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409207105317" ignored="false" />
+    <file path="/AmayaShareUtils.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409222502243" ignored="false" />
+    <file path="/strings.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409209093862" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/fone/player/share/util/AccessTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409212761762" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/project.properties" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409213086398" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/res/layout/main.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409213398436" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/AndroidManifest.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409213412950" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/fone/player/share/MainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409213530754" ignored="false" />
+    <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/sina/weibo/sdk/demo/WBShareActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409221472268" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +82,6 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -105,8 +118,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java" line="155" class="com.fone.player.share.view.AmayaQQButton" package="com.fone.player.share.view">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java" line="156" class="com.fone.player.share.view.AmayaQQButton" package="com.fone.player.share.view">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -136,7 +149,112 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java" line="97" class="com.fone.player.share.view.AmayaQQButton" package="com.fone.player.share.view">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java" line="96" class="com.fone.player.share.view.AmayaQQButton" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="97" class="com.fone.player.share.view.AmayaQZoneButton" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="145" class="com.fone.player.share.view.AmayaQZoneButton" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="260" class="com.fone.player.share.view.AmayaQZoneButton" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="287" class="com.fone.player.share.view.AmayaQZoneButton$2" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="291" class="com.fone.player.share.view.AmayaQZoneButton$2$1" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="296" class="com.fone.player.share.view.AmayaQZoneButton$2$1" package="com.fone.player.share.view">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" line="301" class="com.fone.player.share.view.AmayaQZoneButton$2$1" package="com.fone.player.share.view">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -152,6 +270,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -164,36 +283,87 @@
       <file leaf-file-name="AmayaMainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="0" selection-start="3113" selection-end="3113" vertical-scroll-proportion="0.0">
+            <state line="137" column="106" selection-start="5877" selection-end="5877" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colors.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+      <file leaf-file-name="ant.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ant.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="17" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AmayaQQButton.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java">
+      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="61" selection-start="3574" selection-end="3574" vertical-scroll-proportion="0.0">
+            <state line="14" column="0" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmayaShareUtils.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="457" column="16" selection-start="20302" selection-end="20302" vertical-scroll-proportion="0.41364604">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#doShareToQzone#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="e#13397#13407#0" expanded="true" />
+                <element signature="e#13951#14695#0" expanded="true" />
+                <element signature="e#14679#14680#0" expanded="true" />
+                <element signature="docComment;method#getTextObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getTextObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="docComment;method#getImageObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getImageObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="docComment;method#getWebpageObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getWebpageObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="docComment;method#getMusicObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getMusicObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="docComment;method#getVideoObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getVideoObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="docComment;method#getVoiceObj#0;class#AmayaShareUtils#0" expanded="false" />
+                <element signature="method#getVoiceObj#0;class#AmayaShareUtils#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AmayaAuthorize.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java">
+      <file leaf-file-name="Reference.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://E:/android-sdk/sources/android-14/java/lang/ref/Reference.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="318" column="4" selection-start="10699" selection-end="11435" vertical-scroll-proportion="0.0">
+            <state line="93" column="16" selection-start="3281" selection-end="3281" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeiboMessage.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/libs/weibosdkcore.jar!/com/sina/weibo/sdk/api/WeiboMessage.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="49" selection-start="220" selection-end="235" vertical-scroll-proportion="-6.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dimens.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="100" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -202,7 +372,7 @@
       <file leaf-file-name="AmayaButton.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="13" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
+            <state line="36" column="50" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -214,16 +384,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="32" selection-start="549" selection-end="549" vertical-scroll-proportion="-4.5454545">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AmayaTXWeiboButton.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaTXWeiboButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="87" selection-start="2779" selection-end="2779" vertical-scroll-proportion="1.1151832">
+            <state line="68" column="22" selection-start="2153" selection-end="2153" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -243,22 +404,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AccessTokenKeeper.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareConstants.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_main_new.xml" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/QQMainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/MainActivity.java" />
-        <option value="$PROJECT_DIR$/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareEnums.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaSinaWeiboButton.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaTXWeiboButton.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareListener.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSPUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AccessTokenKeeper.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaButton.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaTXWeiboButton.java" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" />
+        <option value="$PROJECT_DIR$/project.properties" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" />
       </list>
     </option>
   </component>
@@ -294,7 +455,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -399,45 +559,10 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -455,12 +580,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.fone.player.share" />
+      <recent name="com.fone.player.share.util" />
       <recent name="com.fone.player.share.view" />
+      <recent name="com.fone.player.share" />
       <recent name="com.fone.share.view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -633,37 +760,37 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.6707317" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39721254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.66898954" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24961832" sideWeight="0.4425087" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.2804878" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39721254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5574913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31908396" sideWeight="0.6707317" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.4425087" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -732,98 +859,51 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSPUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="45" selection-start="147" selection-end="147" vertical-scroll-proportion="0.310559">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="51" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/base_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="44" selection-start="1152" selection-end="1152" vertical-scroll-proportion="0.23865877">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="18" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/text_view_bg_normal.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/text_view_bg_pressed.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/text_view_bg_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaSinaWeiboButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="2583" selection-end="2583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/text_view_selector.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="66" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="61" selection-start="3574" selection-end="3574" vertical-scroll-proportion="0.0">
+        <state line="18" column="25" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java">
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="318" column="4" selection-start="10699" selection-end="11435" vertical-scroll-proportion="0.0">
+        <state line="104" column="88" selection-start="3700" selection-end="3700" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/open_sdk_r3922.jar!/com/tencent/tauth/Tencent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="12" selection-start="406" selection-end="406" vertical-scroll-proportion="-6.24" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="25" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="8" selection-start="3021" selection-end="3328" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="4" selection-start="5979" selection-end="9030" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="13" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
+        <state line="36" column="50" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -833,25 +913,100 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="549" selection-end="549" vertical-scroll-proportion="-4.5454545">
+        <state line="68" column="22" selection-start="2153" selection-end="2153" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="3113" selection-end="3113" vertical-scroll-proportion="0.0">
+        <state line="137" column="106" selection-start="5877" selection-end="5877" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaTXWeiboButton.java">
+    <entry file="file://$PROJECT_DIR$/ant.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="87" selection-start="2779" selection-end="2779" vertical-scroll-proportion="1.1151832">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="100" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/weibosdkcore.jar!/com/sina/weibo/sdk/api/WeiboMessage.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="49" selection-start="220" selection-end="235" vertical-scroll-proportion="-6.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/android-sdk/sources/android-14/java/lang/ref/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="16" selection-start="3281" selection-end="3281" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="457" column="16" selection-start="20302" selection-end="20302" vertical-scroll-proportion="0.41364604">
+          <folding>
+            <element signature="method#doShareToQzone#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="e#13397#13407#0" expanded="true" />
+            <element signature="e#13951#14695#0" expanded="true" />
+            <element signature="e#14679#14680#0" expanded="true" />
+            <element signature="docComment;method#getTextObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getTextObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="docComment;method#getImageObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getImageObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="docComment;method#getWebpageObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getWebpageObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="docComment;method#getMusicObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getMusicObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="docComment;method#getVideoObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getVideoObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="docComment;method#getVoiceObj#0;class#AmayaShareUtils#0" expanded="false" />
+            <element signature="method#getVoiceObj#0;class#AmayaShareUtils#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>Android 4.0 Platform</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

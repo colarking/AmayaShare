@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">AmayaShare</string>
+	<string name="amaya_auth_no">未授权应用,分享失败</string>
+	<string name="amaya_auth_fail">授权失败,请稍候重试</string>
+	<string name="amaya_auth_fail_step_0">授权失败,请检查配置信息是否有误</string>
+	
+	
+	<!-- sina start-->
+	<!-- 分享成功失败的 Toast -->
+    <string name="weibosdk_demo_toast_share_success">分享成功</string>
+    <string name="weibosdk_demo_toast_share_failed">分享失败</string>
+    <string name="weibosdk_demo_toast_share_canceled">取消分享</string>
+    <string name="weibosdk_demo_toast_share_response_args_success">收到微博发起的请求成功</string>
+    <string name="weibosdk_demo_toast_share_response_args_failed">收到客户端请求消息失败</string>
+	<string name="weibosdk_demo_not_support_api_hint">微博客户端不支持 SDK 分享或微博客户端未安装或微博客户端是非官方版本。</string>
+	<!-- sina end-->
 
 
 	<string name="hello_world">Hello world!</string>
