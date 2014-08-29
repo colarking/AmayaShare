@@ -73,6 +73,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     @Override
     protected void onResume() {
         super.onResume();
+        Log.e("amaya","onResume()...");
     }
 
     public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
