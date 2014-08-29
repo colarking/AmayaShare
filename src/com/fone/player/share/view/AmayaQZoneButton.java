@@ -105,8 +105,8 @@ public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUi
 	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "-->onActivityResult " + requestCode  + " resultCode=" + resultCode);
-        if(resultCode == Constants.RESULT_LOGIN) {
             mTencent.handleLoginData(data, this);
+            if(resultCode == Constants.RESULT_LOGIN) {
             Log.d(TAG, "-->onActivityResult handle logindata");
         }
     }

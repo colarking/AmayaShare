@@ -48,11 +48,20 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
 
         TextView amayaQzone = (TextView) findViewById(R.id.amaya_share_qzone);
+        TextView amayaSina = (TextView) findViewById(R.id.amaya_share_sina);
+        TextView amayaQQ = (TextView) findViewById(R.id.amaya_share_qq);
         ColorStateList colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
         int bgSelector = R.drawable.text_view_bg_selector;
         amayaQzone.setBackgroundResource(bgSelector);
         amayaQzone.setTextColor(colorStateList);
         amayaQzone.setOnClickListener(this);
+        amayaSina.setBackgroundResource(bgSelector);
+        amayaSina.setTextColor(colorStateList);
+        amayaSina.setOnClickListener(this);
+        amayaQQ.setBackgroundResource(bgSelector);
+        amayaQQ.setTextColor(colorStateList);
+        amayaQQ.setOnClickListener(this);
+
 
 //        int white = getResources().getColor(R.color.white);
 //        int l = getResources().getColor(R.color.little_matrix);
@@ -82,11 +91,20 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
-        	loginBtn.onActivityResult(requestCode, resultCode, data);
+            /**
+             * AmayaShareUtils 封装了授权和分享的逻辑，可通用
+             */
+            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.SINA_WEIBO,this,requestCode, resultCode, data);
+            /**
+             *   AmayaSinaWeiboButton 封装了授权逻辑，可单独使用
+             */
+//        	loginBtn.onActivityResult(requestCode, resultCode, data);
         }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO){
-        	loginTXBtn.onActivityResult(requestCode, resultCode, data);
+//        	loginTXBtn.onActivityResult(requestCode, resultCode, data);
+            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_WEIBO,this,requestCode, resultCode, data);
         }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ){
-            loginQQBtn.onActivityResult(requestCode, resultCode, data);
+//            loginQQBtn.onActivityResult(requestCode, resultCode, data);
+            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_QQ,this,requestCode, resultCode, data);
         }
     }
 
@@ -103,6 +121,10 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
                 Log.e("amaya","onComplete()...id="+id);
                 Log.e("amaya","onComplete()...expires_in="+expires_in);
                 Log.e("amaya","onComplete()...token="+token);
+                if(enumKey == AmayaShareEnums.SINA_WEIBO){
+                    Log.e("amaya","onComplete()...准备分享到新浪微博");
+                    shareToSina();
+                }
             }else{
                 onException(enumKey,authOrShare,"bundle is null error");
             }
@@ -127,15 +149,47 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     @Override
     public void onClick(View v) {
+        AmayaShareUtils amayaShareUtils = AmayaShareUtils.instance();
         switch (v.getId()){
             case R.id.amaya_share_qzone:
                 int shareType = QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT;
                 String targetUrl = "http://www.qq.com";
                 String title = "Title";
                 String summary = "summary";
-                AmayaShareUtils.instance().shareToQZone(this,this,shareType,targetUrl ,title,summary,null);
+                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
+                    amayaShareUtils.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
+                }else{
+                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
+                }
+                break;
+            case R.id.amaya_share_sina:
+                boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
+                if(authed){
+                    amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO,this,this);
+                }else{
+                    amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
+                }
+                break;
+            case R.id.amaya_share_qq:
+                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
+                    amayaShareUtils.shareToQQ(this, this);
+                }else{
+                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
+                }
+
                 break;
         }
+    }
+
+    private void shareToSina() {
+//        TextObject textObj = AmayaShareUtils.instance().getTextObj("这是一个测试微博");
+//        AmayaShareUtils.instance().sendSingleMessage(this,this,textObj);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);    //To change body of overridden methods use File | Settings | File Templates.
+        Log.e("amaya","onNewIntent()..."+intent);
 
     }
 }

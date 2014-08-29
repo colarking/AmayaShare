@@ -23,10 +23,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import com.fone.player.share.util.AmayaTokenKeeper;
-import com.fone.player.share.util.AmayaShareListener;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaShareEnums;
+import com.fone.player.share.util.*;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuth.AuthInfo;
@@ -105,19 +102,23 @@ public class AmayaSinaWeiboButton extends AmayaButton implements OnClickListener
         if (mExternalOnClickListener != null) {
             mExternalOnClickListener.onClick(v);
         }
-	    
-		if (null == mSsoHandler && mAuthInfo != null) {
-			WeiboAuth weiboAuth = new WeiboAuth(mContext, mAuthInfo);
-			mSsoHandler = new SsoHandler((Activity)mContext, weiboAuth);
-		}
-		
+
+        readyAuth();
+	}
+
+    public void readyAuth() {
+        if (null == mSsoHandler && mAuthInfo != null) {
+            WeiboAuth weiboAuth = new WeiboAuth(mContext, mAuthInfo);
+            mSsoHandler = new SsoHandler((Activity)mContext, weiboAuth);
+        }
+
         if (mSsoHandler != null) {
             mSsoHandler.authorize(this);
         } else {
             LogUtil.e(TAG, "Please setWeiboAuthInfo(...) for first");
         }
-	}
-	
+    }
+
     /**
      * 使用该控件进行授权登陆时，需要手动调用该函数。
      * <p>
@@ -168,7 +169,7 @@ public class AmayaSinaWeiboButton extends AmayaButton implements OnClickListener
 	public void onComplete(Bundle values) {
 		 Oauth2AccessToken accessToken = Oauth2AccessToken.parseAccessToken(values);
          if (accessToken != null && accessToken.isSessionValid()) {
-             AmayaTokenKeeper.writeAccessToken(getContext(), accessToken);
+             AmayaTokenKeeper.saveSinaToken(getContext(), accessToken);
          }
          if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, values);
 	}

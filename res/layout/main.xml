@@ -66,6 +66,26 @@
 			android:textSize="18sp"
 			android:padding="10dp"
 			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="系统按钮新浪微博分享"
+			android:id="@+id/amaya_share_sina"
+			android:layout_margin="5dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:textSize="18sp"
+			android:padding="10dp"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="系统按钮QQ好友分享"
+			android:id="@+id/amaya_share_qq"
+			android:layout_margin="5dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:textSize="18sp"
+			android:padding="10dp"
+			/>
 	</LinearLayout>
 
 </ScrollView>

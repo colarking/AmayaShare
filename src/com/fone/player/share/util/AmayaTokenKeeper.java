@@ -39,7 +39,7 @@ public class AmayaTokenKeeper {
      * 保存 Token 对象�?SharedPreferences�?     * 
      * @param context 应用程序上下文环�?     * @param token   Token 对象
      */
-    public static void writeAccessToken(Context context, Oauth2AccessToken token) {
+    public static void saveSinaToken(Context context, Oauth2AccessToken token) {
         if (null == context || null == token) {
             return;
         }
@@ -57,7 +57,7 @@ public class AmayaTokenKeeper {
      * @param context 应用程序上下文环�?     * 
      * @return 返回 Token 对象
      */
-    public static Oauth2AccessToken readAccessToken(Context context) {
+    public static Oauth2AccessToken readSinaToken(Context context) {
         if (null == context) {
             return null;
         }
@@ -87,7 +87,7 @@ public class AmayaTokenKeeper {
 
 
     public static void readQQToken(Context context,Tencent mTencent) {
-        if (null == context) {
+        if (null == context || mTencent == null) {
             return;
         }
         SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
