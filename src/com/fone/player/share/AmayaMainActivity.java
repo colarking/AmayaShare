@@ -44,9 +44,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         loginBtn.addShareListener(this);
         loginTXBtn.addShareListener(this);
         loginQQBtn.addShareListener(this);
-
-
-
         TextView amayaQzone = (TextView) findViewById(R.id.amaya_share_qzone);
         TextView amayaSina = (TextView) findViewById(R.id.amaya_share_sina);
         TextView amayaQQ = (TextView) findViewById(R.id.amaya_share_qq);
