@@ -10,30 +10,6 @@
 		android:gravity="center"
 		android:layout_height="fill_parent"
 		>
-		<com.fone.player.share.view.AmayaSinaWeiboButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="新浪微博登陆"
-			android:id="@+id/amaya_sinw_weido"
-			style="?android:attr/buttonBarButtonStyle"
-			android:layout_margin="5dp"
-			/>
-		<com.fone.player.share.view.AmayaTXWeiboButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="腾讯微博登陆"
-			android:id="@+id/amaya_tx_weido"
-			style="?android:attr/buttonBarButtonStyle"
-			android:layout_margin="5dp"
-			/>
-		<com.fone.player.share.view.AmayaQQButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="QQ账号登陆"
-			android:id="@+id/amaya_tx_qq"
-			android:layout_margin="5dp"
-			style="?android:attr/buttonBarButtonStyle"
-			/>
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="1px"
@@ -81,6 +57,16 @@
 			android:layout_height="wrap_content"
 			android:text="系统按钮QQ好友分享"
 			android:id="@+id/amaya_share_qq"
+			android:layout_margin="5dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:textSize="18sp"
+			android:padding="10dp"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="系统按钮微信分享"
+			android:id="@+id/amaya_share_weixin"
 			android:layout_margin="5dp"
 			style="?android:attr/buttonBarButtonStyle"
 			android:textSize="18sp"

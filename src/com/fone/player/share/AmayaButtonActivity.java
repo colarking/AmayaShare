@@ -6,8 +6,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.fone.player.R;
 import com.fone.player.share.util.AmayaShareConstants;
@@ -15,10 +13,8 @@ import com.fone.player.share.util.AmayaShareEnums;
 import com.fone.player.share.util.AmayaShareListener;
 import com.fone.player.share.util.AmayaShareUtils;
 import com.fone.player.share.view.AmayaButton;
-import com.tencent.connect.share.QzoneShare;
-import com.tencent.tauth.Tencent;
 
-public class AmayaButtonActivity extends Activity implements AmayaShareListener, View.OnClickListener {
+public class AmayaButtonActivity extends Activity implements AmayaShareListener {
     private AmayaButton loginBtn;
     private AmayaButton loginQQBtn;
 
@@ -29,35 +25,19 @@ public class AmayaButtonActivity extends Activity implements AmayaShareListener,
 		};
 
 	};
-    private Tencent mTencent;
-
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_button);
         loginBtn = (AmayaButton)findViewById(R.id.amaya_sinw_weido);
         loginTXBtn = (AmayaButton)findViewById(R.id.amaya_tx_weido);
         loginQQBtn = (AmayaButton)findViewById(R.id.amaya_tx_qq);
         loginBtn.addShareListener(this);
         loginTXBtn.addShareListener(this);
         loginQQBtn.addShareListener(this);
-        TextView amayaQzone = (TextView) findViewById(R.id.amaya_share_qzone);
-        TextView amayaSina = (TextView) findViewById(R.id.amaya_share_sina);
-        TextView amayaQQ = (TextView) findViewById(R.id.amaya_share_qq);
-        ColorStateList colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
-        int bgSelector = R.drawable.text_view_bg_selector;
-        amayaQzone.setBackgroundResource(bgSelector);
-        amayaQzone.setTextColor(colorStateList);
-        amayaQzone.setOnClickListener(this);
-        amayaSina.setBackgroundResource(bgSelector);
-        amayaSina.setTextColor(colorStateList);
-        amayaSina.setOnClickListener(this);
-        amayaQQ.setBackgroundResource(bgSelector);
-        amayaQQ.setTextColor(colorStateList);
-        amayaQQ.setOnClickListener(this);
 
 
 //        int white = getResources().getColor(R.color.white);
@@ -144,40 +124,6 @@ public class AmayaButtonActivity extends Activity implements AmayaShareListener,
 	public void onException(AmayaShareEnums enumKey,boolean authOrShare, String msg) {
 		Toast.makeText(AmayaButtonActivity.this,enumKey+"---onException()...authOrShare="+authOrShare+"---"+msg,Toast.LENGTH_LONG).show();
 	}
-
-    @Override
-    public void onClick(View v) {
-        AmayaShareUtils amayaShareUtils = AmayaShareUtils.instance();
-        switch (v.getId()){
-            case R.id.amaya_share_qzone:
-                int shareType = QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT;
-                String targetUrl = "http://www.qq.com";
-                String title = "Title";
-                String summary = "summary";
-                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
-                    amayaShareUtils.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
-                }else{
-                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
-                }
-                break;
-            case R.id.amaya_share_sina:
-                boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
-                if(authed){
-                    amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO,this,this);
-                }else{
-                    amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
-                }
-                break;
-            case R.id.amaya_share_qq:
-                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
-                    amayaShareUtils.shareToQQ(this, this);
-                }else{
-                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
-                }
-
-                break;
-        }
-    }
 
     private void shareToSina() {
 //        TextObject textObj = AmayaShareUtils.instance().getTextObj("这是一个测试微博");

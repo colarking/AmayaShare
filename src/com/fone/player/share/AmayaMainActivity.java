@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,23 +14,9 @@ import com.fone.player.share.util.AmayaShareConstants;
 import com.fone.player.share.util.AmayaShareEnums;
 import com.fone.player.share.util.AmayaShareListener;
 import com.fone.player.share.util.AmayaShareUtils;
-import com.fone.player.share.view.AmayaButton;
 import com.tencent.connect.share.QzoneShare;
-import com.tencent.tauth.Tencent;
 
 public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
-    private AmayaButton loginBtn;
-    private AmayaButton loginQQBtn;
-
-	private AmayaButton loginTXBtn;
-    private Handler mHandler = new Handler(){
-		public void handleMessage(android.os.Message msg) {
-			Toast.makeText(AmayaMainActivity.this, (String)msg.obj,Toast.LENGTH_LONG).show();
-		};
-
-	};
-    private Tencent mTencent;
-
     /**
      * Called when the activity is first created.
      */
@@ -38,15 +24,10 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        loginBtn = (AmayaButton)findViewById(R.id.amaya_sinw_weido);
-        loginTXBtn = (AmayaButton)findViewById(R.id.amaya_tx_weido);
-        loginQQBtn = (AmayaButton)findViewById(R.id.amaya_tx_qq);
-        loginBtn.addShareListener(this);
-        loginTXBtn.addShareListener(this);
-        loginQQBtn.addShareListener(this);
         TextView amayaQzone = (TextView) findViewById(R.id.amaya_share_qzone);
         TextView amayaSina = (TextView) findViewById(R.id.amaya_share_sina);
         TextView amayaQQ = (TextView) findViewById(R.id.amaya_share_qq);
+        TextView amayaWeixin = (TextView) findViewById(R.id.amaya_share_weixin);
         ColorStateList colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
         int bgSelector = R.drawable.text_view_bg_selector;
         amayaQzone.setBackgroundResource(bgSelector);
@@ -58,6 +39,9 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         amayaQQ.setBackgroundResource(bgSelector);
         amayaQQ.setTextColor(colorStateList);
         amayaQQ.setOnClickListener(this);
+        amayaWeixin.setBackgroundResource(bgSelector);
+        amayaWeixin.setTextColor(colorStateList);
+        amayaWeixin.setOnClickListener(this);
 
 
 //        int white = getResources().getColor(R.color.white);
@@ -98,10 +82,8 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
              */
 //        	loginBtn.onActivityResult(requestCode, resultCode, data);
         }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO){
-//        	loginTXBtn.onActivityResult(requestCode, resultCode, data);
             AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_WEIBO,this,requestCode, resultCode, data);
         }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ){
-//            loginQQBtn.onActivityResult(requestCode, resultCode, data);
             AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_QQ,this,requestCode, resultCode, data);
         }
     }
@@ -130,7 +112,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
             Toast.makeText(this,enumKey+"分享成功",0).show();
         }
 	}
-
 
 	@Override
 	public void onCancel(AmayaShareEnums enumKey,boolean authOrShare) {
@@ -163,18 +144,38 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
             case R.id.amaya_share_sina:
                 boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
                 if(authed){
-                    amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO,this,this);
-                }else{
                     amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
+                }else{
+                    amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO, this, this);
                 }
                 break;
             case R.id.amaya_share_qq:
                 if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
-                    amayaShareUtils.shareToQQ(this, this);
+                    title = "标题";
+                    String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
+                    //分享的消息摘要，最长50个字
+                    summary = "内容摘要";
+                    //这条分享消息被好友点击后的跳转URL。
+                    String tagetUrl = "http://connect.qq.com/";
+                    amayaShareUtils.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
                 }else{
                     amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
                 }
+                break;
+            case R.id.amaya_share_weixin:
 
+                title ="AmayaShare分享";
+                String desc = "这是一个测试分享哟！";
+
+                boolean toCircle = false;  //true:朋友圈；false:好友
+
+                /**
+                 * imagePath 和imageUrl 二选一,优先选取imagePath路径
+                 */
+                String imagePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
+                String imageUrl =null;
+                String webpaggUrl = "www.iyoudang.com";
+                amayaShareUtils.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
                 break;
         }
     }

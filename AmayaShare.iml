@@ -16,6 +16,7 @@
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="library" name="mta-sdk-1.6.2" level="project" />
     <orderEntry type="library" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="libammsdk" level="project" />
   </component>
 </module>
 

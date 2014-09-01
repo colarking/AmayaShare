@@ -3,6 +3,7 @@ package com.fone.player.share.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
      */
     private Tencent amayaTencent;
     private QzoneShare amayaShare;
+    private WeiXinShareUtil amayaWeiXin;
 
 
     /**
@@ -55,6 +57,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
     private StatusesAPI amayaSinaApi;
     private AmayaShareListener amayaListener;
 
+
     private AmayaShareUtils(){}
     
     public synchronized static AmayaShareUtils instance(){
@@ -63,7 +66,6 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
     	}
     	return amaya;
     }
-
     public boolean isAuthed(AmayaShareEnums type, Context context) {
         boolean authed = false;
         switch (type){
@@ -284,23 +286,22 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         }).start();
     }
 
-    public void shareToQQ(final Activity activity,final AmayaShareListener amayaListener)
+    public void shareToQQ(final Activity activity,final AmayaShareListener amayaListener,String title,String imgUrl,String summary,String tagetUrl)
     {
         this.amayaListener = amayaListener;
         Bundle bundle = new Bundle();
         //这条分享消息被好友点击后的跳转URL。
-        bundle.putString( QQShare.SHARE_TO_QQ_TARGET_URL, "http://connect.qq.com/");
+        bundle.putString( QQShare.SHARE_TO_QQ_TARGET_URL, tagetUrl);
         //分享的标题。注：PARAM_TITLE、PARAM_IMAGE_URL、PARAM_SUMMARY不能全为空，最少必须有一个是有值的。
-        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, "我在测试");
+        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, title);
         //分享的图片URL
-        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg");
+        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, imgUrl);
         //分享的消息摘要，最长50个字
-        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, "测试");
+        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, summary);
         //手Q客户端顶部，替换“返回”按钮文字，如果为空，用返回代替
         bundle.putString(QQShare.SHARE_TO_QQ_APP_NAME, "??我在测试");
         //标识该消息的来源应用，值为应用名称+AppId。
 //        bundle.putString(QQShare.SHARE_TO_QQ_Constants.PARAM_APP_SOURCE, "星期几" + AppId);
-
         amayaTencent.shareToQQ(activity,bundle,this);
 
     }
@@ -375,7 +376,8 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
             case TENCENT_QZONE:
             case TENCENT_WEIBO:
                 final boolean isShare = amayaTencent.isSessionValid();
-                Log.e("amaya","onActivityResult()...enums="+enums+"--isShare="+isShare);
+                Log.e("amaya","onActivityResult()...enums="+enums+"--isShare="+isShare+"--data="+data);
+                if(data == null) data = new Intent();
                 amayaTencent.handleLoginData(data,new IUiListener() {
                     @Override
                     public void onComplete(Object values) {
@@ -429,14 +431,56 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
      * @param listener 异步请求回调接口
      */
     public void shareToSina(AmayaShareListener listener,String content, String lat, String lon) {
-        if(amayaSinaApi != null && listener != null){
-            this.amayaListener = listener;
-            amayaSinaApi.update(content,lat,lon,this);
-        }else{
-
+        if(listener != null){
+            if(amayaSinaApi != null){
+                this.amayaListener = listener;
+                amayaSinaApi.update(content,lat,lon,this);
+            }else{
+                listener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not called method initSinaWeibo() or isAuthed()");
+            }
         }
 //        WeiboParameters params = buildUpdateParams(content, lat, lon);
 //        requestAsync(sAPIList.get(WRITE_API_UPDATE), params, HTTPMETHOD_POST, listener);
+    }
+    /**
+     * 指定一个图片URL地址抓取后上传并同时发布一条新微博，此方法会处理URLencode。
+     *
+     * @param content    要发布的微博文本内容，内容不超过140个汉字
+     * @param imageUrl  图片的URL地址，必须以http开头
+     * @param lat       纬度，有效范围：-90.0到+90.0，+表示北纬，默认为0.0
+     * @param lon       经度，有效范围：-180.0到+180.0，+表示东经，默认为0.0
+     * @param listener  异步请求回调接口
+     */
+    public void shareToSina(AmayaShareListener listener,String content, String imageUrl, String lat, String lon) {
+        if(listener != null){
+            if(amayaSinaApi != null){
+                this.amayaListener = listener;
+                amayaSinaApi.uploadUrlText(content, imageUrl, null, lat, lon, this);
+            }else {
+                listener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not called method initSinaWeibo() or isAuthed()");
+            }
+        }
+    }
+
+    /**
+     * 上传图片并发布一条新微博，此方法会处理urlencode。
+     *
+     * @param content   要发布的微博文本内容，内容不超过140个汉字
+     * @param bitmap    要上传的图片，仅支持JPEG、GIF、PNG格式，图片大小小于5M
+     * @param lat       纬度，有效范围：-90.0到+90.0，+表示北纬，默认为0.0
+     * @param lon       经度，有效范围：-180.0到+180.0，+表示东经，默认为0.0
+     * @param listener  异步请求回调接口
+
+     */
+    public void shareToSina( AmayaShareListener listener,String content, Bitmap bitmap, String lat, String lon) {
+        if(listener != null){
+            if(amayaSinaApi != null){
+                this.amayaListener = listener;
+                amayaSinaApi.upload(content, bitmap, lat, lon, this);
+            }else{
+                listener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not called method initSinaWeibo() or isAuthed()");
+            }
+        }
     }
 
     @Override
@@ -455,6 +499,20 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         }
     }
     /************************************************SINA WEIBO分享部分 END**************************************************/
+    /************************************************WeiXin分享部分 START**************************************************/
+    public void shareToWeixin(Context context, final boolean toCircle,final String title,final String description,final String imagePath,final String imageUrl,final String webpageUrl,
+                             final AmayaShareListener amayaShareListener) {
+        initWeixin(context);
+        if(amayaWeiXin != null)
+            amayaWeiXin.shareMessage(toCircle,title,description,imagePath,imageUrl,webpageUrl,amayaShareListener);
+
+    }
+
+    private void initWeixin(Context context) {
+        if(amayaWeiXin == null) amayaWeiXin =  new WeiXinShareUtil(context);
+    }
+
+    /************************************************WeiXin END**************************************************/
 
     
 }
