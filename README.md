@@ -1,4 +1,6 @@
 AmayaShare
 ==========
 
-share something to Weibo and so on.
+第三方继承分享组件；通过对新浪微博，腾讯微博，QQ好友，QQ空间，微信好友，微信朋友圈6种授权+分享进行一系列封装达到对外简洁调用的目的
+
+
