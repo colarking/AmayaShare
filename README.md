@@ -25,14 +25,14 @@ Step.2  检验某个三方分享是否已授权(6种枚举类型:SINA_WEIBO,TENC
 
 
 
-Step.3  在分享按钮点击事件中调用相应的分享代码,所有三方组件的分享都调用类似shareToXX(...)方法即可实现分享.
+Step.3  授权成功后进入此流程.在分享按钮点击事件中调用相应的分享代码,所有三方组件的分享都调用类似shareToXX(...)方法即可实现分享.
   授权成功后即可调用AmayaShareUtils类中的相应方法，传入需要分享的数据，整个分享流程即可完成.<br />
   &#9;1.shareToTXWeiBo();<br />
   &#9;2.shareToWeixin();<br />
   &#9;3.shareToQQ();<br />
   &#9;4.shareToSina();<br />
-  &#9;5.shareToQZone();
-
+  &#9;5.shareToQZone();<br />
+Step.4  如果未授权成功，则调用AmayaShareUtils类中的auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener)通用授权方法，在AmayaShareListener接口回调中的回调方法中可继续Step.3步骤<br />
 
 最后:程序退出时注意调用一次AmayaShareUtils类中的onDestroy();方法，
 因为此时该类通过AmayaShareListener接口持有了Activity的句柄,且该类通过单例模式持有static的自身的句柄，导致该activity不能及时被系统回收，故请留意一下。
