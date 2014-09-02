@@ -34,6 +34,9 @@ Step.3  授权成功后进入此流程.在分享按钮点击事件中调用相�
   &#9;5.shareToQZone();<br />
 Step.4  如果未授权成功，则调用AmayaShareUtils类中的auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener)通用授权方法，在AmayaShareListener接口回调中的回调方法中可继续Step.3步骤<br />
 
+
+项目目录根文件夹下已有已签名的AmayaShare.apk；整个分享流程都在AmayaMainActivity.java中
+
 最后:程序退出时注意调用一次AmayaShareUtils类中的onDestroy();方法，
 因为此时该类通过AmayaShareListener接口持有了Activity的句柄,且该类通过单例模式持有static的自身的句柄，导致该activity不能及时被系统回收，故请留意一下。
 
