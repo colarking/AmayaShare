@@ -21,7 +21,6 @@ import java.net.URL;
 public class AmayaWeiXinShare {
 
 	private static final String TAG = "AmayaWeiXinShare";
-	public static final String APP_ID = "wx69ebdd4f380f47c7";//"wxb23baa60e487655b";
 
 	private static final int THUMB_SIZE = 100;
     private final Bitmap defaultBitmap;
@@ -30,8 +29,8 @@ public class AmayaWeiXinShare {
 
 	public AmayaWeiXinShare(Context mContext){
         defaultBitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.amaya_share);
-        wxApi = WXAPIFactory.createWXAPI(mContext, APP_ID, true);
-		wxApi.registerApp(APP_ID);
+        wxApi = WXAPIFactory.createWXAPI(mContext, AmayaShareConstants.AMAYA_WX_ID, true);
+		wxApi.registerApp( AmayaShareConstants.AMAYA_WX_ID);
 	}
 	
 	public void shareMessage(final boolean toCircle,final String title,final String description, final String imagePath,final String imageUrl,final String webpageUrl,

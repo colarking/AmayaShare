@@ -171,7 +171,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     public void onClick(View v) {
         showLoading = true;
         invalidateOptionsMenu();
-
         switch (v.getId()){
             case R.id.amaya_share_sina:
                 amayaShareSina();

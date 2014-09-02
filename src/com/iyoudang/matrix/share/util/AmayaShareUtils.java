@@ -622,6 +622,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
                     if (accessToken != null && accessToken.isSessionValid()) {
                         AmayaTokenKeeper.saveSinaToken(mContext, accessToken);
                         tokens[0] = accessToken.getToken();
+                        amayaSinaApi = new AmayaSinaAPI(accessToken);
                     }
                     if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
                 }
