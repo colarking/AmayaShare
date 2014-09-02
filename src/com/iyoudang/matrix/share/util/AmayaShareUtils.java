@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.R;
 import com.iyoudang.matrix.share.AmayaAuthorize;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
@@ -740,6 +740,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
         mSsoHandler = null;
         amayaSinaApi = null;
         amayaIUListener = null;
+        amaya = null;
     }
     
 }

@@ -26,7 +26,6 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaTokenKeeper;
 import com.tencent.weibo.sdk.android.api.util.Util;

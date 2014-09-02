@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.R;
 import com.iyoudang.matrix.share.util.AmayaShareListener;
 
 /**
