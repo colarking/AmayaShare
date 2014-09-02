@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.fone.player.R;
 import com.fone.player.share.util.AmayaShareConstants;
+import com.fone.player.share.util.AmayaTokenKeeper;
 import com.tencent.weibo.sdk.android.api.util.Util;
 
 import java.lang.reflect.Method;
@@ -242,6 +243,7 @@ public class AmayaAuthorize extends Activity {
             Util.saveSharePersistent(context, "CLIENT_ID", clientId);
             Util.saveSharePersistent(context, "AUTHORIZETIME",
                     String.valueOf(System.currentTimeMillis() / 1000l));
+            AmayaTokenKeeper.saveTXWeiboToken(context,accessToken,expiresIn);
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);

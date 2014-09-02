@@ -105,4 +105,19 @@ public class AmayaTokenKeeper {
         SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
         pref.edit().putString("AMAYA_QQ_TOKEN",mTencent.getAccessToken()).putString("AMAYA_QQ_Expires",String.valueOf(mTencent.getExpiresIn())).putString("AMAYA_QQ_OPENID",mTencent.getOpenId()).commit();
     }
+
+    public static void saveTXWeiboToken(Context context, String token, String expiresIn) {
+        if (null == context) {
+            return;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        pref.edit().putString("AMAYA_TXWEIBO_TOKEN",token).putString("AMAYA_TXWEIBO_EXPIRESIN",expiresIn).commit();
+    }
+    public static String getTXWeiboToken(Context context) {
+        if (null == context) {
+            return null;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        return pref.getString("AMAYA_TXWEIBO_TOKEN",null);
+    }
 }

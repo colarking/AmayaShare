@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 import com.fone.player.R;
+import com.fone.player.share.AmayaAuthorize;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -23,6 +24,11 @@ import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.tencent.weibo.sdk.android.api.WeiboAPI;
+import com.tencent.weibo.sdk.android.model.AccountModel;
+import com.tencent.weibo.sdk.android.model.BaseVO;
+import com.tencent.weibo.sdk.android.model.ModelResult;
+import com.tencent.weibo.sdk.android.network.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,18 +41,24 @@ import java.util.ArrayList;
  * Time: 下午2:34
  * To change this template use File | Settings | File Templates.
  */
-public class AmayaShareUtils implements RequestListener, IUiListener {
+public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallback {
 
     private static final String TAG = "AmayaShareUtils";
     private static AmayaShareUtils amaya;
 
+    /**
+     *  0：新浪微博Token
+     *  1：腾讯微博Token
+     *  2：腾讯Token
+     */
+    private String[] tokens = new String[3];
 
     /**
      * 腾讯相关实例
      */
     private Tencent amayaTencent;
     private QzoneShare amayaShare;
-    private WeiXinShareUtil amayaWeiXin;
+    private AmayaWeiXinShare amayaWeiXin;
 
 
     /**
@@ -54,8 +66,9 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
      */
     private WeiboAuth.AuthInfo amayaAuthInfo;
     private SsoHandler mSsoHandler;
-    private StatusesAPI amayaSinaApi;
+    private AmayaSinaAPI amayaSinaApi;
     private AmayaShareListener amayaListener;
+    private IUiListener amayaIUListener;
 
 
     private AmayaShareUtils(){}
@@ -67,41 +80,42 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
     	return amaya;
     }
     public boolean isAuthed(AmayaShareEnums type, Context context) {
-        boolean authed = false;
-        switch (type){
+        String token = getToken(context,type);
+        return !TextUtils.isEmpty(token);
+    }
+
+    public String getToken(Context mContext,AmayaShareEnums enums){
+        int index = -1;
+        switch (enums){
             case SINA_WEIBO:
-                authed = initSinaWeibo(context);
+                index = 0;
+                if(TextUtils.isEmpty(tokens[index])){
+                    initSinaWeibo(mContext);
+                }
+                break;
+            case TENCENT_WEIBO:
+                index = 1;
+                if(TextUtils.isEmpty(tokens[index])){
+                    tokens[index] = AmayaTokenKeeper.getTXWeiboToken(mContext);
+                }
                 break;
             case TENCENT_QQ:
-            case TENCENT_WEIBO:
             case TENCENT_QZONE:
-                initQQ(context);
-                if(amayaTencent != null) authed = amayaTencent.isSessionValid();
+                index = 2;
+                if(TextUtils.isEmpty(tokens[index])){
+                    initQQ(mContext);
+                }
                 break;
-
         }
-        return authed;
+        return tokens[index];
     }
-    /************************************************QQ分享部分 START*************************************************
-     */
-    /**
-     *
-     * @param context
-     */
-    private void initQQ(Context context) {
-        if(amayaTencent == null) {
-            amayaTencent =  Tencent.createInstance(AmayaShareConstants.AMAYA_QQ_ID,context);
-            AmayaTokenKeeper.readQQToken(context,amayaTencent);
-        }
-        if(amayaShare == null && amayaTencent != null){
-            amayaShare = new QzoneShare(context,amayaTencent.getQQToken());
-        }
-    }
-
     public void auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener){
         switch (enums){
             case SINA_WEIBO:
                 authSinaWeibo(activity,listener);
+                break;
+            case TENCENT_WEIBO:
+                authTXWeibo(activity,listener);
                 break;
             case TENCENT_QQ:
             case TENCENT_QZONE:
@@ -110,6 +124,43 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         }
 
     }
+    public void onActivityResult(final Context mContext,int requestCode, int resultCode, Intent data) {
+        if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
+            if (mSsoHandler != null) {
+                mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+            }
+        }else if( requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO){
+            tokens[1] = data.getExtras().getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
+            if(amayaListener != null){
+                if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, data ==null?null:data.getExtras());
+            }
+        }else{
+            final boolean isShare = !amayaTencent.isSessionValid();
+            final AmayaShareEnums enums =  requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ?AmayaShareEnums.TENCENT_QZONE:AmayaShareEnums.TENCENT_QQ;
+            Log.e("amaya","onActivityResult()...enums="+enums+"--isShare="+isShare+"--data="+data);
+            if(data == null) data = new Intent();
+            initAmayaIUListener(mContext,amayaListener,AmayaShareEnums.TENCENT_QQ,false);
+            amayaTencent.handleLoginData(data,amayaIUListener);
+        }
+    }
+
+    /************************************************QQ分享部分 START**************************************************/
+    /**
+     *
+     * @param context
+     */
+    private void initQQ(Context context) {
+        if(amayaTencent == null) {
+            amayaTencent =  Tencent.createInstance(AmayaShareConstants.AMAYA_QQ_ID,context);
+            AmayaTokenKeeper.readQQToken(context,amayaTencent);
+            tokens[2] = amayaTencent.getAccessToken();
+        }
+        if(amayaShare == null && amayaTencent != null){
+            amayaShare = new QzoneShare(context,amayaTencent.getQQToken());
+        }
+    }
+
+
 
     private void authQQ(final Activity context, final AmayaShareListener amayaListener,final AmayaShareEnums enums){
         if(amayaTencent == null) initQQ(context);
@@ -119,42 +170,56 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
             }
             return;
         }
-        amayaTencent.login(context, "all", new IUiListener() {
-            @Override
-            public void onComplete(Object values) {
-                try {
-                    //{"ret":0,"pay_token":"FCABB6BF240491F58A3A571976ABA41E","pf":"desktop_m_qq-10000144-android-2002-","query_authority_cost":134,"authority_cost":5764,"openid":"4006284219847AC2805B32E911ABCA52","expires_in":7776000,"pfkey":"c500c8b1867613fb54ecde6f9b27fd6c","msg":"","access_token":"08ED4C56A2CB1911B94EEC98B465CE5B","login_cost":578}
-                    JSONObject jsonObject = (JSONObject) values;
-                    String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
-                    String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
-                    String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-                    if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
-                            && !TextUtils.isEmpty(openId)) {
-                        amayaTencent.setAccessToken(token, expires);
-                        amayaTencent.setOpenId(openId);
-                        AmayaTokenKeeper.saveQQToken(context, amayaTencent);
+
+        initAmayaIUListener(context, amayaListener, enums,true);
+        amayaTencent.login(context, "all",amayaIUListener);
+    }
+
+    private void initAmayaIUListener(final Context context, final AmayaShareListener amayaListener, final AmayaShareEnums enums,final boolean isAuth) {
+        if(amayaIUListener == null){
+            amayaIUListener = new IUiListener() {
+                @Override
+                public void onComplete(Object values) {
+                    if(isAuth){
+                        try {
+                            //{"ret":0,"pay_token":"FCABB6BF240491F58A3A571976ABA41E","pf":"desktop_m_qq-10000144-android-2002-","query_authority_cost":134,"authority_cost":5764,"openid":"4006284219847AC2805B32E911ABCA52","expires_in":7776000,"pfkey":"c500c8b1867613fb54ecde6f9b27fd6c","msg":"","access_token":"08ED4C56A2CB1911B94EEC98B465CE5B","login_cost":578}
+                            JSONObject jsonObject = (JSONObject) values;
+                            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+                            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+                            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+                            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                                    && !TextUtils.isEmpty(openId)) {
+                                amayaTencent.setAccessToken(token, expires);
+                                amayaTencent.setOpenId(openId);
+                                AmayaTokenKeeper.saveQQToken(context, amayaTencent);
+                                tokens[2] = token;
+                            }
+                            Bundle bundle = new Bundle();
+                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openId);
+                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expires);
+                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token);
+                            if(amayaShare == null) amayaShare = new QzoneShare(context,amayaTencent.getQQToken());
+                            updateUserInfo(context,amayaListener,bundle);
+//                    if(amayaListener != null) amayaListener.onComplete(enums, AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
+                        } catch(Exception e) {
+                            if(amayaListener != null) amayaListener.onException(enums,AmayaShareConstants.AMAYA_TYPE_AUTH,e.getMessage());
+                        }
+                    }else{
+                        if(amayaListener!= null) amayaListener.onComplete(enums,AmayaShareConstants.AMAYA_TYPE_SHARE,null);
                     }
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openId);
-                    bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expires);
-                    bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token);
-                    if(amayaShare == null) amayaShare = new QzoneShare(context,amayaTencent.getQQToken());
-                    if(amayaListener != null) amayaListener.onComplete(enums, AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
-                } catch(Exception e) {
-                    if(amayaListener != null) amayaListener.onException(enums,AmayaShareConstants.AMAYA_TYPE_AUTH,e.getMessage());
                 }
-            }
 
-            @Override
-            public void onError(UiError uiError) {
-                if(amayaListener != null) amayaListener.onException(enums, AmayaShareConstants.AMAYA_TYPE_AUTH, context.getString(R.string.amaya_auth_no));
-            }
+                @Override
+                public void onError(UiError uiError) {
+                    if(amayaListener != null) amayaListener.onException(enums,AmayaShareConstants.AMAYA_TYPE_AUTH,uiError.errorDetail);
+                }
 
-            @Override
-            public void onCancel() {
-                if(amayaListener != null) amayaListener.onCancel(enums,AmayaShareConstants.AMAYA_TYPE_AUTH);
-            }
-        });
+                @Override
+                public void onCancel() {
+                    if(amayaListener != null) amayaListener.onCancel(enums,AmayaShareConstants.AMAYA_TYPE_AUTH);
+                }
+            };
+        }
     }
 
     public void shareToQZone(final Activity activity, final AmayaShareListener amayaListener,final int shareType,final String targetUrl,final String title,final String summary,final ArrayList<String> urls){
@@ -303,7 +368,6 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         //标识该消息的来源应用，值为应用名称+AppId。
 //        bundle.putString(QQShare.SHARE_TO_QQ_Constants.PARAM_APP_SOURCE, "星期几" + AppId);
         amayaTencent.shareToQQ(activity,bundle,this);
-
     }
     @Override
     public void onComplete(Object o) {
@@ -325,13 +389,163 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.TENCENT_QZONE,AmayaShareConstants.AMAYA_TYPE_SHARE);
     }
     /************************************************QQ分享部分  END**************************************************/
+    /************************************************Tencent WeiBo分享部分  START**************************************************/
+    private void authTXWeibo(Activity activity, AmayaShareListener listener) {
+        Intent i = new Intent(activity, AmayaAuthorize.class);
+        this.amayaListener = listener;
+        activity.startActivityForResult(i, AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO);
+    }
+
+    /**
+     * 发表一条微博
+     *
+     * @param context        上下文
+     * @param content        微博内容（若在此处@好友，需正确填写好友的微博账号，而非昵称），不超过140字
+     * @param longitude      经度，为实数，如113.421234（最多支持10位有效数字，可以填空）不是必填
+     * @param latitude       纬度，为实数，如22.354231（最多支持10位有效数字，可以填空） 不是必填
+     * @param syncflag       微博同步到空间分享标记（可选，0-同步，1-不同步，默认为0），目前仅支持oauth1.0鉴权方式 不是必填
+     * @param amayaListener       回调接口
+     *  compatibleflag 容错标志，支持按位操作，默认为0。 0x20-微博内容长度超过140字则报错 0-以上错误做容错处理，即发表普通微博
+     *                       不是必填
+     * param mCallBack      回调函数
+     * param mTargetClass   返回对象类，如果返回json则为null
+     * param resultType     BaseVO.TYPE_BEAN=0 BaseVO.TYPE_LIST=1 BaseVO.TYPE_OBJECT=2
+     *                       BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
+     */
+    public void shareToTXWeiBo(Context context, String content,
+                                double longitude, double latitude, int syncflag,
+                                AmayaShareListener amayaListener) {
+        String accessToken = AmayaTokenKeeper.getTXWeiboToken(context);
+        if ((accessToken != null)) {
+            this.amayaListener = amayaListener;
+            AccountModel account = new AccountModel(accessToken);
+            WeiboAPI weiboAPI = new WeiboAPI(account);
+            weiboAPI.addWeibo(context, content, "json", longitude, latitude, syncflag,
+                    0,this , null, BaseVO.TYPE_JSON);
+        }else if(amayaListener != null){
+             amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:haven't auth step.token is null");
+        }
+    }
+//
+
+    /**
+     * 发表一条带图片的微博
+     *
+     * @param context
+     *            上下文
+     * @param content
+     *            微博内容（若在此处@好友，需正确填写好友的微博账号，而非昵称），不超过140字
+     * @param longitude
+     *            经度，为实数，如113.421234（最多支持10位有效数字，可以填空）不是必填
+     * @param latitude
+     *            纬度，为实数，如22.354231（最多支持10位有效数字，可以填空） 不是必填
+     * @param mBitmap
+     *            本地图片bitmap对象
+     * @param syncflag
+     *            微博同步到空间分享标记（可选，0-同步，1-不同步，默认为0），目前仅支持oauth1.0鉴权方式 不是必填
+     * param  compatibleflag
+     *            容错标志，支持按位操作，默认为0。 0x20-微博内容长度超过140字则报错 0-以上错误做容错处理，即发表普通微博
+     *            不是必填
+     * @param amayaListener 回调函数
+     * param mTargetClass
+     *            返回对象类，如果返回json则为null
+     * param resultType
+     *            BaseVO.TYPE_BEAN=0 BaseVO.TYPE_LIST=1 BaseVO.TYPE_OBJECT=2
+     *            BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
+     */
+    public void shareToTXWeiBo(Context context, String content,
+                              double longitude, double latitude, Bitmap mBitmap, int syncflag,
+                              AmayaShareListener amayaListener) {
+        String accessToken = getToken(context,AmayaShareEnums.TENCENT_WEIBO);
+        if (accessToken != null) {
+            this.amayaListener = amayaListener;
+            AccountModel account = new AccountModel(accessToken);
+            WeiboAPI weiboAPI = new WeiboAPI(account);
+            weiboAPI.addPic(context, content, "json", longitude, latitude,
+                    mBitmap, syncflag, 0, this, null, BaseVO.TYPE_JSON);
+//            weiboAPI.reAddWeibo(context,content,picPath,videoPath,musicPath,musicTitle,musicAuthor, mCallBack, null, BaseVO.TYPE_JSON);
+        }else if(amayaListener != null){
+            amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:haven't auth step.token is null");
+        }
+    }
+
+    /**
+	 * 用图片URL发表带图片的微博
+	 *
+	 * @param context
+	 *            上下文
+	 * @param content
+	 *            微博内容（若在此处@好友，需正确填写好友的微博账号，而非昵称），不超过140字
+	 * @param longitude
+	 *            经度，为实数，如113.421234（最多支持10位有效数字，可以填空）不是必填
+	 * @param latitude
+	 *            纬度，为实数，如22.354231（最多支持10位有效数字，可以填空） 不是必填
+	 * @param picUrl
+	 *            网络图片url
+	 * @param syncflag
+	 *            微博同步到空间分享标记（可选，0-同步，1-不同步，默认为0），目前仅支持oauth1.0鉴权方式 不是必填
+	 * param compatibleflag
+	 *            容错标志，支持按位操作，默认为0。 0x20-微博内容长度超过140字则报错 0-以上错误做容错处理，即发表普通微博
+	 *            不是必填
+	 * @param amayaListener
+	 *            回调函数
+	 * param mTargetClass
+	 *            返回对象类，如果返回json则为null
+	 * param resultType
+	 *            BaseVO.TYPE_BEAN=0 BaseVO.TYPE_LIST=1 BaseVO.TYPE_OBJECT=2
+	 *            BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
+	 */
+    public void shareToTXWeiBo(Context context, String content,
+                                 double longitude, double latitude, String picUrl,
+                                 int syncflag, AmayaShareListener amayaListener) {
+        String accessToken = getToken(context,AmayaShareEnums.TENCENT_WEIBO);
+        if (accessToken != null) {
+            this.amayaListener = amayaListener;
+            AccountModel account = new AccountModel(accessToken);
+            WeiboAPI weiboAPI = new WeiboAPI(account);
+            weiboAPI.addPicUrl(context, content, "json", longitude, latitude,
+                    picUrl, syncflag, 0, this, null, BaseVO.TYPE_JSON);
+        }else if(amayaListener != null){
+            amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:haven't auth step.token is null");
+        }
+    }
+
+
+    @Override
+    public void onResult(Object object) {
+        ModelResult result = (ModelResult) object;
+        Log.e("amaya", "onResult()..isSuccess=" + result.isSuccess() + "--getError_message=" + result.getError_message() + "--" + result.toString());
+        if (result != null) {
+            if (!result.isExpires()) {
+                if (result.isSuccess()) {
+                    if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,null);
+                    try {
+                        JSONObject json = (JSONObject) result.getObj();
+                        Log.e("amaya", "onResult()..json=" + json);
+                        JSONObject data = json.getJSONObject("data");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    if(amayaListener != null) amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,result.getError_message());
+                }
+            } else {
+                if(amayaListener != null) amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,result.getError_message());
+            }
+        } else {
+            if(amayaListener != null) amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,result.getError_message());
+        }
+    }
+    /************************************************QQ分享部分  END**************************************************/
     /************************************************SINA WEIBO分享部分 START**************************************************/
     public boolean initSinaWeibo(Context context) {
         Oauth2AccessToken token = AmayaTokenKeeper.readSinaToken(context);
         boolean authed = token.isSessionValid();
+        tokens[0]=token.getToken();
         if(authed){
-            amayaSinaApi = new StatusesAPI(token);
+            amayaSinaApi = new AmayaSinaAPI(token);
         }
+
         return authed;
     }
     private void authSinaWeibo(final Context mContext,final AmayaShareListener amayaListener) {
@@ -347,6 +561,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
                     Oauth2AccessToken accessToken = Oauth2AccessToken.parseAccessToken(bundle);
                     if (accessToken != null && accessToken.isSessionValid()) {
                         AmayaTokenKeeper.saveSinaToken(mContext, accessToken);
+                        tokens[0] = accessToken.getToken();
                     }
                     if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
                 }
@@ -363,62 +578,6 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
             });
         } else {
             LogUtil.e(TAG, "Please setWeiboAuthInfo(...) for first");
-        }
-    }
-    public void onActivityResult(final AmayaShareEnums enums,final Context mContext,int requestCode, int resultCode, Intent data) {
-        switch (enums){
-            case SINA_WEIBO:
-                if (mSsoHandler != null) {
-                    mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
-                }
-                break;
-            case TENCENT_QQ:
-            case TENCENT_QZONE:
-            case TENCENT_WEIBO:
-                final boolean isShare = amayaTencent.isSessionValid();
-                Log.e("amaya","onActivityResult()...enums="+enums+"--isShare="+isShare+"--data="+data);
-                if(data == null) data = new Intent();
-                amayaTencent.handleLoginData(data,new IUiListener() {
-                    @Override
-                    public void onComplete(Object values) {
-                        try {
-                            //{"ret":0,"pay_token":"FCABB6BF240491F58A3A571976ABA41E","pf":"desktop_m_qq-10000144-android-2002-","query_authority_cost":134,"authority_cost":5764,"openid":"4006284219847AC2805B32E911ABCA52","expires_in":7776000,"pfkey":"c500c8b1867613fb54ecde6f9b27fd6c","msg":"","access_token":"08ED4C56A2CB1911B94EEC98B465CE5B","login_cost":578}
-                            JSONObject jsonObject = (JSONObject) values;
-                            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
-                            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
-                            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
-                            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
-                                    && !TextUtils.isEmpty(openId)) {
-                                amayaTencent.setAccessToken(token, expires);
-                                amayaTencent.setOpenId(openId);
-                                AmayaTokenKeeper.saveQQToken(mContext, amayaTencent);
-                            }
-                            Bundle bundle = new Bundle();
-                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openId);
-                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expires);
-                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token);
-                //            Bundle bundle = new Bundle();
-                //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);
-                //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openid);
-                //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expiresIn);
-                //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, accessToken);
-                            if(amayaListener != null) amayaListener.onComplete(enums,isShare, bundle);
-                        } catch(Exception e) {
-                            if(amayaListener != null) amayaListener.onException(enums,isShare,e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onError(UiError uiError) {
-                        if(amayaListener != null) amayaListener.onException(enums,isShare,uiError.errorDetail);
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        if(amayaListener != null) amayaListener.onCancel(enums,isShare);
-                    }
-                });
-                break;
         }
     }
 
@@ -505,13 +664,10 @@ public class AmayaShareUtils implements RequestListener, IUiListener {
         initWeixin(context);
         if(amayaWeiXin != null)
             amayaWeiXin.shareMessage(toCircle,title,description,imagePath,imageUrl,webpageUrl,amayaShareListener);
-
     }
-
     private void initWeixin(Context context) {
-        if(amayaWeiXin == null) amayaWeiXin =  new WeiXinShareUtil(context);
+        if(amayaWeiXin == null) amayaWeiXin =  new AmayaWeiXinShare(context);
     }
-
     /************************************************WeiXin END**************************************************/
 
     

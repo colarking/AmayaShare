@@ -17,6 +17,10 @@ import com.fone.player.share.util.AmayaShareUtils;
 import com.tencent.connect.share.QzoneShare;
 
 public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
+    private ColorStateList colorStateList;
+    private int bgSelector = R.drawable.text_view_bg_selector;
+    private AmayaShareUtils amayaShareUtils;
+
     /**
      * Called when the activity is first created.
      */
@@ -28,20 +32,18 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         TextView amayaSina = (TextView) findViewById(R.id.amaya_share_sina);
         TextView amayaQQ = (TextView) findViewById(R.id.amaya_share_qq);
         TextView amayaWeixin = (TextView) findViewById(R.id.amaya_share_weixin);
-        ColorStateList colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
-        int bgSelector = R.drawable.text_view_bg_selector;
-        amayaQzone.setBackgroundResource(bgSelector);
-        amayaQzone.setTextColor(colorStateList);
-        amayaQzone.setOnClickListener(this);
-        amayaSina.setBackgroundResource(bgSelector);
-        amayaSina.setTextColor(colorStateList);
-        amayaSina.setOnClickListener(this);
-        amayaQQ.setBackgroundResource(bgSelector);
-        amayaQQ.setTextColor(colorStateList);
-        amayaQQ.setOnClickListener(this);
-        amayaWeixin.setBackgroundResource(bgSelector);
-        amayaWeixin.setTextColor(colorStateList);
-        amayaWeixin.setOnClickListener(this);
+        TextView amayaWXCircle = (TextView) findViewById(R.id.amaya_share_weixin_circle);
+        TextView amayaTXWeibo = (TextView) findViewById(R.id.amaya_share_tencent_weibo);
+        colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
+
+        initClickView(amayaSina);
+        initClickView(amayaTXWeibo);
+        initClickView(amayaQzone);
+        initClickView(amayaQQ);
+        initClickView(amayaWeixin);
+        initClickView(amayaWXCircle);
+
+        amayaShareUtils = AmayaShareUtils.instance();
 
 
 //        int white = getResources().getColor(R.color.white);
@@ -51,6 +53,13 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 //        loginTXBtn.setTextColor(colorStateList);
 //        loginQQBtn.setTextColor(colorStateList);
     }
+
+    private void initClickView(TextView clickView) {
+        clickView.setBackgroundResource(bgSelector);
+        clickView.setTextColor(colorStateList);
+        clickView.setOnClickListener(this);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -72,20 +81,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
-            /**
-             * AmayaShareUtils 封装了授权和分享的逻辑，可通用
-             */
-            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.SINA_WEIBO,this,requestCode, resultCode, data);
-            /**
-             *   AmayaSinaWeiboButton 封装了授权逻辑，可单独使用
-             */
-//        	loginBtn.onActivityResult(requestCode, resultCode, data);
-        }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO){
-            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_WEIBO,this,requestCode, resultCode, data);
-        }else if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ){
-            AmayaShareUtils.instance().onActivityResult(AmayaShareEnums.TENCENT_QQ,this,requestCode, resultCode, data);
-        }
+        if(requestCode != 0 && data != null)amayaShareUtils.onActivityResult(this, requestCode, resultCode, data);
     }
 
 	@Override
@@ -101,15 +97,16 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
                 Log.e("amaya","onComplete()...id="+id);
                 Log.e("amaya","onComplete()...expires_in="+expires_in);
                 Log.e("amaya","onComplete()...token="+token);
+                Toast.makeText(this,enumKey+"授权成功...name="+name,0).show();
                 if(enumKey == AmayaShareEnums.SINA_WEIBO){
                     Log.e("amaya","onComplete()...准备分享到新浪微博");
-                    shareToSina();
+                    amayaShareSina();
                 }
             }else{
                 onException(enumKey,authOrShare,"bundle is null error");
             }
         }else{
-            Toast.makeText(this,enumKey+"分享成功",0).show();
+            Toast.makeText(this,enumKey+"分享完成",0).show();
         }
 	}
 
@@ -128,61 +125,90 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     @Override
     public void onClick(View v) {
-        AmayaShareUtils amayaShareUtils = AmayaShareUtils.instance();
+
         switch (v.getId()){
-            case R.id.amaya_share_qzone:
-                int shareType = QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT;
-                String targetUrl = "http://www.qq.com";
-                String title = "Title";
-                String summary = "summary";
-                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
-                    amayaShareUtils.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
-                }else{
-                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
-                }
-                break;
             case R.id.amaya_share_sina:
-                boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
-                if(authed){
-                    amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
-                }else{
-                    amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO, this, this);
-                }
+                amayaShareSina();
+                break;
+            case R.id.amaya_share_tencent_weibo:
+                amayaShareTXWeibo();
+                break;
+            case R.id.amaya_share_qzone:
+                amayaShareQzone();
                 break;
             case R.id.amaya_share_qq:
-                if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
-                    title = "标题";
-                    String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
-                    //分享的消息摘要，最长50个字
-                    summary = "内容摘要";
-                    //这条分享消息被好友点击后的跳转URL。
-                    String tagetUrl = "http://connect.qq.com/";
-                    amayaShareUtils.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
-                }else{
-                    amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
-                }
+                amayaShareQQ();
                 break;
             case R.id.amaya_share_weixin:
-
-                title ="AmayaShare分享";
-                String desc = "这是一个测试分享哟！";
-
-                boolean toCircle = false;  //true:朋友圈；false:好友
-
-                /**
-                 * imagePath 和imageUrl 二选一,优先选取imagePath路径
-                 */
-                String imagePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
-                String imageUrl =null;
-                String webpaggUrl = "www.iyoudang.com";
-                amayaShareUtils.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
+                amayaShareWeiXin(false);
+                break;
+            case R.id.amaya_share_weixin_circle:
+                amayaShareWeiXin(true);
                 break;
         }
     }
 
-    private void shareToSina() {
-//        TextObject textObj = AmayaShareUtils.instance().getTextObj("这是一个测试微博");
-//        AmayaShareUtils.instance().sendSingleMessage(this,this,textObj);
+    private void amayaShareTXWeibo() {
+        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_WEIBO, this);
+        if(authed){
+            String content = "这是内容content";
+            amayaShareUtils.shareToTXWeiBo(this,content,0,0,1,this);
+        }else{
+            amayaShareUtils.auth(AmayaShareEnums.TENCENT_WEIBO, this, this);
+        }
+    }
+
+    /**
+     *
+     * @param toCircle  true:朋友圈；false:好友
+     */
+    private void amayaShareWeiXin(boolean toCircle) {
+        String title ="AmayaShare分享";
+        String desc = "这是一个测试分享哟！";
+        /**
+         * imagePath 和imageUrl 二选一,优先选取imagePath路径
+         */
+        String imagePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
+        String imageUrl =null;
+        String webpaggUrl = "www.iyoudang.com";
+        amayaShareUtils.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
+    }
+
+    private void amayaShareQQ() {
+        String title;
+        String summary;
+        if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
+        title = "标题";
+        String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
+        //分享的消息摘要，最长50个字
+        summary = "内容摘要";
+        //这条分享消息被好友点击后的跳转URL。
+        String tagetUrl = "http://connect.qq.com/";
+        amayaShareUtils.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
+    }else{
+        amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
+    }
+    }
+
+    private void amayaShareSina() {
+        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
+        if(authed){
+            amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
+        }else{
+            amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO, this, this);
+        }
+    }
+
+    private void amayaShareQzone() {
+        int shareType = QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT;
+        String targetUrl = "http://www.qq.com";
+        String title = "Title";
+        String summary = "summary";
+        if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
+            amayaShareUtils.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
+        }else{
+            amayaShareUtils.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
+        }
     }
 
     @Override

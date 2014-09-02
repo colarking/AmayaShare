@@ -18,9 +18,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.net.URL;
 
-public class WeiXinShareUtil {
+public class AmayaWeiXinShare {
 
-	private static final String TAG = "WeiXinShareUtil";
+	private static final String TAG = "AmayaWeiXinShare";
 	public static final String APP_ID = "wxb23baa60e487655b";
 //	public static final String APP_ID = "wx5e579a4b2c31ad26";
 	
@@ -29,7 +29,7 @@ public class WeiXinShareUtil {
 
     private IWXAPI wxApi;
 
-	public WeiXinShareUtil(Context mContext){
+	public AmayaWeiXinShare(Context mContext){
         defaultBitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher);
         wxApi = WXAPIFactory.createWXAPI(mContext, APP_ID, true);
 		wxApi.registerApp(APP_ID);

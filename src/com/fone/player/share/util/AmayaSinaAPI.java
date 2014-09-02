@@ -30,7 +30,7 @@ import com.sina.weibo.sdk.net.WeiboParameters;
  * @author SINA
  * @date 2014-03-03
  */
-public class StatusesAPI extends AbsOpenAPI {
+public class AmayaSinaAPI extends AmayaSinaAbsAPI {
 
     /** 过滤类型ID，0：全部、1：原创、2：图片、3：视频、4：音乐 */
     public static final int FEATURE_ALL      = 0;
@@ -73,7 +73,7 @@ public class StatusesAPI extends AbsOpenAPI {
     public static final String LANGUAGE_CNNAME = "cnname";
     public static final String LANGUAGE_TWNAME = "twname";
 
-    public StatusesAPI(Oauth2AccessToken accessToken) {
+    public AmayaSinaAPI(Oauth2AccessToken accessToken) {
         super(accessToken);
     }
 

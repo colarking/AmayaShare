@@ -20,22 +20,7 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="分享部分"
-			android:layout_margin="5dp"
-			android:textColor="#ffffff"
-			/>
-		<com.fone.player.share.view.AmayaQZoneButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="自定义按钮QZone分享"
-			android:id="@+id/amaya_tx_qzone"
-			android:layout_margin="5dp"
-			style="?android:attr/buttonBarButtonStyle"
-			/>
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="系统的按钮QZone分享"
+			android:text="QZone分享"
 			android:id="@+id/amaya_share_qzone"
 			android:layout_margin="5dp"
 			style="?android:attr/buttonBarButtonStyle"
@@ -45,7 +30,7 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="系统按钮新浪微博分享"
+			android:text="新浪微博分享"
 			android:id="@+id/amaya_share_sina"
 			android:layout_margin="5dp"
 			style="?android:attr/buttonBarButtonStyle"
@@ -55,7 +40,17 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="系统按钮QQ好友分享"
+			android:text="腾讯微博分享"
+			android:id="@+id/amaya_share_tencent_weibo"
+			android:layout_margin="5dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:textSize="18sp"
+			android:padding="10dp"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="QQ好友分享"
 			android:id="@+id/amaya_share_qq"
 			android:layout_margin="5dp"
 			style="?android:attr/buttonBarButtonStyle"
@@ -65,8 +60,18 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="系统按钮微信分享"
+			android:text="微信好友分享"
 			android:id="@+id/amaya_share_weixin"
+			android:layout_margin="5dp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:textSize="18sp"
+			android:padding="10dp"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="微信朋友圈分享"
+			android:id="@+id/amaya_share_weixin_circle"
 			android:layout_margin="5dp"
 			style="?android:attr/buttonBarButtonStyle"
 			android:textSize="18sp"
