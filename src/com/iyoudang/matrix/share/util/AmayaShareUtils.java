@@ -1,4 +1,4 @@
-package com.fone.player.share.util;
+package com.iyoudang.matrix.share.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-import com.fone.player.R;
-import com.fone.player.share.AmayaAuthorize;
+import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.AmayaAuthorize;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -650,13 +650,11 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
      * @param listener 异步请求回调接口
      */
     public void shareToSina(AmayaShareListener listener,String content, String lat, String lon) {
-        if(listener != null){
-            if(amayaSinaApi != null){
-                this.amayaListener = listener;
-                amayaSinaApi.update(content,lat,lon,this);
-            }else{
-                listener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not called method initSinaWeibo() or isAuthed()");
-            }
+        if(amayaSinaApi != null){
+            this.amayaListener = listener;
+            amayaSinaApi.update(content,lat,lon,this);
+        }else{
+            if(listener != null) listener.onException(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not called method initSinaWeibo() or isAuthed()");
         }
 //        WeiboParameters params = buildUpdateParams(content, lat, lon);
 //        requestAsync(sAPIList.get(WRITE_API_UPDATE), params, HTTPMETHOD_POST, listener);

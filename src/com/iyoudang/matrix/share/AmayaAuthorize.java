@@ -1,4 +1,4 @@
-package com.fone.player.share;
+package com.iyoudang.matrix.share;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,9 +26,9 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.fone.player.R;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaTokenKeeper;
+import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.util.AmayaShareConstants;
+import com.iyoudang.matrix.share.util.AmayaTokenKeeper;
 import com.tencent.weibo.sdk.android.api.util.Util;
 
 import java.lang.reflect.Method;

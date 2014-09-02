@@ -1,4 +1,4 @@
-package com.fone.player.share.util;
+package com.iyoudang.matrix.share.util;
 
 import android.os.Bundle;
 

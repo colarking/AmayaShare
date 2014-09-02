@@ -29,9 +29,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/amaya_share.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/amaya.keystore" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\AmayaAuthorize.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaAuthorize.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\AmayaMainActivity.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaSPUtil.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaSPUtil.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaShareConstants.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareConstants.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaShareEnums.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareEnums.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaShareListener.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareListener.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaShareUtils.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaSinaAPI.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaSinaAPI.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaSinaAbsAPI.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaSinaAbsAPI.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaTokenKeeper.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaTokenKeeper.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AmayaWeiXinShare.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaWeiXinShare.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\view\AmayaButton.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaButton.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\view\AmayaQQButton.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaQQButton.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\view\AmayaQZoneButton.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaQZoneButton.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\view\AmayaSinaWeiboButton.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaSinaWeiboButton.java" />
+      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\view\AmayaTXWeiboButton.java" afterPath="$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaTXWeiboButton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmayaShare.iws" />
@@ -49,9 +64,8 @@
     <file path="/AmayaShareConstants.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409194983363" ignored="false" />
     <file path="/QQMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409128156804" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129329314" ignored="false" />
-    <file path="$PROJECT_DIR$/gen/com/fone/player/R.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129498922" ignored="false" />
     <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/project.properties" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409128507015" ignored="false" />
-    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409644719529" ignored="false" />
+    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409649722567" ignored="false" />
     <file path="/colors.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409132723330" ignored="false" />
     <file path="/AmayaButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409192525516" ignored="false" />
     <file path="/AmayaTXWeiboButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409135067000" ignored="false" />
@@ -61,7 +75,7 @@
     <file path="/AmayaShareListener.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409195131826" ignored="false" />
     <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/view/AmayaGPSView.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409194556781" ignored="false" />
     <file path="/AccessTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409207105317" ignored="false" />
-    <file path="/AmayaShareUtils.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409641438872" ignored="false" />
+    <file path="/AmayaShareUtils.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409649144101" ignored="false" />
     <file path="/strings.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409566044020" ignored="false" />
     <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/fone/player/share/util/AccessTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409212761762" ignored="false" />
     <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/project.properties" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409293237178" ignored="false" />
@@ -90,7 +104,7 @@
     <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/fone/player/share/view/AmayaTXWeiboButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409293311421" ignored="false" />
     <file path="$PROJECT_DIR$/src/com/fone/player/share/util/TAG.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409296204128" ignored="false" />
     <file path="/AmayaTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409627132911" ignored="false" />
-    <file path="/Dummy.txt" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409641861257" ignored="false" />
+    <file path="/Dummy.txt" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409645466239" ignored="false" />
     <file path="E:/IdeaProjects/AmayaShare/AmayaShare/src/com/fone/player/share/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409310342855" ignored="false" />
     <file path="/AmayaButtonActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409540211521" ignored="false" />
     <file path="/WeiXinShareUtil.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409643737124" ignored="false" />
@@ -117,6 +131,8 @@
     <file path="/main_button.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409626689370" ignored="false" />
     <file path="/AmayaAuthorize.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409626997833" ignored="false" />
     <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/gen/com/sina/weibo/sdk/demo/R.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409641790753" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/com/iyoudang/matrix/Manifest.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409645609948" ignored="false" />
+    <file path="/AmayaWeiXinShare.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409648081178" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +153,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="235" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="235" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -152,7 +168,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="301" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="301" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -167,7 +183,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="239" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="239" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -182,7 +198,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="274" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="274" class="com.iyoudang.matrix.share.util.AmayaShareUtils$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -197,7 +213,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="279" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="279" class="com.iyoudang.matrix.share.util.AmayaShareUtils$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -212,7 +228,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="243" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="243" class="com.iyoudang.matrix.share.util.AmayaShareUtils$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -227,7 +243,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="117" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="156" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -242,7 +258,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="416" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="416" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -257,7 +273,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="449" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="449" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -272,7 +288,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="286" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="286" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -287,7 +303,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="391" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="391" class="com.iyoudang.matrix.share.util.AmayaShareUtils$3$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -302,7 +318,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="396" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="396" class="com.iyoudang.matrix.share.util.AmayaShareUtils$3$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -317,7 +333,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="401" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="401" class="com.iyoudang.matrix.share.util.AmayaShareUtils$3$1" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -332,7 +348,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="85" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="95" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -347,7 +363,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="131" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="174" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -362,7 +378,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="154" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="197" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -377,7 +393,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="91" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="128" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -392,7 +408,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="115" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="115" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -407,7 +423,82 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="576" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="576" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" line="257" class="com.iyoudang.matrix.share.AmayaMainActivity" package="com.iyoudang.matrix.share">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="611" class="com.iyoudang.matrix.share.util.AmayaShareUtils" package="com.iyoudang.matrix.share.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="620" class="com.iyoudang.matrix.share.util.AmayaShareUtils$4" package="com.iyoudang.matrix.share.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="630" class="com.iyoudang.matrix.share.util.AmayaShareUtils$4" package="com.iyoudang.matrix.share.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" line="635" class="com.iyoudang.matrix.share.util.AmayaShareUtils$4" package="com.iyoudang.matrix.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -469,60 +560,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AmayaShareUtils.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
+      <file leaf-file-name="AmayaShareUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="585" column="41" selection-start="27102" selection-end="27102" vertical-scroll-proportion="-0.088541664">
+            <state line="658" column="34" selection-start="30854" selection-end="30854" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#17259#17267#0" expanded="true" />
-                <element signature="e#17696#19071#0" expanded="true" />
-                <element signature="e#19060#19061#0" expanded="true" />
+                <element signature="e#17271#17279#0" expanded="true" />
+                <element signature="e#17708#19083#0" expanded="true" />
+                <element signature="e#19072#19073#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AmayaAuthorize.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="251" column="29" selection-start="8611" selection-end="8656" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmayaAuthorize.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaAuthorize.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="43" selection-start="3242" selection-end="3242" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AmayaTokenKeeper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaTokenKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="23" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
+            <state line="41" column="23" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AmayaMainActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
+      <file leaf-file-name="AmayaMainActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="33" selection-start="7118" selection-end="7118" vertical-scroll-proportion="0.0">
+            <state line="76" column="33" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.7183099">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="abs__progress_medium_holo.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/drawable/abs__progress_medium_holo.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AmayaSinaAPI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSinaAPI.java">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaSinaAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="626" column="86" selection-start="27796" selection-end="27796" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="626" column="86" selection-start="27800" selection-end="27800" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#31358#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AmayaWeiXinShare.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaWeiXinShare.java">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaWeiXinShare.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="11" selection-start="963" selection-end="963" vertical-scroll-proportion="0.0">
+            <state line="31" column="95" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AmayaShareConstants.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="70" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -536,8 +657,8 @@
     </FindUsagesManager>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="C:\Users\Smith\Documents\GitHub\AmayaShare\android.keystore" />
-    <option name="KEY_ALIAS" value="android.keystore" />
+    <option name="KEY_STORE_PATH" value="C:\Users\Smith\Documents\GitHub\AmayaShare\amaya.keystore" />
+    <option name="KEY_ALIAS" value="amaya" />
     <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
@@ -562,11 +683,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/TAG.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaSinaWeiboButton.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AbsOpenAPI.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/util/StatusesAPI.java" />
-        <option value="$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareEnums.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/AmayaButtonActivity.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/util/WeiXinShareUtil.java" />
@@ -578,6 +694,11 @@
         <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/iyoudang/player/share/util/AmayaShareUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaWeiXinShare.java" />
+        <option value="$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java" />
       </list>
     </option>
   </component>
@@ -602,11 +723,11 @@
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
-      <flattenPackages ProjectPane="true" />
+      <flattenPackages ProjectPane="false" />
       <showMembers />
       <showModules />
       <showLibraryContents />
-      <hideEmptyPackages />
+      <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
@@ -644,36 +765,16 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="iyoudang" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="matrix" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -695,24 +796,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmayaShare" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-hdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -731,7 +814,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="ExportedModule" value="AmayaShare" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="E:/IdeaProjects/AmayaShare" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/amaya.keystore" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="99" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1003" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1003" />
@@ -765,11 +848,11 @@
       <recent name="com.fone.share.view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\drawable-hdpi" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\libs" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\layout" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util" />
-      <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\drawable" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.fone.player.share.util" />
@@ -976,7 +1059,11 @@
       <created>1409641870522</created>
       <updated>1409641870522</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完善腾讯微博分享业务">
+      <created>1409645476963</created>
+      <updated>1409645476963</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1076,7 +1163,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加腾讯微博分享业务；完善多分享统一业务" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善腾讯微博分享业务" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1096,6 +1183,7 @@
     <MESSAGE value="分离授权与分享业务，增加微信分享功能" />
     <MESSAGE value="增加腾讯微博分项业务；完善多分享统一业务" />
     <MESSAGE value="增加腾讯微博分享业务；完善多分享统一业务" />
+    <MESSAGE value="完善腾讯微博分享业务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1105,27 +1193,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="4" selection-start="6661" selection-end="6803" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaTXWeiboButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="16" selection-start="3280" selection-end="3280" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareEnums.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="68" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/weibosdkcore.jar!/com/sina/weibo/sdk/net/RequestListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="169" selection-end="169" vertical-scroll-proportion="-5.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQQButton.java">
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/view/AmayaQQButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="155" column="0" selection-start="5975" selection-end="9030" vertical-scroll-proportion="0.0">
           <folding>
@@ -1134,10 +1202,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSinaAPI.java">
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaSinaAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="626" column="86" selection-start="27796" selection-end="27796" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="626" column="86" selection-start="27800" selection-end="27800" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#31358#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1165,30 +1236,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareConstants.java">
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaTokenKeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="71" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaWeiXinShare.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="11" selection-start="963" selection-end="963" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="23" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="29" selection-start="8611" selection-end="8656" vertical-scroll-proportion="0.0">
+        <state line="41" column="23" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1200,22 +1250,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="33" selection-start="7118" selection-end="7118" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="585" column="41" selection-start="27102" selection-end="27102" vertical-scroll-proportion="-0.088541664">
+        <state line="13" column="70" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaWeiXinShare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="95" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/amaya_share.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/util/AmayaShareUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="658" column="34" selection-start="30854" selection-end="30854" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17259#17267#0" expanded="true" />
-            <element signature="e#17696#19071#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#17271#17279#0" expanded="true" />
+            <element signature="e#17708#19083#0" expanded="true" />
+            <element signature="e#19072#19073#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaAuthorize.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="43" selection-start="3242" selection-end="3242" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/abs__progress_medium_holo.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/iyoudang/matrix/share/AmayaMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="33" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.7183099">
+          <folding />
         </state>
       </provider>
     </entry>

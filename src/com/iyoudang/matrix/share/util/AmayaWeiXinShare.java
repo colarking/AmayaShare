@@ -1,4 +1,4 @@
-package com.fone.player.share.util;
+package com.iyoudang.matrix.share.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,7 +6,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
-import com.fone.player.R;
+import com.iyoudang.matrix.R;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -21,16 +21,15 @@ import java.net.URL;
 public class AmayaWeiXinShare {
 
 	private static final String TAG = "AmayaWeiXinShare";
-	public static final String APP_ID = "wxb23baa60e487655b";
-//	public static final String APP_ID = "wx5e579a4b2c31ad26";
-	
+	public static final String APP_ID = "wx69ebdd4f380f47c7";//"wxb23baa60e487655b";
+
 	private static final int THUMB_SIZE = 100;
     private final Bitmap defaultBitmap;
 
     private IWXAPI wxApi;
 
 	public AmayaWeiXinShare(Context mContext){
-        defaultBitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher);
+        defaultBitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.amaya_share);
         wxApi = WXAPIFactory.createWXAPI(mContext, APP_ID, true);
 		wxApi.registerApp(APP_ID);
 	}

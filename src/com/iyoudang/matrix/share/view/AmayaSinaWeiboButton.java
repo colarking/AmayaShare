@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fone.player.share.view;
+package com.iyoudang.matrix.share.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +23,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import com.fone.player.share.util.*;
+import com.iyoudang.matrix.share.util.*;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuth.AuthInfo;

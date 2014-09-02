@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fone.player.share.view;
+package com.iyoudang.matrix.share.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,14 +27,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
-import com.fone.player.share.util.AmayaTokenKeeper;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaShareEnums;
-import com.fone.player.share.util.AmayaShareListener;
+import com.iyoudang.matrix.share.util.*;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
-import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -45,7 +40,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * 该类提供了一个简单的登录控件。
@@ -54,26 +48,25 @@ import java.util.ArrayList;
  * @author SINA
  * @since 2013-11-04
  */
-public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUiListener {
-    private static final String TAG = "AmayaQZoneButton";
+public class AmayaQQButton extends AmayaButton implements OnClickListener,IUiListener {
+    private static final String TAG = "AmayaQQButton";
 
     private OnClickListener mExternalOnClickListener;
 
 	private AmayaShareListener amayaListener;
     private Tencent mTencent;
-    private QzoneShare amayaShare;
 
-    public AmayaQZoneButton(Context context) {
+    public AmayaQQButton(Context context) {
 		this(context, null);
         initialize();
 	}
 
-	public AmayaQZoneButton(Context context, AttributeSet attrs) {
+	public AmayaQQButton(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
         initialize();
 	}
 
-	public AmayaQZoneButton(Context context, AttributeSet attrs, int defStyle) {
+	public AmayaQQButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initialize();
 	}
@@ -95,18 +88,15 @@ public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUi
             mTencent = Tencent.createInstance(AmayaShareConstants.AMAYA_QQ_ID, (Activity)getContext());
             AmayaTokenKeeper.readQQToken(getContext(), mTencent);
         }
-        if(mTencent.isSessionValid()){
-            amayaShare = new QzoneShare(getContext(),mTencent.getQQToken());
-            readyShare(QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT,"http://www.qq.com","title","content",null);
-        }else{
+        if(getContext() instanceof Activity){
             mTencent.login((Activity)getContext(), "all", this);
         }
 	}
 	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "-->onActivityResult " + requestCode  + " resultCode=" + resultCode);
+        if(resultCode == Constants.RESULT_LOGIN) {
             mTencent.handleLoginData(data, this);
-            if(resultCode == Constants.RESULT_LOGIN) {
             Log.d(TAG, "-->onActivityResult handle logindata");
         }
     }
@@ -142,14 +132,11 @@ public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUi
                 mTencent.setOpenId(openId);
                 AmayaTokenKeeper.saveQQToken(getContext(), mTencent);
             }
-            Toast.makeText(getContext(),"授权成功,分享ing",Toast.LENGTH_SHORT).show();
-            if(amayaShare == null) amayaShare = new QzoneShare(getContext(),mTencent.getQQToken());
-            readyShare(QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT, "http://www.qq.com", "title", "content", null);
-//            Bundle bundle = new Bundle();
-//            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openId);
-//            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expires);
-//            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token);
-//            updateUserInfo(bundle);
+            Bundle bundle = new Bundle();
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openId);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expires);
+            bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token);
+            updateUserInfo(bundle);
 //            Bundle bundle = new Bundle();
 //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);
 //            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, openid);
@@ -208,7 +195,7 @@ public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUi
 
                 @Override
                 public void onCancel() {
-                    if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.TENCENT_QQ,AmayaShareConstants.AMAYA_TYPE_SHARE);
+                    if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.TENCENT_QQ,AmayaShareConstants.AMAYA_TYPE_AUTH);
                 }
             };
             UserInfo mInfo = new UserInfo(getContext(), mTencent.getQQToken());
@@ -241,77 +228,5 @@ public class AmayaQZoneButton extends AmayaButton implements OnClickListener,IUi
             return null;
         }
         return bitmap;
-    }
-
-    /**
-     *
-     * @param shareType     分享类型
-     * @param title         标题
-     * @param summary       内容
-     * @param urls          图片url集合
-     * @param targetUrl     目标链接(shareType != SHARE_TO_QZONE_TYPE_APP有效)
-     */
-    private void readyShare(int shareType,String targetUrl,String title,String summary,ArrayList<String> urls) {
-        //QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT
-
-        if(TextUtils.isEmpty(targetUrl)){
-            Toast.makeText(getContext(),"targetUrl为必填项，请补充后分享",0).show();
-            return;
-        }
-        final Bundle params = new Bundle();
-        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, shareType);
-        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, title);
-        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, summary);
-        if (shareType != QzoneShare.SHARE_TO_QZONE_TYPE_APP ) {
-            //app分享不支持传目标链接
-            params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, targetUrl);
-        }
-        // 支持传多个imageUrl
-        ArrayList<String> imageUrls = new ArrayList<String>();
-        if(urls != null){
-            for (int i = 0; i < urls.size(); i++) {
-                imageUrls.add(urls.get(i));
-            }
-        }
-        // String imageUrl = "XXX";
-        // params.putString(Tencent.SHARE_TO_QQ_IMAGE_URL, imageUrl);
-        params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrls);
-        doShareToQzone(params);
-    }
-
-    private void doShareToQzone(final Bundle params) {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                amayaShare.shareToQzone((Activity)getContext(), params, new IUiListener() {
-
-                    @Override
-                    public void onCancel() {
-                        if(amayaListener != null) amayaListener.onCancel(AmayaShareEnums.TENCENT_QZONE,AmayaShareConstants.AMAYA_TYPE_SHARE);
-                    }
-
-                    @Override
-                    public void onError(UiError e) {
-                        if(amayaListener != null) amayaListener.onException(AmayaShareEnums.TENCENT_QZONE,AmayaShareConstants.AMAYA_TYPE_SHARE, e.errorMessage);
-                    }
-
-                    @Override
-                    public void onComplete(Object response) {
-                        if(response != null){
-                            Bundle b = new Bundle();
-                            b.putString(AmayaShareConstants.AMAYA_RESULT_SHARE,response.toString());
-                            if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.TENCENT_QZONE,AmayaShareConstants.AMAYA_TYPE_SHARE, b);
-                        }else{
-                            if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.TENCENT_QZONE,AmayaShareConstants.AMAYA_TYPE_SHARE, null);
-                        }
-
-
-                    }
-
-                });
-            }
-        }).start();
     }
 }

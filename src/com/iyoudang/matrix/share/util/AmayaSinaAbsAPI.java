@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fone.player.share.util;
+package com.iyoudang.matrix.share.util;
 
 import android.text.TextUtils;
 

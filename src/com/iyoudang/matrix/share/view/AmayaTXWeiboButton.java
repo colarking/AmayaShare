@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fone.player.share.view;
+package com.iyoudang.matrix.share.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,10 +23,10 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import com.fone.player.share.AmayaAuthorize;
-import com.fone.player.share.util.AmayaShareListener;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaShareEnums;
+import com.iyoudang.matrix.share.AmayaAuthorize;
+import com.iyoudang.matrix.share.util.AmayaShareListener;
+import com.iyoudang.matrix.share.util.AmayaShareConstants;
+import com.iyoudang.matrix.share.util.AmayaShareEnums;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.exception.WeiboException;
 

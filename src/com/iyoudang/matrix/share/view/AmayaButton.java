@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fone.player.share.view;
+package com.iyoudang.matrix.share.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +23,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import com.fone.player.R;
-import com.fone.player.share.util.AmayaShareListener;
+import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.util.AmayaShareListener;
 
 /**
  * �����ṩ��һ���򵥵ĵ�¼�ؼ���

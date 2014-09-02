@@ -1,4 +1,4 @@
-package com.fone.player.share.util;
+package com.iyoudang.matrix.share.util;
 
 import com.tencent.connect.common.Constants;
 
@@ -9,9 +9,9 @@ public class AmayaShareConstants {
      */
 	public static final String APP_KEY      = "2045436852";
 	public static final String REDIRECT_URL = "http://www.sina.com";
-	public static String AMAYA_SINA_KEY = "1139717123";
+	public static String AMAYA_SINA_KEY = "538547686";//"1139717123";
 	public static String AMAYA_SINA_CONSUMER_SECRET = "5a2831344a97502975729d16cad70219";
-	public static String AMAYA_SINA_REDIRECTURL = "http://www.100tv.com/";
+	public static String AMAYA_SINA_REDIRECTURL = "http://www.sina.com";//http://www.100tv.com/";
 	public static final String AMAYA_SINA_SCOPE = 
             "email,direct_messages_read,direct_messages_write,"
             + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"

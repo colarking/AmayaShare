@@ -1,4 +1,4 @@
-package com.fone.player.share;
+package com.iyoudang.matrix.share;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,22 +7,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.fone.player.R;
-import com.fone.player.share.util.AmayaShareConstants;
-import com.fone.player.share.util.AmayaShareEnums;
-import com.fone.player.share.util.AmayaShareListener;
-import com.fone.player.share.util.AmayaShareUtils;
+import com.iyoudang.matrix.R;
+import com.iyoudang.matrix.share.util.AmayaShareConstants;
+import com.iyoudang.matrix.share.util.AmayaShareEnums;
+import com.iyoudang.matrix.share.util.AmayaShareListener;
+import com.iyoudang.matrix.share.util.AmayaShareUtils;
 import com.tencent.connect.share.QzoneShare;
 
 public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
     private ColorStateList colorStateList;
     private int bgSelector = R.drawable.text_view_bg_selector;
     private AmayaShareUtils amayaShareUtils;
+    private boolean showLoading;
 
     /**
      * Called when the activity is first created.
@@ -69,6 +72,13 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         Log.e("amaya","onResume()...");
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        showLoading = false;
+        invalidateOptionsMenu();
+    }
+
     public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
         int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
         int[][] states = new int[6][];
@@ -87,8 +97,35 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         if(requestCode != 0 && data != null)amayaShareUtils.onActivityResult(this, requestCode, resultCode, data);
     }
 
-	@Override
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        setActionBar(menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    private void setActionBar(Menu menu) {
+        if(showLoading){
+            ProgressBar bar = new ProgressBar(this);
+            bar.setScrollBarStyle(android.R.attr.progressBarStyleInverse);
+            bar.setIndeterminateDrawable(getResources().getDrawable(
+                    R.drawable.abs__progress_medium_holo));
+
+            menu.add(0, 1, 1, R.string.title)
+                    .setActionView(bar)
+//                    .setIcon(R.drawable.actionbar_compose)
+//                    .setOnMenuItemClickListener(this)
+                    .setShowAsAction(
+                            MenuItem.SHOW_AS_ACTION_ALWAYS
+                                    | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        }
+    }
+
+    @Override
 	public void onComplete(AmayaShareEnums enumKey,boolean authOrShare, Bundle values) {
+        showLoading = false;
+        invalidateOptionsMenu();
         if(authOrShare){
             if(values != null){
                 Log.e("amaya","onComplete()...enumKey="+enumKey);
@@ -115,6 +152,8 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
 	@Override
 	public void onCancel(AmayaShareEnums enumKey,boolean authOrShare) {
+        showLoading = false;
+        invalidateOptionsMenu();
 		String s=enumKey+"---onCancel()...authOrShare="+authOrShare;
 		Toast.makeText(AmayaMainActivity.this,s,Toast.LENGTH_LONG).show();
 		
@@ -123,11 +162,15 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
 	@Override
 	public void onException(AmayaShareEnums enumKey,boolean authOrShare, String msg) {
+        showLoading = false;
+        invalidateOptionsMenu();
 		Toast.makeText(AmayaMainActivity.this,enumKey+"---onException()...authOrShare="+authOrShare+"---"+msg,Toast.LENGTH_LONG).show();
 	}
 
     @Override
     public void onClick(View v) {
+        showLoading = true;
+        invalidateOptionsMenu();
 
         switch (v.getId()){
             case R.id.amaya_share_sina:
@@ -189,7 +232,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         /**
          * imagePath 和imageUrl 二选一,优先选取imagePath路径
          */
-        String imagePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
+        String imagePath = null;//Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
         String imageUrl =null;
         String webpaggUrl = "www.iyoudang.com";
         amayaShareUtils.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
