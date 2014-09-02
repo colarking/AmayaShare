@@ -280,4 +280,11 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         Log.e("amaya","onNewIntent()..."+intent);
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
+        amayaShareUtils.onDestroy();
+        amayaShareUtils = null;
+    }
 }

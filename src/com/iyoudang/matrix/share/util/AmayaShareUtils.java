@@ -50,9 +50,9 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     private static AmayaShareUtils amaya;
 
     /**
-     *  0：新浪微博Token
-     *  1：腾讯微博Token
-     *  2：腾讯Token
+     *  0：新浪微博Token    可用于分享到新浪微博
+     *  1：腾讯微博Token    可用于分享到腾讯微博
+     *  2：腾讯Token；      可用于分享到QQ好友及QQ空间
      */
     private String[] tokens = new String[3];
 
@@ -729,5 +729,17 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     }
     /************************************************WeiXin END**************************************************/
 
+
+    public void onDestroy(){
+        amayaListener = null;
+        tokens = null;
+        amayaTencent = null;
+        amayaShare = null;
+        amayaWeiXin = null;
+        amayaAuthInfo = null;
+        mSsoHandler = null;
+        amayaSinaApi = null;
+        amayaIUListener = null;
+    }
     
 }
