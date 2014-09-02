@@ -7,6 +7,7 @@ AmayaShare
 
 重点：各种分享所需要的key和redirect_url等配置信息都存储在AmayaShareConstants.java类中；
 
+
 在Activity中分享步骤仅需3三步，代码简洁易懂：
 Step.1    在Activity中调用下面一行代码:
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -32,10 +33,10 @@ Step.2  检验某个三方分享是否已授权(6种枚举类型:SINA_WEIBO,TENC
     
 Step.2  在分享按钮点击事件中调用相应的分享代码,所有三方组件的分享都调用类似shareToXX(...)方法即可实现分享.
   授权成功后即可调用AmayaShareUtils类中的相应方法，传入需要分享的数据，整个分享流程即可完成.
-  1.shareToTXWeiBo();
-  2.shareToWeixin();
-  3.shareToQQ();
-  4.shareToSina();
+  1.shareToTXWeiBo();\n
+  2.shareToWeixin();\n
+  3.shareToQQ();\n
+  4.shareToSina();\n
   5.shareToQZone();
   
   
