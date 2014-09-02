@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -142,6 +145,64 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
             initAmayaIUListener(mContext,amayaListener,AmayaShareEnums.TENCENT_QQ,false);
             amayaTencent.handleLoginData(data,amayaIUListener);
         }
+    }
+
+    /**
+     * 获取手机经纬度
+     *
+     * @param context
+     *            上下文
+     * @return 可用的location 可能为空
+     *
+     */
+    public static Location getLocation(Context context) {
+        // LocationManager lm=(LocationManager)
+        // context.getSystemService(Context.LOCATION_SERVICE);
+        // Criteria criteria = new Criteria();
+        // criteria.setAccuracy(Criteria.ACCURACY_FINE);//高精度
+        // criteria.setAltitudeRequired(false);//不要求海拔
+        // criteria.setBearingRequired(false);//不要求方位
+        // criteria.setCostAllowed(true);//允许有花费
+        // criteria.setPowerRequirement(Criteria.POWER_LOW);//低功耗
+        // //从可用的位置提供器中，匹配以上标准的最佳提供器
+        // String provider = lm.getBestProvider(criteria, true);
+        // if (provider!=null) {
+        // Location location=lm.getLastKnownLocation(provider);
+        // return location;
+        // }else {
+        // return null;
+        // }
+        Location currentLocation = null;
+        try {
+            // 获取到LocationManager对象
+            LocationManager locationManager = (LocationManager) context
+                    .getSystemService(Context.LOCATION_SERVICE);
+            // 创建一个Criteria对象
+            Criteria criteria = new Criteria();
+            // 设置粗略精确度
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+            // 设置是否需要返回海拔信息
+            criteria.setAltitudeRequired(false);
+            // 设置是否需要返回方位信息
+            criteria.setBearingRequired(false);
+            // 设置是否允许付费服务
+            criteria.setCostAllowed(true);
+            // 设置电量消耗等级
+            criteria.setPowerRequirement(Criteria.POWER_HIGH);
+            // 设置是否需要返回速度信息
+            criteria.setSpeedRequired(false);
+
+            // 根据设置的Criteria对象，获取最符合此标准的provider对象
+            String currentProvider = locationManager.getBestProvider(criteria,
+                    true);
+            Log.d("Location", "currentProvider: " + currentProvider);
+            // 根据当前provider对象获取最后一次位置信息
+            currentLocation = locationManager
+                    .getLastKnownLocation(currentProvider);
+        } catch (Exception e) {
+            currentLocation = null;
+        }
+        return currentLocation;
     }
 
     /************************************************QQ分享部分 START**************************************************/
@@ -413,7 +474,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
      *                       BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
      */
     public void shareToTXWeiBo(Context context, String content,
-                                double longitude, double latitude, int syncflag,
+                                double latitude, double longitude, int syncflag,
                                 AmayaShareListener amayaListener) {
         String accessToken = AmayaTokenKeeper.getTXWeiboToken(context);
         if ((accessToken != null)) {
@@ -454,7 +515,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
      *            BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
      */
     public void shareToTXWeiBo(Context context, String content,
-                              double longitude, double latitude, Bitmap mBitmap, int syncflag,
+                               double latitude, double longitude, Bitmap mBitmap, int syncflag,
                               AmayaShareListener amayaListener) {
         String accessToken = getToken(context,AmayaShareEnums.TENCENT_WEIBO);
         if (accessToken != null) {
@@ -496,9 +557,9 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
 	 *            BaseVO.TYPE_BEAN_LIST=3 BaseVO.TYPE_JSON=4
 	 */
     public void shareToTXWeiBo(Context context, String content,
-                                 double longitude, double latitude, String picUrl,
+                                 double latitude, double longitude, String picUrl,
                                  int syncflag, AmayaShareListener amayaListener) {
-        String accessToken = getToken(context,AmayaShareEnums.TENCENT_WEIBO);
+        String accessToken = getToken(context, AmayaShareEnums.TENCENT_WEIBO);
         if (accessToken != null) {
             this.amayaListener = amayaListener;
             AccountModel account = new AccountModel(accessToken);
@@ -522,7 +583,6 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
                     try {
                         JSONObject json = (JSONObject) result.getObj();
                         Log.e("amaya", "onResult()..json=" + json);
-                        JSONObject data = json.getJSONObject("data");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

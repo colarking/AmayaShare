@@ -29,16 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\res\layout\main_button.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\AmayaButtonActivity.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\AbsOpenAPI.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSinaAbsAPI.java" />
-      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\StatusesAPI.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaSinaAPI.java" />
-      <change type="MOVED" beforePath="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util\WeiXinShareUtil.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaWeiXinShare.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/AmayaAuthorize.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/amaya_share.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java" afterPath="$PROJECT_DIR$/src/com/fone/player/share/util/AmayaTokenKeeper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AmayaShare.iws" />
@@ -58,7 +51,7 @@
     <file path="/AndroidManifest.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129329314" ignored="false" />
     <file path="$PROJECT_DIR$/gen/com/fone/player/R.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409129498922" ignored="false" />
     <file path="E:/IdeaProjects/QQ_SDK_V2.5/sample/project.properties" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409128507015" ignored="false" />
-    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409641234837" ignored="false" />
+    <file path="/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409644719529" ignored="false" />
     <file path="/colors.xml" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409132723330" ignored="false" />
     <file path="/AmayaButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409192525516" ignored="false" />
     <file path="/AmayaTXWeiboButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409135067000" ignored="false" />
@@ -97,12 +90,12 @@
     <file path="E:/IdeaProjects/weibo_android_sdk-master/demo-src/WeiboSDKDemo/src/com/fone/player/share/view/AmayaTXWeiboButton.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409293311421" ignored="false" />
     <file path="$PROJECT_DIR$/src/com/fone/player/share/util/TAG.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409296204128" ignored="false" />
     <file path="/AmayaTokenKeeper.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409627132911" ignored="false" />
-    <file path="/Dummy.txt" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409621904918" ignored="false" />
+    <file path="/Dummy.txt" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409641861257" ignored="false" />
     <file path="E:/IdeaProjects/AmayaShare/AmayaShare/src/com/fone/player/share/AmayaMainActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409310342855" ignored="false" />
     <file path="/AmayaButtonActivity.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409540211521" ignored="false" />
-    <file path="/WeiXinShareUtil.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409559349630" ignored="false" />
+    <file path="/WeiXinShareUtil.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409643737124" ignored="false" />
     <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/WXShareUtils.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409554500161" ignored="false" />
-    <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/WeiXinShareUtil.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409560095793" ignored="false" />
+    <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/WeiXinShareUtil.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409643742221" ignored="false" />
     <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/AmayaShareListener.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409554697701" ignored="false" />
     <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/AmayaShareConstants.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409555424729" ignored="false" />
     <file path="E:/IdeaProjects/iyoudang_20130327/iyoudang_trunk/iyoudang/src/com/iyoudang/matrix/share/util/AmayaShareEnums.java" changelist="41809b46-b4c3-4933-a6a1-a61ecb1f7c62" time="1409554710834" ignored="false" />
@@ -144,7 +137,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="174" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="235" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -159,7 +152,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="240" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="301" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -174,7 +167,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="178" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="239" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -189,7 +182,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="213" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="274" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -204,7 +197,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="218" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="279" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -219,7 +212,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="182" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="243" class="com.fone.player.share.util.AmayaShareUtils$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -234,7 +227,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="114" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="117" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -249,7 +242,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="355" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="416" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -264,7 +257,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="388" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="449" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -279,7 +272,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="225" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="286" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -294,7 +287,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="330" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="391" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -309,7 +302,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="335" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="396" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -324,7 +317,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="340" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="401" class="com.fone.player.share.util.AmayaShareUtils$3$1" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -339,7 +332,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="82" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="85" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -354,7 +347,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="128" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="131" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -369,7 +362,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="151" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="154" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -384,7 +377,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="88" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java" line="91" class="com.fone.player.share.AmayaMainActivity" package="com.fone.player.share">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -399,7 +392,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="112" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="115" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -414,7 +407,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="515" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java" line="576" class="com.fone.player.share.util.AmayaShareUtils" package="com.fone.player.share.util">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -479,8 +472,13 @@
       <file leaf-file-name="AmayaShareUtils.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="520" column="0" selection-start="24470" selection-end="24470" vertical-scroll-proportion="0.3309091">
-              <folding />
+            <state line="585" column="41" selection-start="27102" selection-end="27102" vertical-scroll-proportion="-0.088541664">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#17259#17267#0" expanded="true" />
+                <element signature="e#17696#19071#0" expanded="true" />
+                <element signature="e#19060#19061#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -506,7 +504,7 @@
       <file leaf-file-name="AmayaMainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="0" selection-start="4903" selection-end="4903" vertical-scroll-proportion="0.0">
+            <state line="173" column="33" selection-start="7118" selection-end="7118" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -697,6 +695,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AmayaShare" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AmayaShare" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable-hdpi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -749,11 +765,11 @@
       <recent name="com.fone.share.view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\drawable-hdpi" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\libs" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\layout" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\src\com\fone\player\share\util" />
       <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\drawable" />
-      <recent name="C:\Users\Smith\Documents\GitHub\AmayaShare\res\values" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.fone.player.share.util" />
@@ -956,7 +972,11 @@
       <created>1409566597825</created>
       <updated>1409566597825</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="增加腾讯微博分享业务；完善多分享统一业务">
+      <created>1409641870522</created>
+      <updated>1409641870522</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -990,7 +1010,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32578397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.6707317" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38850173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38850173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65505224" sideWeight="0.123664126" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1004,8 +1024,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31908396" sideWeight="0.61149824" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19860627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31908396" sideWeight="0.80139375" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19860627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1056,7 +1076,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="分离授权与分享业务，增加微信分享功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加腾讯微博分享业务；完善多分享统一业务" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1074,6 +1094,8 @@
     <MESSAGE value="测试提交2" />
     <MESSAGE value="测试提交3&#10;" />
     <MESSAGE value="分离授权与分享业务，增加微信分享功能" />
+    <MESSAGE value="增加腾讯微博分项业务；完善多分享统一业务" />
+    <MESSAGE value="增加腾讯微博分享业务；完善多分享统一业务" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1083,11 +1105,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaSinaWeiboButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="2984" selection-end="2984" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/view/AmayaQZoneButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="166" column="4" selection-start="6661" selection-end="6803" vertical-scroll-proportion="0.0" />
@@ -1176,17 +1193,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/android-sdk/sources/android-14/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4478" column="0" selection-start="167804" selection-end="167804" vertical-scroll-proportion="0.3309091">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/AmayaMainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="0" selection-start="4903" selection-end="4903" vertical-scroll-proportion="0.0">
+        <state line="173" column="33" selection-start="7118" selection-end="7118" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fone/player/share/util/AmayaShareUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="520" column="0" selection-start="24470" selection-end="24470" vertical-scroll-proportion="0.3309091">
-          <folding />
+        <state line="585" column="41" selection-start="27102" selection-end="27102" vertical-scroll-proportion="-0.088541664">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17259#17267#0" expanded="true" />
+            <element signature="e#17696#19071#0" expanded="true" />
+            <element signature="e#19060#19061#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -3,6 +3,9 @@ package com.fone.player.share;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -152,7 +155,25 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_WEIBO, this);
         if(authed){
             String content = "这是内容content";
-            amayaShareUtils.shareToTXWeiBo(this,content,0,0,1,this);
+            double latitude =  29.345728;
+            double longitude = 110.550432;
+            Location location = AmayaShareUtils.getLocation(this);
+            if(location != null){
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+            }
+            //分享一条文字文博
+//            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,1,this);
+
+
+            //分享一条图片微博
+//            String picUrl = "http://h.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf465c6d0e0f0d3572c11dfcf95.jpg";
+//            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,picUrl,1,this);
+
+
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.amaya_share);
+            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,bitmap,1,this);
+
         }else{
             amayaShareUtils.auth(AmayaShareEnums.TENCENT_WEIBO, this, this);
         }
