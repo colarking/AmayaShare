@@ -14,16 +14,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.iyoudang.matrix.share.util.AmayaShare;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaShareEnums;
 import com.iyoudang.matrix.share.util.AmayaShareListener;
-import com.iyoudang.matrix.share.util.AmayaShareUtils;
 import com.tencent.connect.share.QzoneShare;
 
 public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
     private ColorStateList colorStateList;
     private int bgSelector = R.drawable.text_view_bg_selector;
-    private AmayaShareUtils amayaShareUtils;
+    private AmayaShare amayaShare;
     private boolean showLoading;
 
     /**
@@ -50,8 +50,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         initClickView(amayaWXCircle);
         initClickView(amayaRenRen);
 
-        amayaShareUtils = AmayaShareUtils.instance();
-        amayaShareUtils.authDouban();
+        amayaShare = AmayaShare.instance();
 
 
 //        int white = getResources().getColor(R.color.white);
@@ -96,7 +95,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode != 0 && data != null)amayaShareUtils.onActivityResult(this, requestCode, resultCode, data);
+        if(requestCode != 0 && data != null) amayaShare.onActivityResult(this, requestCode, resultCode, data);
     }
 
     @Override
@@ -199,43 +198,43 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     }
 
     private void amayaShareRenRen() {
-        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.RENREN, this);
+        boolean authed = amayaShare.isAuthed(AmayaShareEnums.RENREN, this);
         if(authed){
             String title = "标题";
             String desc = "内容详细请阅：www.sina.com";
             String message ="消息正文";
             String imgUrl = "http://121.199.31.3/lvYou/upload/1409022238408487.jpg";
-            amayaShareUtils.shareToRenRen(this,this,title,message,desc,imgUrl);
+            amayaShare.shareToRenRen(this,this,title,message,desc,imgUrl);
         }else{
-            amayaShareUtils.auth(AmayaShareEnums.RENREN,this,this);
+            amayaShare.auth(AmayaShareEnums.RENREN,this,this);
         }
     }
 
     private void amayaShareTXWeibo() {
-        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_WEIBO, this);
+        boolean authed = amayaShare.isAuthed(AmayaShareEnums.TENCENT_WEIBO, this);
         if(authed){
             String content = "这是内容content";
             double latitude =  29.345728;
             double longitude = 110.550432;
-            Location location = AmayaShareUtils.getLocation(this);
+            Location location = AmayaShare.getLocation(this);
             if(location != null){
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
             }
             //分享一条文字文博
-//            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,1,this);
+//            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,1,this);
 
 
             //分享一条图片微博
 //            String picUrl = "http://h.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf465c6d0e0f0d3572c11dfcf95.jpg";
-//            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,picUrl,1,this);
+//            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,picUrl,1,this);
 
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.amaya_share);
-            amayaShareUtils.shareToTXWeiBo(this,content,latitude,longitude,bitmap,1,this);
+            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,bitmap,1,this);
 
         }else{
-            amayaShareUtils.auth(AmayaShareEnums.TENCENT_WEIBO, this, this);
+            amayaShare.auth(AmayaShareEnums.TENCENT_WEIBO, this, this);
         }
     }
 
@@ -252,31 +251,31 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         String imagePath = null;//Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
         String imageUrl =null;
         String webpaggUrl = "www.iyoudang.com";
-        amayaShareUtils.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
+        amayaShare.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
     }
 
     private void amayaShareQQ() {
         String title;
         String summary;
-        if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
+        if(amayaShare.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
         title = "标题";
         String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
         //分享的消息摘要，最长50个字
         summary = "内容摘要";
         //这条分享消息被好友点击后的跳转URL。
         String tagetUrl = "http://connect.qq.com/";
-        amayaShareUtils.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
+        amayaShare.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
     }else{
-        amayaShareUtils.auth(AmayaShareEnums.TENCENT_QQ,this,this);
+        amayaShare.auth(AmayaShareEnums.TENCENT_QQ,this,this);
     }
     }
 
     private void amayaShareSina() {
-        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
+        boolean authed = amayaShare.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
         if(authed){
-            amayaShareUtils.shareToSina(this,"this is demo ttttest",null,null);
+            amayaShare.shareToSina(this,"this is demo ttttest",null,null);
         }else{
-            amayaShareUtils.auth(AmayaShareEnums.SINA_WEIBO, this, this);
+            amayaShare.auth(AmayaShareEnums.SINA_WEIBO, this, this);
         }
     }
 
@@ -285,10 +284,10 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         String targetUrl = "http://www.qq.com";
         String title = "Title";
         String summary = "summary";
-        if(amayaShareUtils.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
-            amayaShareUtils.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
+        if(amayaShare.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
+            amayaShare.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
         }else{
-            amayaShareUtils.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
+            amayaShare.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
         }
     }
 
@@ -302,7 +301,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     @Override
     protected void onDestroy() {
         super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
-        amayaShareUtils.onDestroy();
-        amayaShareUtils = null;
+        amayaShare.onDestroy();
+        amayaShare = null;
     }
 }

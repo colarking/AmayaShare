@@ -39,9 +39,6 @@ import com.tencent.weibo.sdk.android.network.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -51,10 +48,10 @@ import java.util.ArrayList;
  * Time: 下午2:34
  * To change this template use File | Settings | File Templates.
  */
-public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallback {
+public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
 
-    private static final String TAG = "AmayaShareUtils";
-    private static AmayaShareUtils amaya;
+    private static final String TAG = "AmayaShare";
+    private static AmayaShare amaya;
 
     /**
      *  0：新浪微博Token    可用于分享到新浪微博
@@ -86,11 +83,11 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     private RennClient amayaRenren;
 
 
-    private AmayaShareUtils(){}
+    private AmayaShare(){}
     
-    public synchronized static AmayaShareUtils instance(){
+    public synchronized static AmayaShare instance(){
     	if(amaya == null){
-    		amaya = new AmayaShareUtils();
+    		amaya = new AmayaShare();
     	}
     	return amaya;
     }
@@ -151,42 +148,6 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
         }
 
     }
-
-    public void authDouban() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                StringBuffer sb = new StringBuffer();
-                sb.append("https://www.douban.com/service/auth2/auth?");
-                sb.append("client_id=");
-                sb.append(AmayaShareConstants.DOUBAN_ID);
-                sb.append("&redirect_uri=");
-                sb.append(AmayaShareConstants.DOUBAN_REDIRECT_URI);
-                sb.append("&response_type=code");
-                try{
-                    URL url = new URL(sb.toString());
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    connection.connect();
-                    int code = connection.getResponseCode();
-                    if(code ==200){
-                        InputStream is = connection.getInputStream();
-                        byte[] buf = new byte[2048];
-                        int len = 0;
-                        sb.delete(0,sb.length());
-                        while((len=is.read(buf))!= -1){
-                            sb.append(new String(buf,0,len));
-                        }
-                        Log.e("amaya","authDouban()...str="+sb.toString());
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
     public void onActivityResult(final Context mContext,int requestCode, int resultCode, Intent data) {
         if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
             if (mSsoHandler != null) {
