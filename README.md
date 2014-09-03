@@ -32,7 +32,7 @@ Step.3  授权成功后进入此流程.在分享按钮点击事件中调用相�
   &#9;3.shareToQQ();<br />
   &#9;4.shareToSina();<br />
   &#9;5.shareToQZone();<br />
-  &#9;5.shareToRenRen();<br />
+  &#9;6.shareToRenRen();<br />
 Step.4  如果未授权成功，则调用AmayaShareUtils类中的auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener)通用授权方法，在AmayaShareListener接口回调中的回调方法中可继续Step.3步骤<br />
 
 
