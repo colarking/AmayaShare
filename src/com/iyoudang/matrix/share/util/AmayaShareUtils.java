@@ -11,8 +11,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-import com.iyoudang.matrix.share.R;
 import com.iyoudang.matrix.share.AmayaAuthorize;
+import com.iyoudang.matrix.share.R;
+import com.renn.rennsdk.RennClient;
+import com.renn.rennsdk.RennExecutor;
+import com.renn.rennsdk.RennResponse;
+import com.renn.rennsdk.exception.RennException;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -35,6 +39,9 @@ import com.tencent.weibo.sdk.android.network.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -62,6 +69,7 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     private Tencent amayaTencent;
     private QzoneShare amayaShare;
     private AmayaWeiXinShare amayaWeiXin;
+    private IUiListener amayaIUListener;
 
 
     /**
@@ -71,7 +79,11 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     private SsoHandler mSsoHandler;
     private AmayaSinaAPI amayaSinaApi;
     private AmayaShareListener amayaListener;
-    private IUiListener amayaIUListener;
+
+    /**
+     * 人人相关实例
+     */
+    private RennClient amayaRenren;
 
 
     private AmayaShareUtils(){}
@@ -83,8 +95,13 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
     	return amaya;
     }
     public boolean isAuthed(AmayaShareEnums type, Context context) {
-        String token = getToken(context,type);
-        return !TextUtils.isEmpty(token);
+        if(type == AmayaShareEnums.RENREN){
+            initRenRen(context);
+            return amayaRenren.isLogin();
+        }else{
+            String token = getToken(context,type);
+            return !TextUtils.isEmpty(token);
+        }
     }
 
     public String getToken(Context mContext,AmayaShareEnums enums){
@@ -109,6 +126,9 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
                     initQQ(mContext);
                 }
                 break;
+            case RENREN:
+
+                break;
         }
         return tokens[index];
     }
@@ -124,9 +144,49 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
             case TENCENT_QZONE:
                 authQQ(activity,listener,enums);
                 break;
+            case RENREN:
+                authRenRen(activity,listener);
+
+                break;
         }
 
     }
+
+    public void authDouban() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuffer sb = new StringBuffer();
+                sb.append("https://www.douban.com/service/auth2/auth?");
+                sb.append("client_id=");
+                sb.append(AmayaShareConstants.DOUBAN_ID);
+                sb.append("&redirect_uri=");
+                sb.append(AmayaShareConstants.DOUBAN_REDIRECT_URI);
+                sb.append("&response_type=code");
+                try{
+                    URL url = new URL(sb.toString());
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.connect();
+                    int code = connection.getResponseCode();
+                    if(code ==200){
+                        InputStream is = connection.getInputStream();
+                        byte[] buf = new byte[2048];
+                        int len = 0;
+                        sb.delete(0,sb.length());
+                        while((len=is.read(buf))!= -1){
+                            sb.append(new String(buf,0,len));
+                        }
+                        Log.e("amaya","authDouban()...str="+sb.toString());
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     public void onActivityResult(final Context mContext,int requestCode, int resultCode, Intent data) {
         if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
             if (mSsoHandler != null) {
@@ -728,6 +788,83 @@ public class AmayaShareUtils implements RequestListener, IUiListener, HttpCallba
         if(amayaWeiXin == null) amayaWeiXin =  new AmayaWeiXinShare(context);
     }
     /************************************************WeiXin END**************************************************/
+    /************************************************RenRen START**************************************************/
+    private void authRenRen(Activity activity,final AmayaShareListener listener) {
+        initRenRen(activity);
+        if(!amayaRenren.isLogin()){
+            amayaRenren.init(AmayaShareConstants.AMAYA_RENREN_APP_ID,AmayaShareConstants.AMAYA_RENREN_API_KEY,  AmayaShareConstants.AMAYA_RENREN_SECRET_KEY);
+            amayaRenren.setScope("read_user_blog read_user_photo read_user_status read_user_album "
+                    + "read_user_comment read_user_share publish_blog publish_share "
+                    + "send_notification photo_upload status_update create_album "
+                    + "publish_comment publish_feed");
+            amayaRenren.setTokenType("bearer");
+            amayaRenren.setLoginListener(new RennClient.LoginListener() {
+                @Override
+                public void onLoginSuccess() {
+//                Toast.makeText(MainActivity.this, "登录成功",
+//                        Toast.LENGTH_SHORT).show();
+                    if(listener != null) listener.onComplete(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_AUTH,null);
+                }
+
+                @Override
+                public void onLoginCanceled() {
+                    if(listener != null) listener.onCancel(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_AUTH);
+                }
+            });
+            amayaRenren.login(activity);
+        }
+    }
+
+    public void shareToRenRen(Context context,final AmayaShareListener listener,String title,String message,String description,String imgUrl){
+        initRenRen(context);
+        if(amayaRenren.isLogin()){
+            if(imgUrl.startsWith("http")){
+                AmayaRRBean param = new AmayaRRBean();
+                param.setTitle(title);
+                param.setMessage(message);
+                param.setDescription(description);
+                param.setActionName("爱游荡");
+                param.setActionTargetUrl("http://www.iyoudang.com");
+//                param.setSubtitle("subtitle");
+                param.setImageUrl(imgUrl);
+//                param.setImageUrl("http://t04.pic.sogou.com/49a81c7bb4e60fa9_i.jpg");
+                param.setTargetUrl(imgUrl);
+                try {
+                    amayaRenren.getRennService().sendAsynRequest(param, new RennExecutor.CallBack() {
+
+                        @Override
+                        public void onSuccess(RennResponse response) {
+                            if(listener != null) listener.onComplete(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_SHARE,null);
+                        }
+
+                        @Override
+                        public void onFailed(String errorCode, String errorMessage) {
+                            if(listener != null) listener.onException(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_SHARE,errorMessage);
+                        }
+                    });
+                } catch (RennException e1) {
+                    e1.printStackTrace();
+                    if(listener != null) listener.onException(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_SHARE,e1.getMessage());
+                }
+            }else{
+                listener.onException(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:httpUrl isn't start with 'http://'");
+            }
+        }else if(listener != null){
+            listener.onException(AmayaShareEnums.RENREN,AmayaShareConstants.AMAYA_TYPE_SHARE,"Error:not auth.");
+        }
+    }
+
+    private void initRenRen(Context context) {
+        if(amayaRenren == null) amayaRenren = RennClient.getInstance(context);
+    }
+
+
+    /************************************************RenRen END**************************************************/
+
+
+
+
+
 
 
     public void onDestroy(){

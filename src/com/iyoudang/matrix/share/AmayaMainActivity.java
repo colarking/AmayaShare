@@ -39,6 +39,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         TextView amayaWeixin = (TextView) findViewById(R.id.amaya_share_weixin);
         TextView amayaWXCircle = (TextView) findViewById(R.id.amaya_share_weixin_circle);
         TextView amayaTXWeibo = (TextView) findViewById(R.id.amaya_share_tencent_weibo);
+        TextView amayaRenRen = (TextView) findViewById(R.id.amaya_share_renren);
         colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
 
         initClickView(amayaSina);
@@ -47,8 +48,10 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         initClickView(amayaQQ);
         initClickView(amayaWeixin);
         initClickView(amayaWXCircle);
+        initClickView(amayaRenRen);
 
         amayaShareUtils = AmayaShareUtils.instance();
+        amayaShareUtils.authDouban();
 
 
 //        int white = getResources().getColor(R.color.white);
@@ -189,6 +192,22 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
             case R.id.amaya_share_weixin_circle:
                 amayaShareWeiXin(true);
                 break;
+            case R.id.amaya_share_renren:
+                amayaShareRenRen();
+                break;
+        }
+    }
+
+    private void amayaShareRenRen() {
+        boolean authed = amayaShareUtils.isAuthed(AmayaShareEnums.RENREN, this);
+        if(authed){
+            String title = "标题";
+            String desc = "内容详细请阅：www.sina.com";
+            String message ="消息正文";
+            String imgUrl = "http://121.199.31.3/lvYou/upload/1409022238408487.jpg";
+            amayaShareUtils.shareToRenRen(this,this,title,message,desc,imgUrl);
+        }else{
+            amayaShareUtils.auth(AmayaShareEnums.RENREN,this,this);
         }
     }
 

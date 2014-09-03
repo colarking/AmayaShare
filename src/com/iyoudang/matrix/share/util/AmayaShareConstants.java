@@ -2,6 +2,9 @@ package com.iyoudang.matrix.share.util;
 
 public class AmayaShareConstants {
 
+    public static final String DOUBAN_ID = "0671e74b8a080d021355b5e29e182706";
+    public static final String DOUBAN_REDIRECT_URI = "http://www.iyoudang.com";
+
     /**
      * 新浪微博相关常量
      */
@@ -21,6 +24,12 @@ public class AmayaShareConstants {
      */
     public static final String AMAYA_WX_ID = "wx69ebdd4f380f47c7";//"wxb23baa60e487655b";
 
+    /**
+     * 人人常量
+     */
+    public static final String AMAYA_RENREN_API_KEY = "18a995f3720043daace0052eb4e18bb5";
+    public static final String AMAYA_RENREN_SECRET_KEY = "6551cd003e4141b19f46bd0aad002869";
+    public static final String AMAYA_RENREN_APP_ID = "271466";
     /**
      * Activity回调requestCode
      */

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="RennSDK-Core-Android">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/RennSDK-Core-Android.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
