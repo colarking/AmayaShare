@@ -1,4 +1,4 @@
-第三方继承分享组件；通过对新浪微博，腾讯微博，QQ好友，QQ空间，微信好友，微信朋友圈6种授权+分享进行一系列封装达到对外简洁调用的目的
+第三方继承分享组件；通过对新浪微博，腾讯微博，QQ好友，QQ空间，微信好友，微信朋友圈,人人网新鲜事7种授权+分享进行一系列封装达到对外简洁调用的目的
 
 重点：各种分享所需要的key和redirect_url等配置信息都存储在AmayaShareConstants.java类中；
 
@@ -9,7 +9,7 @@ Step.1    在Activity中调用下面一行代码:<br />
         &#9;&#9;AmayaShareUtils.instance().onActivityResult(this, requestCode, resultCode, data);<br />
   }
 
-Step.2  检验某个三方分享是否已授权(6种枚举类型:SINA_WEIBO,TENCENT_WEIBO,TENCENT_QQ,TENCENT_QZONE,TENCENT_WEIXIN),其中TENCENT_WEIXIN不需要检验(但是必须要在微信开发平台申请到key)即可直接分享.
+Step.2  检验某个三方分享是否已授权(7种枚举类型:SINA_WEIBO,TENCENT_WEIBO,TENCENT_QQ,TENCENT_QZONE,TENCENT_WEIXIN,RENREN),其中TENCENT_WEIXIN不需要检验(但是必须要在微信开发平台申请到key)即可直接分享.
 
     AmayaShareUtils.instance().isAuthed(AmayaShareEnums.TENCENT_QZONE,this);   //第二个参数为回调接口AmayaShareListener
 
@@ -32,6 +32,7 @@ Step.3  授权成功后进入此流程.在分享按钮点击事件中调用相�
   &#9;3.shareToQQ();<br />
   &#9;4.shareToSina();<br />
   &#9;5.shareToQZone();<br />
+  &#9;5.shareToRenRen();<br />
 Step.4  如果未授权成功，则调用AmayaShareUtils类中的auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener)通用授权方法，在AmayaShareListener接口回调中的回调方法中可继续Step.3步骤<br />
 
 
