@@ -22,7 +22,9 @@ import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
+import com.sina.weibo.sdk.net.AsyncWeiboRunner;
 import com.sina.weibo.sdk.net.RequestListener;
+import com.sina.weibo.sdk.net.WeiboParameters;
 import com.sina.weibo.sdk.utils.LogUtil;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
@@ -39,6 +41,8 @@ import com.tencent.weibo.sdk.android.network.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -639,13 +643,55 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
             mSsoHandler.authorize(new WeiboAuthListener(){
                 @Override
                 public void onComplete(Bundle bundle) {
-                    Oauth2AccessToken accessToken = Oauth2AccessToken.parseAccessToken(bundle);
+                    final Oauth2AccessToken accessToken = Oauth2AccessToken.parseAccessToken(bundle);
                     if (accessToken != null && accessToken.isSessionValid()) {
                         AmayaTokenKeeper.saveSinaToken(mContext, accessToken);
                         tokens[0] = accessToken.getToken();
+//                        bundle.getString() ;
                         amayaSinaApi = new AmayaSinaAPI(accessToken);
                     }
-                    if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
+                    getSinaInfo(accessToken,amayaListener,bundle);
+
+                }
+
+                private void getSinaInfo(final Oauth2AccessToken token, final AmayaShareListener amayaListener, final Bundle bundle) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             {"id":2857043267,"idstr":"2857043267","class":1,"screen_name":"sae_otaku","name":"sae_otaku","province":"11","city":"14","location":"北京 昌平区","description":"","url":"","profile_image_url":"http://tp4.sinaimg.cn/2857043267/50/5695270568/1","profile_url":"u/2857043267","domain":"","weihao":"","gender":"m","followers_count":10,"friends_count":30,"pagefriends_count":0,"statuses_count":20,"favourites_count":3,"created_at":"Tue Aug 28 23:05:34 +0800 2012","following":false,"allow_all_act_msg":false,"geo_enabled":true,"verified":false,"verified_type":-1,"remark":"","status":{"created_at":"Wed Sep 24 11:26:20 +0800 2014","id":3758288141096461,"mid":"3758288141096461","idstr":"3758288141096461","text":"this is demo ttttest","source":"<a href=\"http://app.weibo.com/t/feed/RzRDU\" rel=\"nofollow\">iyoudang</a>","source_type":1,"favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],"geo":null,"reposts_count":0,"comments_count":0,"attitudes_count":0,"mlevel":0,"visible":{"type":0,"list_id":0},"darwin_tags":[]},"ptype":0,"allow_all_comment":true,"avatar_large":"http://tp4.sinaimg.cn/2857043267/180/5695270568/1","avatar_hd":"http://ww3.sinaimg.cn/crop.0.0.600.600.1024/aa4b0543jw8egh6x33c2nj20go0got9b.jpg","verified_reason":"","verified_trade":"","verified_reason_url":"","verified_source":"","verified_source_url":"","follow_me":false,"online_status":1,"bi_followers_count":0,"lang":"zh-cn","star":0,"mbtype":0,"mbrank":0,"block_word":0,"block_app":0,"credit_score":0}
+                             */
+                            try {
+                                WeiboParameters params = new WeiboParameters();
+                                params.put("access_token",token.getToken());
+                                params.put("source", AmayaShareConstants.AMAYA_SINA_KEY);
+                                params.put("uid", token.getUid());
+                                AsyncWeiboRunner.requestAsync("https://api.weibo.com/2/users/show.json", params, "GET", new RequestListener() {
+                                    @Override
+                                    public void onComplete(String s) {
+                                        Log.e("amaya", "onComplete()...s=" + s);
+                                        try {
+                                            JSONObject jo = new JSONObject(s);
+                                            String imgUrl = jo.getString("profile_image_url");
+                                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_IMG,imgUrl);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.SINA_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
+                                    }
+
+                                    @Override
+                                    public void onWeiboException(WeiboException e) {
+                                        Log.e("amaya", "onWeiboException()...s=" + e.getMessage());
+                                        e.printStackTrace();
+                                        if(amayaListener != null) amayaListener.onException(AmayaShareEnums.SINA_WEIBO, AmayaShareConstants.AMAYA_TYPE_AUTH, e.getMessage());
+                                    }
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 }
 
                 @Override
@@ -781,9 +827,23 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
         if(amayaRenren.isLogin()){
             if(imgUrl.startsWith("http")){
                 AmayaRRBean param = new AmayaRRBean();
-                param.setTitle(title);
+                if(TextUtils.isEmpty(title)){
+                    param.setTitle(context.getString(R.string.app_name));
+                }else{
+                    if(description.length()<30)
+                        param.setTitle(title);
+                    else
+                        param.setTitle(title.substring(0,30));
+                }
                 param.setMessage(message);
-                param.setDescription(description);
+                if(!TextUtils.isEmpty(description)){
+                    if(description.length()<200) {
+                        param.setDescription(description);
+                    }
+                    else {
+                        param.setDescription(description.substring(0,200));
+                    }
+                }
                 param.setActionName("爱游荡");
                 param.setActionTargetUrl("http://www.iyoudang.com");
 //                param.setSubtitle("subtitle");
