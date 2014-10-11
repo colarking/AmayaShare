@@ -17,8 +17,12 @@ public class AmayaShareConstants {
     /**
      * QQ常量
      */
-    public static String AMAYA_QQ_ID= "100460854";
-
+    public static String AMAYA_QQ_ID= "801527651";
+    /**
+     * 腾讯微博常量
+     */
+    public static long AMAYA_TENCENT_WEIBO_KEY= 801527651;
+    public static String AMAYA_TENCENT_WEIBO_SECRET= "d0a610084b8c11745d1bbb9993dac1d0";
     /**
      * 微信常量
      */

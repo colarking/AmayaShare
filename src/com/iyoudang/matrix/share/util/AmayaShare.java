@@ -34,10 +34,17 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.tencent.weibo.sdk.android.api.WeiboAPI;
+import com.tencent.weibo.sdk.android.api.util.Util;
+import com.tencent.weibo.sdk.android.component.sso.AuthHelper;
+import com.tencent.weibo.sdk.android.component.sso.OnAuthListener;
+import com.tencent.weibo.sdk.android.component.sso.WeiboToken;
 import com.tencent.weibo.sdk.android.model.AccountModel;
 import com.tencent.weibo.sdk.android.model.BaseVO;
 import com.tencent.weibo.sdk.android.model.ModelResult;
 import com.tencent.weibo.sdk.android.network.HttpCallback;
+import com.tencent.weibo.sdk.android.network.HttpReqWeiBo;
+import com.tencent.weibo.sdk.android.network.HttpService;
+import com.tencent.weibo.sdk.android.network.ReqParam;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -475,10 +482,107 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
     }
     /************************************************QQ分享部分  END**************************************************/
     /************************************************Tencent WeiBo分享部分  START**************************************************/
-    private void authTXWeibo(Activity activity, AmayaShareListener listener) {
-        Intent i = new Intent(activity, AmayaAuthorize.class);
+    private void authTXWeibo(final Activity activity, AmayaShareListener listener) {
+        // 注册当前应用的appid和appkeysec，并指定一个OnAuthListener
+        // OnAuthListener在授权过程中实施监听
         this.amayaListener = listener;
-        activity.startActivityForResult(i, AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO);
+        AuthHelper.register(activity, AmayaShareConstants.AMAYA_TENCENT_WEIBO_KEY, AmayaShareConstants.AMAYA_TENCENT_WEIBO_SECRET, new OnAuthListener() {
+
+            // 如果当前设备没有安装腾讯微博客户端，走这里
+            @Override
+            public void onWeiBoNotInstalled() {
+                Intent i = new Intent(activity, AmayaAuthorize.class);
+                activity.startActivityForResult(i, AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO);
+
+            }
+
+            // 如果当前设备没安装指定版本的微博客户端，走这里
+            @Override
+            public void onWeiboVersionMisMatch() {
+                AuthHelper.unregister(activity);
+                Intent i = new Intent(activity, AmayaAuthorize.class);
+                activity.startActivity(i);
+            }
+
+            // 如果授权失败，走这里
+            @Override
+            public void onAuthFail(int result, String err) {
+                AuthHelper.unregister(activity);
+                if (amayaListener != null) amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO, true, err);
+            }
+
+            // 授权成功，走这里
+            // 授权成功后，所有的授权信息是存放在WeiboToken对象里面的，可以根据具体的使用场景，将授权信息存放到自己期望的位置，
+            // 在这里，存放到了applicationcontext中
+            @Override
+            public void onAuthPassed(String name, WeiboToken token) {
+                AuthHelper.unregister(activity);
+                Util.saveSharePersistent(activity, "ACCESS_TOKEN", token.accessToken);
+                Util.saveSharePersistent(activity, "EXPIRES_IN", token.expiresIn);// accesstoken过期时间，以返回的时间的准，单位为秒，注意过期时提醒用户重新授权
+                Util.saveSharePersistent(activity, "OPEN_ID", token.openID);
+                Util.saveSharePersistent(activity, "OPEN_KEY", token.omasKey);
+                Util.saveSharePersistent(activity, "REFRESH_TOKEN", token.refreshToken);
+                Util.saveSharePersistent(activity, "CLIENT_ID", String.valueOf(AmayaShareConstants.AMAYA_TENCENT_WEIBO_KEY));
+                Util.saveSharePersistent(activity, "NAME", name);
+                Util.saveSharePersistent(activity, "NICK", name);
+                Util.saveSharePersistent(activity, "AUTHORIZETIME",
+                        String.valueOf(System.currentTimeMillis() / 1000l));
+                AmayaTokenKeeper.saveTXWeiboToken(activity, token.accessToken, String.valueOf(token.expiresIn));
+                final Bundle bundle = new Bundle();
+                bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);
+                bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_ID, token.openID);
+                bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, String.valueOf(token.expiresIn));
+                bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, token.accessToken);
+                //{uid=2857043267, com.sina.weibo.intent.extra.USER_ICON=[B@415b94c8, _weibo_appPackage=com.sina.weibo, com.sina.weibo.intent.extra.NICK_NAME=sae_otaku, remind_in=7816692, userName=sae_otaku, expires_in=7816692, _weibo_transaction=1409038891040, access_token=2.00BTr2HDyY87OCc5df65dfe8VVYhfD}
+                HttpReqWeiBo weibo = new HttpReqWeiBo(activity, "https://open.t.qq.com/api/user/info", new HttpCallback() {
+                    @Override
+                    public void onResult(Object o) {
+                        /**
+                         {"idolnum":2,"sex":1,"location":"中国 北京","province_code":"11","tag":null,"ismyblack":0,"verifyinfo":"","ismyfans":0,"send_private_flag":2,"homecountry_code":"","isent":0,"homeprovince_code":"","hometown_code":"","level":1,"favnum":0,"name":"iyoudang2014","openid":"DFF9DE3BE5CE97659A48B0FE2C455630","edu":null,"head":"","industry_code":0,"tweetinfo":[{"fromurl":"http:\/\/wiki.open.t.qq.com\/index.php\/%E4%BA%A7%E5%93%81%E7%B1%BBFAQ#.E6.8F.90.E4.BA.A4.E5.BA.94.E7.94.A8.E6.9D.A5.E6.BA.90.E5.AD.97.E6.AE.B5.E5.AE.A1.E6.A0.B8.E8.83.BD.E5.BE.97.E5.88.B0.E4.BB.80.E4.B9.88.E5.A5.BD.E5.A4.84.EF.BC.9F\n","music":null,"text":"vivo Xshot旗舰版(送移动电源 蓝牙来电提示器 鱼眼镜头)...","geo":"","location":"中国 四川 南充","status":0,"province_code":"51","image":["http:\/\/app.qpic.cn\/mblogpic\/801768fa78d8336d6a04"],"origtext":"vivo phone ","self":1,"from":"微博开放平台","type":1,"country_code":"1","id":"440458010773005","timestamp":1411750678,"city_code":"13","longitude":"0","latitude":"0","emotionurl":"","video":null,"emotiontype":0}],"comp":null,"https_head":"","isrealname":2,"birth_year":1998,"country_code":"1","homepage":"","exp":150,"regtime":1405762726,"fansnum":0,"birth_month":9,"ismyidol":0,"nick":"aaaaa","email":"","birth_day":24,"homecity_code":"","city_code":"","mutual_fans_num":0,"introduction":"","isvip":0,"tweetnum":3}
+                         */
+                        ModelResult modelResult = (ModelResult) o;
+                        Log.e("amaya", "onResult()...o=" + o.toString());
+                        try {
+                            if ("success".equals(modelResult.getError_message())) {
+                                JSONObject jo = new JSONObject(modelResult.getObj().toString());
+                                int code = jo.getInt("ret");
+                                if (code == 0) {
+                                    JSONObject obj = jo.getJSONObject("data");
+                                    String headUrl = obj.getString("head");
+                                    String nickName = obj.getString("nick");
+                                    if (!TextUtils.isEmpty(headUrl)) {
+                                        bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_IMG, headUrl);
+                                    }
+                                    if (!TextUtils.isEmpty(nickName)) {
+                                        bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, nickName);
+                                    }
+                                    if (amayaListener != null)
+                                        amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, AmayaShareConstants.AMAYA_TYPE_AUTH, bundle);
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            if (amayaListener != null)
+                                amayaListener.onException(AmayaShareEnums.TENCENT_WEIBO, true, e.getMessage());
+                        }
+                    }
+                }, null, "GET", BaseVO.TYPE_JSON);
+                ReqParam mParam = new ReqParam();
+                mParam.addParam("scope", "all");
+                mParam.addParam("clientip", Util.getLocalIPAddress(activity));
+                mParam.addParam("oauth_version", "2.a");
+                mParam.addParam("oauth_consumer_key",
+                        Util.getSharePersistent(activity, "CLIENT_ID"));
+                mParam.addParam("openid", Util.getSharePersistent(activity, "OPEN_ID"));
+                mParam.addParam("format", "json");
+                mParam.addParam("access_token", token.accessToken);
+                weibo.setParam(mParam);
+                HttpService.getInstance().addImmediateReq(weibo);
+            }
+        });
+
+        AuthHelper.auth(activity, "");
     }
 
     /**
