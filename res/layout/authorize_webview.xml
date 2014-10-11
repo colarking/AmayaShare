@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <WebView
+        android:id="@+id/authorize_webview_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+	<LinearLayout
+		android:id="@+id/wait"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="@android:color/darker_gray"
+		android:gravity="center" >
+
+		<ProgressBar
+			android:layout_width="70dp"
+			android:layout_height="70dp"
+			android:indeterminateDrawable="@drawable/abs__progress_medium_holo" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/amaya_loading"
+			/>
+	</LinearLayout>
+
+</FrameLayout>

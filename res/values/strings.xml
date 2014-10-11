@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">AmayaShare</string>
+	<string name="amaya_loading">请稍候...</string>
 	<string name="amaya_auth_no">未授权应用,分享失败</string>
 	<string name="amaya_auth_fail">授权失败,请稍候重试</string>
 	<string name="amaya_auth_fail_step_0">授权失败,请检查配置信息是否有误</string>

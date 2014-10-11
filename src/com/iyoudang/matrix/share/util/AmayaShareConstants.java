@@ -34,9 +34,22 @@ public class AmayaShareConstants {
     public static final String AMAYA_RENREN_API_KEY = "18a995f3720043daace0052eb4e18bb5";
     public static final String AMAYA_RENREN_SECRET_KEY = "6551cd003e4141b19f46bd0aad002869";
     public static final String AMAYA_RENREN_APP_ID = "271466";
+
+    /**
+     * 豆瓣
+     */
+
+    public static final String AMAYA_DOUBAN_ID = "064da110f8922a1912e8e332e9b67e4b";// douban API Key
+    public static final String AMAYA_DOUBAN_SECRET = "5ee975cf795ad48b"; // douban Secret
+    public static final String AMAYA_DOUBAN_REDIRECT_URI = "http://m.100tv.com";
+    public static final String AMAYA_DOUBAN_TOKEURL = "https://www.douban.com/service/auth2/token";
+    public static final String AMAYA_DOUBAN_AUTH_URL = "https://www.douban.com/service/auth2/auth";
+    public static final String AMAYA_DOUBAN_USER_INFO_URL = "http://api.douban.com/v2/user/";
+
     /**
      * Activity回调requestCode
      */
+    public static final int AMAYA_ACTIVITY_RESULT_DOUBAN = 820;
     public static final int AMAYA_ACTIVITY_RESULT_TXWEIBO = 821;
 	public static final int AMAYA_ACTIVITY_RESULT_SINAWEIBO = 32973;
 	public static final int AMAYA_ACTIVITY_RESULT_QQ =  10100;//com.tencent.connect.common.Constants.REQUEST_API;

@@ -18,6 +18,12 @@
 		</activity>
 		<activity
 			android:name="com.iyoudang.matrix.share.AmayaAuthorize"
+			android:launchMode="singleTask"
+			>
+		</activity>
+		<activity
+			android:name="com.iyoudang.matrix.share.AmayaDoubanAuth"
+			android:launchMode="singleTask"
 			>
 		</activity>
 		<activity

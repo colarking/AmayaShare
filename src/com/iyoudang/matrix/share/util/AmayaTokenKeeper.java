@@ -120,4 +120,18 @@ public class AmayaTokenKeeper {
         SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
         return pref.getString("AMAYA_TXWEIBO_TOKEN",null);
     }
+    public static void saveDoubanToken(Context context, String token, String expiresIn) {
+        if (null == context) {
+            return;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        pref.edit().putString("AMAYA_DOUBAN_TOKEN",token).putString("AMAYA_DOUBAN_EXPIRESIN",expiresIn).commit();
+    }
+    public static String getDoubanToken(Context context) {
+        if (null == context) {
+            return null;
+        }
+        SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
+        return pref.getString("AMAYA_DOUBAN_TOKEN",null);
+    }
 }
