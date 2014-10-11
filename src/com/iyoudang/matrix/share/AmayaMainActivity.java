@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,11 +15,19 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShare;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaShareEnums;
 import com.iyoudang.matrix.share.util.AmayaShareListener;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.sina.weibo.sdk.net.AsyncWeiboRunner;
+import com.sina.weibo.sdk.net.RequestListener;
+import com.sina.weibo.sdk.net.WeiboParameters;
 import com.tencent.connect.share.QzoneShare;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class AmayaMainActivity extends Activity implements AmayaShareListener, View.OnClickListener {
     private ColorStateList colorStateList;
@@ -51,8 +60,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         initClickView(amayaRenRen);
 
         amayaShare = AmayaShare.instance();
-
-
 //        int white = getResources().getColor(R.color.white);
 //        int l = getResources().getColor(R.color.little_matrix);
 //        ColorStateList colorStateList = createColorStateList(R.color.white, R.color.text_pressed_green, R.color.text_pressed_green, R.color.text_pressed_green);
@@ -70,7 +77,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("amaya","onResume()...");
+        Log.e("amaya", "onResume()...");
     }
 
     @Override
@@ -95,7 +102,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode != 0 && data != null) amayaShare.onActivityResult(this, requestCode, resultCode, data);
+        if (requestCode != 0 && data != null) amayaShare.onActivityResult(this, requestCode, resultCode, data);
     }
 
     @Override
@@ -107,7 +114,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     }
 
     private void setActionBar(Menu menu) {
-        if(showLoading){
+        if (showLoading) {
             ProgressBar bar = new ProgressBar(this);
             bar.setScrollBarStyle(android.R.attr.progressBarStyleInverse);
             bar.setIndeterminateDrawable(getResources().getDrawable(
@@ -124,55 +131,105 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     }
 
     @Override
-	public void onComplete(AmayaShareEnums enumKey,boolean authOrShare, Bundle values) {
+    public void onComplete(AmayaShareEnums enumKey, boolean authOrShare, Bundle values) {
         showLoading = false;
         invalidateOptionsMenu();
-        if(authOrShare){
-            if(values != null){
-                Log.e("amaya","onComplete()...enumKey="+enumKey);
-                String name= values.getString(AmayaShareConstants.AMAYA_RESULT_USER_NAME);
-                String id= values.getString(AmayaShareConstants.AMAYA_RESULT_USER_ID);
-                String expires_in= values.getString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN);
-                String token= values.getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
-                Log.e("amaya","onComplete()...name="+name);
-                Log.e("amaya","onComplete()...id="+id);
-                Log.e("amaya","onComplete()...expires_in="+expires_in);
-                Log.e("amaya","onComplete()...token="+token);
-                Toast.makeText(this,enumKey+"授权成功...name="+name,0).show();
-                if(enumKey == AmayaShareEnums.SINA_WEIBO){
-                    Log.e("amaya","onComplete()...准备分享到新浪微博");
-                    amayaShareSina();
+        if (authOrShare) {
+            if (values != null) {
+                Log.e("amaya", "onComplete()...enumKey=" + enumKey);
+                String name = values.getString(AmayaShareConstants.AMAYA_RESULT_USER_NAME);
+                final String id = values.getString(AmayaShareConstants.AMAYA_RESULT_USER_ID);
+                String expires_in = values.getString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN);
+                final String token = values.getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
+                Log.e("amaya", "onComplete()...name=" + name);
+                Log.e("amaya", "onComplete()...id=" + id);
+                Log.e("amaya", "onComplete()...expires_in=" + expires_in);
+                Log.e("amaya", "onComplete()...token=" + token);
+                Toast.makeText(this, enumKey + "授权成功...name=" + name, 0).show();
+                if (enumKey == AmayaShareEnums.SINA_WEIBO) {
+                    Log.e("amaya", "onComplete()...准备分享到新浪微博");
+//                    amayaShareSina();
+//                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            getSinaInfo(token, id);
+//                        }
+//                    });
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.e("amaya","run()...isMainLooper="+(Looper.myLooper() == Looper.getMainLooper()));
+                            getSinaInfo(token, id);
+                        }
+                    }).start();
                 }
-            }else{
-                onException(enumKey,authOrShare,"bundle is null error");
+            } else {
+                onException(enumKey, authOrShare, "bundle is null error");
             }
-        }else{
-            Toast.makeText(this,enumKey+"分享完成",0).show();
+        } else {
+            Toast.makeText(this, enumKey + "分享完成", 0).show();
         }
-	}
+    }
 
-	@Override
-	public void onCancel(AmayaShareEnums enumKey,boolean authOrShare) {
+    private void getSinaInfo(String token,String  uid) {
+        try {
+            WeiboParameters params = new WeiboParameters();
+            params.put("access_token",token);
+            params.put("source",AmayaShareConstants.AMAYA_SINA_KEY);
+            params.put("uid",uid);
+            AsyncWeiboRunner.requestAsync("https://api.weibo.com/2/users/show.json", params, "GET", new RequestListener() {
+                @Override
+                public void onComplete(String s) {
+                    Log.e("amaya","onComplete()...s="+s);
+                }
+
+                @Override
+                public void onWeiboException(WeiboException e) {
+                    Log.e("amaya","onWeiboException()...s="+e.getMessage());
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private String parseStream(InputStream stream) {
+        int len;
+        byte[] buf = new byte[2048];
+        StringBuffer sb = new StringBuffer();
+        try {
+            while((len = stream.read(buf))!= -1){
+                sb.append(new String(buf,0,len));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+    @Override
+    public void onCancel(AmayaShareEnums enumKey, boolean authOrShare) {
         showLoading = false;
         invalidateOptionsMenu();
-		String s=enumKey+"---onCancel()...authOrShare="+authOrShare;
-		Toast.makeText(AmayaMainActivity.this,s,Toast.LENGTH_LONG).show();
-		
-	}
+        String s = enumKey + "---onCancel()...authOrShare=" + authOrShare;
+        Toast.makeText(AmayaMainActivity.this, s, Toast.LENGTH_LONG).show();
+
+    }
 
 
-	@Override
-	public void onException(AmayaShareEnums enumKey,boolean authOrShare, String msg) {
+    @Override
+    public void onException(AmayaShareEnums enumKey, boolean authOrShare, String msg) {
         showLoading = false;
         invalidateOptionsMenu();
-		Toast.makeText(AmayaMainActivity.this,enumKey+"---onException()...authOrShare="+authOrShare+"---"+msg,Toast.LENGTH_LONG).show();
-	}
+        Toast.makeText(AmayaMainActivity.this, enumKey + "---onException()...authOrShare=" + authOrShare + "---" + msg, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public void onClick(View v) {
         showLoading = true;
         invalidateOptionsMenu();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.amaya_share_sina:
                 amayaShareSina();
                 break;
@@ -199,82 +256,75 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
 
     private void amayaShareRenRen() {
         boolean authed = amayaShare.isAuthed(AmayaShareEnums.RENREN, this);
-        if(authed){
+        if (authed) {
             String title = "标题";
             String desc = "内容详细请阅：www.sina.com";
-            String message ="消息正文";
+            String message = "消息正文";
             String imgUrl = "http://121.199.31.3/lvYou/upload/1409022238408487.jpg";
-            amayaShare.shareToRenRen(this,this,title,message,desc,imgUrl);
-        }else{
-            amayaShare.auth(AmayaShareEnums.RENREN,this,this);
+            amayaShare.shareToRenRen(this, this, title, message, desc, imgUrl);
+        } else {
+            amayaShare.auth(AmayaShareEnums.RENREN, this, this);
         }
     }
 
     private void amayaShareTXWeibo() {
         boolean authed = amayaShare.isAuthed(AmayaShareEnums.TENCENT_WEIBO, this);
-        if(authed){
+        if (authed) {
             String content = "这是内容content";
-            double latitude =  29.345728;
+            double latitude = 29.345728;
             double longitude = 110.550432;
             Location location = AmayaShare.getLocation(this);
-            if(location != null){
+            if (location != null) {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
             }
             //分享一条文字文博
 //            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,1,this);
-
-
             //分享一条图片微博
 //            String picUrl = "http://h.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf465c6d0e0f0d3572c11dfcf95.jpg";
 //            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,picUrl,1,this);
-
-
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.amaya_share);
-            amayaShare.shareToTXWeiBo(this,content,latitude,longitude,bitmap,1,this);
-
-        }else{
+            amayaShare.shareToTXWeiBo(this, content, latitude, longitude, bitmap, 1, this);
+        } else {
             amayaShare.auth(AmayaShareEnums.TENCENT_WEIBO, this, this);
         }
     }
 
     /**
-     *
-     * @param toCircle  true:朋友圈；false:好友
+     * @param toCircle true:朋友圈；false:好友
      */
     private void amayaShareWeiXin(boolean toCircle) {
-        String title ="AmayaShare分享";
+        String title = "AmayaShare分享";
         String desc = "这是一个测试分享哟！";
         /**
          * imagePath 和imageUrl 二选一,优先选取imagePath路径
          */
         String imagePath = null;//Environment.getExternalStorageDirectory().getAbsolutePath()+"/testwx.jpg";
-        String imageUrl =null;
+        String imageUrl = null;
         String webpaggUrl = "www.iyoudang.com";
-        amayaShare.shareToWeixin(this,toCircle,title,desc,imagePath,imageUrl,webpaggUrl,this);
+        amayaShare.shareToWeixin(this, toCircle, title, desc, imagePath, imageUrl, webpaggUrl, this);
     }
 
     private void amayaShareQQ() {
-        String title;
-        String summary;
-        if(amayaShare.isAuthed(AmayaShareEnums.TENCENT_QQ,this)){
-        title = "标题";
-        String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
-        //分享的消息摘要，最长50个字
-        summary = "内容摘要";
-        //这条分享消息被好友点击后的跳转URL。
-        String tagetUrl = "http://connect.qq.com/";
-        amayaShare.shareToQQ(this, this,title,imgUrl,summary,tagetUrl);
-    }else{
-        amayaShare.auth(AmayaShareEnums.TENCENT_QQ,this,this);
-    }
+        if (amayaShare.isAuthed(AmayaShareEnums.TENCENT_QQ, this)) {
+            String title = "标题";
+            String imgUrl = "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg";
+            //分享的消息摘要，最长50个字
+            String summary = "内容摘要";
+            //这条分享消息被好友点击后的跳转URL。
+            String tagetUrl = "http://www.iyoudang.com";
+            amayaShare.shareToQQ(this, this, title, imgUrl, summary, tagetUrl);
+        } else {
+            amayaShare.auth(AmayaShareEnums.TENCENT_QQ, this, this);
+        }
     }
 
     private void amayaShareSina() {
         boolean authed = amayaShare.isAuthed(AmayaShareEnums.SINA_WEIBO, this);
-        if(authed){
-            amayaShare.shareToSina(this,"this is demo ttttest",null,null);
-        }else{
+        authed = false;
+        if (authed) {
+            amayaShare.shareToSina(this, "this is demo ttttest", null, null);
+        } else {
             amayaShare.auth(AmayaShareEnums.SINA_WEIBO, this, this);
         }
     }
@@ -284,18 +334,11 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         String targetUrl = "http://www.qq.com";
         String title = "Title";
         String summary = "summary";
-        if(amayaShare.isAuthed(AmayaShareEnums.TENCENT_QZONE,this)){
+        if (amayaShare.isAuthed(AmayaShareEnums.TENCENT_QZONE, this)) {
             amayaShare.shareToQZone(this, this, shareType, targetUrl, title, summary, null);
-        }else{
-            amayaShare.auth(AmayaShareEnums.TENCENT_QZONE,this,this);
+        } else {
+            amayaShare.auth(AmayaShareEnums.TENCENT_QZONE, this, this);
         }
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);    //To change body of overridden methods use File | Settings | File Templates.
-        Log.e("amaya","onNewIntent()..."+intent);
-
     }
 
     @Override

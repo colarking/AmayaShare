@@ -42,10 +42,11 @@ public class AmayaShareConstants {
      * Bundle数据参数
      */
     public static final String AMAYA_RESULT_USER_NAME = "userName";
-	public static final String AMAYA_RESULT_USER_ID = "uid";
-	public static final String AMAYA_RESULT_ACCESS_TOKEN = "access_token";
-	public static final String AMAYA_RESULT_EXPIRES_IN = "expires_in";
-	public static final String AMAYA_RESULT_SHARE = "share_back";
+    public static final String AMAYA_RESULT_USER_IMG = "share_back";
+    public static final String AMAYA_RESULT_USER_ID = "uid";
+    public static final String AMAYA_RESULT_ACCESS_TOKEN = "access_token";
+    public static final String AMAYA_RESULT_EXPIRES_IN = "expires_in";
+    public static final String AMAYA_RESULT_SHARE = "share_back";
 
     /**
      * 用于通用AmayaShareListener回调中第二个参数

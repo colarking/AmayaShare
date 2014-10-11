@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.AmayaAuthorize;
-import com.iyoudang.matrix.share.R;
 import com.renn.rennsdk.RennClient;
 import com.renn.rennsdk.RennExecutor;
 import com.renn.rennsdk.RennResponse;
@@ -41,8 +41,6 @@ import com.tencent.weibo.sdk.android.network.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -134,6 +132,7 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
         return tokens[index];
     }
     public void auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener){
+        Log.e("amaya","auth()...enums="+enums+"--enums.ordinal()="+enums.ordinal());
         switch (enums){
             case SINA_WEIBO:
                 authSinaWeibo(activity,listener);

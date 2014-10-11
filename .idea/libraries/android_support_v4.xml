@@ -2,6 +2,14 @@
   <library name="android-support-v4">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Android_SDK.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Android_SDK_component.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-httpclient-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/libammsdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/mta-sdk-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/open_sdk_r3922.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/RennSDK-Core-Android.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/weibosdkcore.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
