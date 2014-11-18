@@ -15,7 +15,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
-import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShare;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaTokenKeeper;
@@ -39,12 +38,14 @@ import java.util.Map;
 public class AmayaDoubanAuth extends Activity {
 
     private static final String TAG = AmayaDoubanAuth.class.getSimpleName();
-
-    private View waitView;
-
-
-    private WebView mWebView;
     private static AmayaDoubanAuth authorWebView;
+    private View waitView;
+    private WebView mWebView;
+
+    public static void finishActivity() {
+        if (null != authorWebView)
+            authorWebView.finish();
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -63,70 +64,6 @@ public class AmayaDoubanAuth extends Activity {
 
         final String url = AmayaShareConstants.AMAYA_DOUBAN_AUTH_URL + "?client_id=" + AmayaShareConstants.AMAYA_DOUBAN_ID + "&redirect_uri=" + AmayaShareConstants.AMAYA_DOUBAN_REDIRECT_URI + "&response_type=code";
         mWebView.loadUrl(url);
-    }
-
-    private class WeiboWebViewClient extends WebViewClient {
-
-        /***
-         * 地址改变都会调用
-         */
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, final String url) {
-//			if (!url.startsWith(AmayaShareConstants.AMAYA_DOUBAN_AUTH_URL) && !isEnter) {
-//				waitProgress.setVisibility(View.VISIBLE);
-//				new Thread(new Runnable() {
-//
-//					@Override
-//					public void run() {
-//
-//						Bundle bundle = getAccessToken(url);
-//						Message msg = mHandler.obtainMessage();
-//						msg.obj = bundle;
-//						msg.sendToTarget();
-//					}
-//				}).start();
-//				return true;
-//			}
-            return super.shouldOverrideUrlLoading(view, url);
-        }
-
-        @Override
-        public void onReceivedError(WebView view, int errorCode,
-                                    String description, String failingUrl) {
-            super.onReceivedError(view, errorCode, description, failingUrl);
-
-        }
-
-        @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler,
-                                       SslError error) {
-            handler.proceed();
-        }
-
-        @Override
-        public void onPageStarted(WebView view, final String url, Bitmap favicon) {
-            if (url.startsWith(AmayaShareConstants.AMAYA_DOUBAN_REDIRECT_URI) ) {
-                waitView.setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        Bundle bundle = getAccessToken(url);
-                        Intent in = new Intent();
-                        in.putExtras(bundle);
-                        AmayaShare.instance().onActivityResult(AmayaDoubanAuth.this,AmayaShareConstants.AMAYA_ACTIVITY_RESULT_DOUBAN,RESULT_OK,in);
-                        finish();
-                    }
-                }).start();
-            }
-            super.onPageStarted(view, url, favicon);
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            waitView.setVisibility(View.GONE);
-        }
     }
 
     public Bundle getAccessToken(String url) {
@@ -185,11 +122,6 @@ public class AmayaDoubanAuth extends Activity {
         System.gc();
     }
 
-    public static void finishActivity() {
-        if(null!= authorWebView)
-            authorWebView.finish();
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 //		if (isEnter) {
@@ -199,17 +131,16 @@ public class AmayaDoubanAuth extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-
-    public String amayaHttpGet(String url){
+    public String amayaHttpGet(String url) {
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
             int responseCode = conn.getResponseCode();
-            InputStream stream ;
-            if(responseCode == 200){
+            InputStream stream;
+            if (responseCode == 200) {
                 stream = conn.getInputStream();
-            }else{
+            } else {
                 stream = conn.getErrorStream();
             }
             String res = getStringFromStream(stream);
@@ -219,16 +150,17 @@ public class AmayaDoubanAuth extends Activity {
         }
         return null;
     }
-    public String amayaHttpPost(String url,HashMap<String,String> params){
+
+    public String amayaHttpPost(String url, HashMap<String, String> params) {
 
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod("POST");
-            if(params != null){
-                Iterator<Map.Entry<String,String>> iterator = params.entrySet().iterator();
-                while(iterator.hasNext()){
+            if (params != null) {
+                Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
+                while (iterator.hasNext()) {
                     Map.Entry<String, String> next = iterator.next();
-                    conn.setRequestProperty(next.getKey(),next.getValue());
+                    conn.setRequestProperty(next.getKey(), next.getValue());
                 }
             }
             conn.connect();
@@ -249,16 +181,80 @@ public class AmayaDoubanAuth extends Activity {
 
     private String getStringFromStream(InputStream stream) {
         byte[] buf = new byte[2048];
-        int len ;
+        int len;
         StringBuffer sb = new StringBuffer();
         try {
-            while((len=stream.read(buf))!= -1){
-                sb.append(new String(buf,0,len));
+            while ((len = stream.read(buf)) != -1) {
+                sb.append(new String(buf, 0, len));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return sb.toString();
+    }
+
+    private class WeiboWebViewClient extends WebViewClient {
+
+        /**
+         * 地址改变都会调用
+         */
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, final String url) {
+//			if (!url.startsWith(AmayaShareConstants.AMAYA_DOUBAN_AUTH_URL) && !isEnter) {
+//				waitProgress.setVisibility(View.VISIBLE);
+//				new Thread(new Runnable() {
+//
+//					@Override
+//					public void run() {
+//
+//						Bundle bundle = getAccessToken(url);
+//						Message msg = mHandler.obtainMessage();
+//						msg.obj = bundle;
+//						msg.sendToTarget();
+//					}
+//				}).start();
+//				return true;
+//			}
+            return super.shouldOverrideUrlLoading(view, url);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode,
+                                    String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler,
+                                       SslError error) {
+            handler.proceed();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, final String url, Bitmap favicon) {
+            if (url.startsWith(AmayaShareConstants.AMAYA_DOUBAN_REDIRECT_URI)) {
+                waitView.setVisibility(View.VISIBLE);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        Bundle bundle = getAccessToken(url);
+                        Intent in = new Intent();
+                        in.putExtras(bundle);
+                        AmayaShare.instance().onActivityResult(AmayaDoubanAuth.this, AmayaShareConstants.AMAYA_ACTIVITY_RESULT_DOUBAN, RESULT_OK, in);
+                        finish();
+                    }
+                }).start();
+            }
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            waitView.setVisibility(View.GONE);
+        }
     }
 
 }

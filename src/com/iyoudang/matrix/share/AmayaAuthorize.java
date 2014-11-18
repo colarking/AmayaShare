@@ -26,7 +26,6 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaTokenKeeper;
 import com.tencent.weibo.sdk.android.api.util.Util;
@@ -39,17 +38,30 @@ import java.lang.reflect.Method;
  */
 public class AmayaAuthorize extends Activity {
 
-	WebView webView;
-	String _url;
-	String _fileName;
-	public static int WEBVIEWSTATE_1 = 0;
-	int webview_state = 0;
+    public static final int ALERT_DOWNLOAD = 0;
+    public static final int ALERT_FAV = 1;
+    public static final int PROGRESS_H = 3;
+    public static final int ALERT_NETWORK = 4;
+    Handler handle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // TODO Auto-generated method stub
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 100:
+                    // Log.i("showDialog", "showDialog");
+                    AmayaAuthorize.this.showDialog(ALERT_NETWORK);
+                    break;
+            }
+        }
+    };
+    public static int WEBVIEWSTATE_1 = 0;
+    WebView webView;
+    String _url;
+    String _fileName;
+    int webview_state = 0;
 	String path;
 	Dialog _dialog;
-	public static final int ALERT_DOWNLOAD = 0;
-	public static final int ALERT_FAV = 1;
-	public static final int PROGRESS_H = 3;
-	public static final int ALERT_NETWORK = 4;
 	private ProgressDialog dialog;
 	private LinearLayout layout = null;
 	private String redirectUri = null;
@@ -95,144 +107,144 @@ public class AmayaAuthorize extends Activity {
 //			}
 		}
 	}
+
 	public boolean isNetworkAvailable() {
-		ConnectivityManager cm=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo[] allNetworkInfo = cm.getAllNetworkInfo();
-		boolean isOK = false;
-		for(NetworkInfo ni:allNetworkInfo){
-			if(ni.getState() == State.CONNECTED){
-				isOK =true;
-				break;
-			}
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] allNetworkInfo = cm.getAllNetworkInfo();
+        boolean isOK = false;
+        for (NetworkInfo ni : allNetworkInfo) {
+            if (ni.getState() == State.CONNECTED) {
+                isOK = true;
+                break;
+            }
 		}
-		return isOK;
-	}
+        return isOK;
+    }
 
 	/**
-	 * 初始化界面使用控件，并设置相应监听
-	 * */
-	public void initLayout() {
-		setContentView(R.layout.base_layout);
-		RelativeLayout.LayoutParams fillParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.MATCH_PARENT,
-				RelativeLayout.LayoutParams.MATCH_PARENT);
-		RelativeLayout.LayoutParams fillWrapParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.MATCH_PARENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		RelativeLayout.LayoutParams wrapParams = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,
-				RelativeLayout.LayoutParams.WRAP_CONTENT);
+     * 初始化界面使用控件，并设置相应监听
+     * */
+    public void initLayout() {
+        setContentView(R.layout.base_layout);
+        RelativeLayout.LayoutParams fillParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams fillWrapParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams wrapParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-		dialog = new ProgressDialog(this);
-		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setMessage("请稍后...");
-		dialog.setIndeterminate(false);
-		dialog.setCancelable(false);
-		dialog.show();
-		showLoading(true);
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setMessage("请稍后...");
+        dialog.setIndeterminate(false);
+        dialog.setCancelable(false);
+        dialog.show();
+        showLoading(true);
 
-		layout = (LinearLayout) findViewById(R.id.amaya_content_view);
-		
+        layout = (LinearLayout) findViewById(R.id.amaya_content_view);
 
-		webView = new WebView(this);
-		
-		//Build.VERSION_CODES.HONEYCOMB = 11
-		if(Build.VERSION.SDK_INT >= 11)
-		{
-			Class[] name = new Class[]{String.class};
-			Object[] rmMethodName = new Object[]{"searchBoxJavaBridge_"};
-			Method rji;
-			try {
-				rji = webView.getClass().getDeclaredMethod("removeJavascriptInterface", name);				
-				rji.invoke(webView, rmMethodName);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		LinearLayout.LayoutParams wvParams = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.MATCH_PARENT);
-		webView.setLayoutParams(wvParams);
-		WebSettings webSettings = webView.getSettings();
-		webView.setVerticalScrollBarEnabled(false);
-		webSettings.setJavaScriptEnabled(true);
-		webSettings.setUseWideViewPort(true);
-		webSettings.setLoadWithOverviewMode(false);
-		webView.loadUrl(path);
-		webView.setWebChromeClient(new WebChromeClient() {
 
-			@Override
-			public void onProgressChanged(WebView view, int newProgress) {
-				super.onProgressChanged(view, newProgress);
-				Log.e("amaya", newProgress + "..");
-				// if (dialog!=null&& !dialog.isShowing()) {
-				// dialog.show();
-				// }
+        webView = new WebView(this);
 
-			}
+        //Build.VERSION_CODES.HONEYCOMB = 11
+        if (Build.VERSION.SDK_INT >= 11) {
+            Class[] name = new Class[]{String.class};
+            Object[] rmMethodName = new Object[]{"searchBoxJavaBridge_"};
+            Method rji;
+            try {
+                rji = webView.getClass().getDeclaredMethod("removeJavascriptInterface", name);
+                rji.invoke(webView, rmMethodName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-		});
-		webView.setWebViewClient(new WebViewClient() {
-			
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				Log.d("backurl", "page finished:" + url);
-				if (url.indexOf("access_token") != -1 && !isShow) {
-					jumpResultParser(url);
-				}
-				if (dialog != null && dialog.isShowing()) {
-					dialog.cancel();
-				}
-			}
+        LinearLayout.LayoutParams wvParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        webView.setLayoutParams(wvParams);
+        WebSettings webSettings = webView.getSettings();
+        webView.setVerticalScrollBarEnabled(false);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(false);
+        webView.loadUrl(path);
+        webView.setWebChromeClient(new WebChromeClient() {
 
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				if (url.indexOf("access_token") != -1 && !isShow) {
-					jumpResultParser(url);
-				}
-				return false;
-			}
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                Log.e("amaya", newProgress + "..");
+                // if (dialog!=null&& !dialog.isShowing()) {
+                // dialog.show();
+                // }
 
-			@Override
-			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-				Log.d("backurl", "page start:" + url);
-				if (url.indexOf("access_token") != -1 && !isShow) {
-					jumpResultParser(url);
-				}
-				if (dialog != null && dialog.isShowing()) {
-					dialog.cancel();
-				}
+            }
+
+        });
+        webView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                Log.d("backurl", "page finished:" + url);
+                if (url.indexOf("access_token") != -1 && !isShow) {
+                    jumpResultParser(url);
+                }
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.cancel();
+                }
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.indexOf("access_token") != -1 && !isShow) {
+                    jumpResultParser(url);
+                }
+                return false;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                Log.d("backurl", "page start:" + url);
+                if (url.indexOf("access_token") != -1 && !isShow) {
+                    jumpResultParser(url);
+                }
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.cancel();
+                }
 //				showLoading(false);
-			}
-		});
-		layout.addView(webView);
+            }
+        });
+        layout.addView(webView);
 //        layout.setBackgroundResource();
-		this.setContentView(layout);
-	}
+        this.setContentView(layout);
+    }
 
-	private void showLoading(boolean show) {
-		findViewById(R.id.amaya_title_pdbar).setVisibility(show?View.VISIBLE:View.GONE);	
-	}
-	/**
-	 * 
-	 * 获取授权后的返回地址，并对其进行解析
-	 */
-	public void jumpResultParser(String result) {
+    private void showLoading(boolean show) {
+        findViewById(R.id.amaya_title_pdbar).setVisibility(show ? View.VISIBLE : View.GONE);
+    }
 
-		String resultParam = result.split("#")[1];
-		String params[] = resultParam.split("&");
-		String accessToken = params[0].split("=")[1];
-		String expiresIn = params[1].split("=")[1];
-		String openid = params[2].split("=")[1];
-		String openkey = params[3].split("=")[1];
-		String refreshToken = params[4].split("=")[1];
-		String state = params[5].split("=")[1];
-		String name = params[6].split("=")[1];
-		String nick = params[7].split("=")[1];
-		Context context = this.getApplicationContext();
-		if (accessToken != null && !"".equals(accessToken)) {
+    /**
+     * 获取授权后的返回地址，并对其进行解析
+     */
+    public void jumpResultParser(String result) {
+
+        String resultParam = result.split("#")[1];
+        String params[] = resultParam.split("&");
+        String accessToken = params[0].split("=")[1];
+        String expiresIn = params[1].split("=")[1];
+        String openid = params[2].split("=")[1];
+        String openkey = params[3].split("=")[1];
+        String refreshToken = params[4].split("=")[1];
+        String state = params[5].split("=")[1];
+        String name = params[6].split("=")[1];
+        String nick = params[7].split("=")[1];
+        Context context = this.getApplicationContext();
+        if (accessToken != null && !"".equals(accessToken)) {
             Util.saveSharePersistent(context, "ACCESS_TOKEN", accessToken);
             Util.saveSharePersistent(context, "EXPIRES_IN", expiresIn);// accesstoken过期时间，以返回的时间的准，单位为秒，注意过期时提醒用户重新授权
             Util.saveSharePersistent(context, "OPEN_ID", openid);
@@ -243,7 +255,7 @@ public class AmayaAuthorize extends Activity {
             Util.saveSharePersistent(context, "CLIENT_ID", clientId);
             Util.saveSharePersistent(context, "AUTHORIZETIME",
                     String.valueOf(System.currentTimeMillis() / 1000l));
-            AmayaTokenKeeper.saveTXWeiboToken(context,accessToken,expiresIn);
+            AmayaTokenKeeper.saveTXWeiboToken(context, accessToken, expiresIn);
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, name);
@@ -251,8 +263,8 @@ public class AmayaAuthorize extends Activity {
             bundle.putString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN, expiresIn);
             bundle.putString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN, accessToken);
             //{uid=2857043267, com.sina.weibo.intent.extra.USER_ICON=[B@415b94c8, _weibo_appPackage=com.sina.weibo, com.sina.weibo.intent.extra.NICK_NAME=sae_otaku, remind_in=7816692, userName=sae_otaku, expires_in=7816692, _weibo_transaction=1409038891040, access_token=2.00BTr2HDyY87OCc5df65dfe8VVYhfD}
-			intent.putExtras(bundle);
-            setResult(RESULT_OK,intent);
+            intent.putExtras(bundle);
+            setResult(RESULT_OK, intent);
             finish();
 //            UserAPI ua = new UserAPI(new AccountModel(accessToken));
 //            ua.getUserInfo(context, "json", new HttpCallback(){
@@ -264,22 +276,8 @@ public class AmayaAuthorize extends Activity {
 //                }
 //            }, null, BaseVO.TYPE_JSON);
             isShow = true;
-		}
-	}
-
-	Handler handle = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
-			super.handleMessage(msg);
-			switch (msg.what) {
-			case 100:
-				// Log.i("showDialog", "showDialog");
-                AmayaAuthorize.this.showDialog(ALERT_NETWORK);
-				break;
-			}
-		}
-	};
+        }
+    }
 
 	@Override
 	protected Dialog onCreateDialog(int id) {

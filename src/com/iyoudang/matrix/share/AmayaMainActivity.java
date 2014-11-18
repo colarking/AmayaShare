@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShare;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaShareEnums;
@@ -35,6 +34,19 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     private AmayaShare amayaShare;
     private boolean showLoading;
 
+    public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
+        int[][] states = new int[6][];
+        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[2] = new int[]{android.R.attr.state_enabled};
+        states[3] = new int[]{android.R.attr.state_focused};
+        states[4] = new int[]{android.R.attr.state_window_focused};
+        states[5] = new int[]{};
+        ColorStateList colorList = new ColorStateList(states, colors);
+        return colorList;
+    }
+
     /**
      * Called when the activity is first created.
      */
@@ -49,7 +61,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         TextView amayaWXCircle = (TextView) findViewById(R.id.amaya_share_weixin_circle);
         TextView amayaTXWeibo = (TextView) findViewById(R.id.amaya_share_tencent_weibo);
         TextView amayaRenRen = (TextView) findViewById(R.id.amaya_share_renren);
-        colorStateList = getResources().getColorStateList(R.drawable.text_view_selector);
+        colorStateList = getResources().getColorStateList(R.color.text_view_selector);
 
         initClickView(amayaSina);
         initClickView(amayaTXWeibo);
@@ -87,19 +99,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
         invalidateOptionsMenu();
     }
 
-    public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
-        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-        ColorStateList colorList = new ColorStateList(states, colors);
-        return colorList;
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != 0 && data != null) amayaShare.onActivityResult(this, requestCode, resultCode, data);
@@ -116,7 +115,6 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
     private void setActionBar(Menu menu) {
         if (showLoading) {
             ProgressBar bar = new ProgressBar(this);
-            bar.setScrollBarStyle(android.R.attr.progressBarStyleInverse);
             bar.setIndeterminateDrawable(getResources().getDrawable(
                     R.drawable.abs__progress_medium_holo));
 
@@ -145,7 +143,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
                 Log.e("amaya", "onComplete()...id=" + id);
                 Log.e("amaya", "onComplete()...expires_in=" + expires_in);
                 Log.e("amaya", "onComplete()...token=" + token);
-                Toast.makeText(this, enumKey + "授权成功...name=" + name, 0).show();
+                Toast.makeText(this, enumKey + "授权成功...name=" + name, Toast.LENGTH_SHORT).show();
                 if (enumKey == AmayaShareEnums.SINA_WEIBO) {
                     Log.e("amaya", "onComplete()...准备分享到新浪微博");
 //                    amayaShareSina();
@@ -167,7 +165,7 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
                 onException(enumKey, authOrShare, "bundle is null error");
             }
         } else {
-            Toast.makeText(this, enumKey + "分享完成", 0).show();
+            Toast.makeText(this, enumKey + "分享完成", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
-import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.AmayaAuthorize;
+import com.iyoudang.matrix.share.R;
 import com.renn.rennsdk.RennClient;
 import com.renn.rennsdk.RennExecutor;
 import com.renn.rennsdk.RennResponse;
@@ -100,91 +100,12 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
     	}
     	return amaya;
     }
-    public boolean isAuthed(AmayaShareEnums type, Context context) {
-        if(type == AmayaShareEnums.RENREN){
-            initRenRen(context);
-            return amayaRenren.isLogin();
-        }else{
-            String token = getToken(context,type);
-            return !TextUtils.isEmpty(token);
-        }
-    }
-
-    public String getToken(Context mContext,AmayaShareEnums enums){
-        int index = -1;
-        switch (enums){
-            case SINA_WEIBO:
-                index = 0;
-                if(TextUtils.isEmpty(tokens[index])){
-                    initSinaWeibo(mContext);
-                }
-                break;
-            case TENCENT_WEIBO:
-                index = 1;
-                if(TextUtils.isEmpty(tokens[index])){
-                    tokens[index] = AmayaTokenKeeper.getTXWeiboToken(mContext);
-                }
-                break;
-            case TENCENT_QQ:
-            case TENCENT_QZONE:
-                index = 2;
-                if(TextUtils.isEmpty(tokens[index])){
-                    initQQ(mContext);
-                }
-                break;
-            case RENREN:
-
-                break;
-        }
-        return tokens[index];
-    }
-    public void auth(AmayaShareEnums enums,Activity activity,AmayaShareListener listener){
-        Log.e("amaya","auth()...enums="+enums+"--enums.ordinal()="+enums.ordinal());
-        switch (enums){
-            case SINA_WEIBO:
-                authSinaWeibo(activity,listener);
-                break;
-            case TENCENT_WEIBO:
-                authTXWeibo(activity,listener);
-                break;
-            case TENCENT_QQ:
-            case TENCENT_QZONE:
-                authQQ(activity,listener,enums);
-                break;
-            case RENREN:
-                authRenRen(activity,listener);
-
-                break;
-        }
-
-    }
-    public void onActivityResult(final Context mContext,int requestCode, int resultCode, Intent data) {
-        if(requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO){
-            if (mSsoHandler != null) {
-                mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
-            }
-        }else if( requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO){
-            tokens[1] = data.getExtras().getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
-            if(amayaListener != null){
-                if(amayaListener != null) amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO,AmayaShareConstants.AMAYA_TYPE_AUTH, data ==null?null:data.getExtras());
-            }
-        }else{
-            final boolean isShare = !amayaTencent.isSessionValid();
-            final AmayaShareEnums enums =  requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ?AmayaShareEnums.TENCENT_QZONE:AmayaShareEnums.TENCENT_QQ;
-            Log.e("amaya","onActivityResult()...enums="+enums+"--isShare="+isShare+"--data="+data);
-            if(data == null) data = new Intent();
-            initAmayaIUListener(mContext,amayaListener,AmayaShareEnums.TENCENT_QQ,false);
-            amayaTencent.handleLoginData(data,amayaIUListener);
-        }
-    }
 
     /**
      * 获取手机经纬度
      *
-     * @param context
-     *            上下文
+     * @param context 上下文
      * @return 可用的location 可能为空
-     *
      */
     public static Location getLocation(Context context) {
         // LocationManager lm=(LocationManager)
@@ -236,7 +157,89 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
         return currentLocation;
     }
 
+    public boolean isAuthed(AmayaShareEnums type, Context context) {
+        if (type == AmayaShareEnums.RENREN) {
+            initRenRen(context);
+            return amayaRenren.isLogin();
+        } else {
+            String token = getToken(context, type);
+            return !TextUtils.isEmpty(token);
+        }
+    }
+
+    public String getToken(Context mContext, AmayaShareEnums enums) {
+        int index = -1;
+        switch (enums) {
+            case SINA_WEIBO:
+                index = 0;
+                if (TextUtils.isEmpty(tokens[index])) {
+                    initSinaWeibo(mContext);
+                }
+                break;
+            case TENCENT_WEIBO:
+                index = 1;
+                if (TextUtils.isEmpty(tokens[index])) {
+                    tokens[index] = AmayaTokenKeeper.getTXWeiboToken(mContext);
+                }
+                break;
+            case TENCENT_QQ:
+            case TENCENT_QZONE:
+                index = 2;
+                if (TextUtils.isEmpty(tokens[index])) {
+                    initQQ(mContext);
+                }
+                break;
+            case RENREN:
+
+                break;
+        }
+        return tokens[index];
+    }
+
+    public void auth(AmayaShareEnums enums, Activity activity, AmayaShareListener listener) {
+        Log.e("amaya", "auth()...enums=" + enums + "--enums.ordinal()=" + enums.ordinal());
+        switch (enums) {
+            case SINA_WEIBO:
+                authSinaWeibo(activity, listener);
+                break;
+            case TENCENT_WEIBO:
+                authTXWeibo(activity, listener);
+                break;
+            case TENCENT_QQ:
+            case TENCENT_QZONE:
+                authQQ(activity, listener, enums);
+                break;
+            case RENREN:
+                authRenRen(activity, listener);
+
+                break;
+        }
+
+    }
+
+    public void onActivityResult(final Context mContext, int requestCode, int resultCode, Intent data) {
+        if (requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_SINAWEIBO) {
+            if (mSsoHandler != null) {
+                mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+            }
+        } else if (requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_TXWEIBO) {
+            tokens[1] = data.getExtras().getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
+            if (amayaListener != null) {
+                if (amayaListener != null)
+                    amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, AmayaShareConstants.AMAYA_TYPE_AUTH, data == null ? null : data.getExtras());
+            }
+        } else {
+            final boolean isShare = !amayaTencent.isSessionValid();
+            final AmayaShareEnums enums = requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ ? AmayaShareEnums.TENCENT_QZONE : AmayaShareEnums.TENCENT_QQ;
+            Log.e("amaya", "onActivityResult()...enums=" + enums + "--isShare=" + isShare + "--data=" + data);
+            if (data == null) data = new Intent();
+            initAmayaIUListener(mContext, amayaListener, AmayaShareEnums.TENCENT_QQ, false);
+            amayaTencent.handleLoginData(data, amayaIUListener);
+        }
+    }
+
     /************************************************QQ分享部分 START**************************************************/
+
     /**
      *
      * @param context
