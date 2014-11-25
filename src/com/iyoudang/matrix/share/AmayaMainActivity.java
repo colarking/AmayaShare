@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.util.AmayaShare;
 import com.iyoudang.matrix.share.util.AmayaShareConstants;
 import com.iyoudang.matrix.share.util.AmayaShareEnums;
@@ -139,10 +140,12 @@ public class AmayaMainActivity extends Activity implements AmayaShareListener, V
                 final String id = values.getString(AmayaShareConstants.AMAYA_RESULT_USER_ID);
                 String expires_in = values.getString(AmayaShareConstants.AMAYA_RESULT_EXPIRES_IN);
                 final String token = values.getString(AmayaShareConstants.AMAYA_RESULT_ACCESS_TOKEN);
+                final String imgUrl = values.getString(AmayaShareConstants.AMAYA_RESULT_USER_IMG);
                 Log.e("amaya", "onComplete()...name=" + name);
                 Log.e("amaya", "onComplete()...id=" + id);
                 Log.e("amaya", "onComplete()...expires_in=" + expires_in);
                 Log.e("amaya", "onComplete()...token=" + token);
+                Log.e("amaya", "onComplete()...headerImg=" + imgUrl);
                 Toast.makeText(this, enumKey + "授权成功...name=" + name, Toast.LENGTH_SHORT).show();
                 if (enumKey == AmayaShareEnums.SINA_WEIBO) {
                     Log.e("amaya", "onComplete()...准备分享到新浪微博");

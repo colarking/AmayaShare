@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+import com.iyoudang.matrix.R;
 import com.iyoudang.matrix.share.AmayaAuthorize;
-import com.iyoudang.matrix.share.R;
 import com.renn.rennsdk.RennClient;
 import com.renn.rennsdk.RennExecutor;
 import com.renn.rennsdk.RennResponse;
@@ -265,7 +265,6 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
             }
             return;
         }
-
         initAmayaIUListener(context, amayaListener, enums,true);
         amayaTencent.login(context, "all",amayaIUListener);
     }
@@ -394,7 +393,7 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
     private void readyShare(final Activity activity,AmayaShareListener amayaListener,int shareType,String targetUrl,String title,String summary,ArrayList<String> urls) {
         //QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT
         if(TextUtils.isEmpty(targetUrl)){
-            Toast.makeText(activity, "targetUrl为必填项，请补充后分享", 0).show();
+            Toast.makeText(activity, "targetUrl为必填项，请补充后分享", Toast.LENGTH_SHORT).show();
             return;
         }
         final Bundle params = new Bundle();
@@ -780,6 +779,7 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
                                             JSONObject jo = new JSONObject(s);
                                             String imgUrl = jo.getString("profile_image_url");
                                             bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_IMG,imgUrl);
+                                            bundle.putString(AmayaShareConstants.AMAYA_RESULT_USER_NAME, jo.getString("screen_name"));
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
