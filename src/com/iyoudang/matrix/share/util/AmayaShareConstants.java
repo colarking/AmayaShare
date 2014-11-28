@@ -34,7 +34,8 @@ public class AmayaShareConstants {
     public static final int AMAYA_ACTIVITY_RESULT_DOUBAN = 820;
     public static final int AMAYA_ACTIVITY_RESULT_TXWEIBO = 821;
 	public static final int AMAYA_ACTIVITY_RESULT_SINAWEIBO = 32973;
-	public static final int AMAYA_ACTIVITY_RESULT_QQ =  10100;//com.tencent.connect.common.Constants.REQUEST_API;
+    public static final int AMAYA_ACTIVITY_RESULT_RENREN = 1;
+    public static final int AMAYA_ACTIVITY_RESULT_QQ =  10100;//com.tencent.connect.common.Constants.REQUEST_API;
     /**
      * Bundle数据参数
      */

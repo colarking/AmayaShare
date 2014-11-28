@@ -228,6 +228,11 @@ public class AmayaShare implements RequestListener, IUiListener, HttpCallback {
                 if (amayaListener != null)
                     amayaListener.onComplete(AmayaShareEnums.TENCENT_WEIBO, AmayaShareConstants.AMAYA_TYPE_AUTH, data == null ? null : data.getExtras());
             }
+        } else if (requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_RENREN) {
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                Log.e("amaya", "" + extras.toString());
+            }
         } else {
             final boolean isShare = !amayaTencent.isSessionValid();
             final AmayaShareEnums enums = requestCode == AmayaShareConstants.AMAYA_ACTIVITY_RESULT_QQ ? AmayaShareEnums.TENCENT_QZONE : AmayaShareEnums.TENCENT_QQ;

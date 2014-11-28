@@ -31,6 +31,10 @@
 			android:screenOrientation="portrait"
 			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 		<activity
+                android:name="com.renn.rennsdk.oauth.OAuthActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity
 			android:name="com.tencent.tauth.AuthActivity"
 			android:noHistory="true"
 			android:launchMode="singleTask" >
